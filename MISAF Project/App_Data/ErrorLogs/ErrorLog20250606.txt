@@ -1,0 +1,9 @@
+2025-06-06 10:39:02.078 [INF] Application started
+2025-06-06 11:21:37.706 [INF] Saving MAF_Main with MAF_No: 25-000015-00
+2025-06-06 11:21:37.732 [INF] Saving MAF_Detail with MAF_No: 25-000015-00
+2025-06-06 11:21:37.732 [INF] Saving MAF_Detail with MAF_No: 25-000015-00
+2025-06-06 11:21:37.749 [INF] Saving MAF_Detail with MAF_No: 25-000015-00
+2025-06-06 11:21:37.792 [INF] Moved attachment from Y:\prg\vb\WORKSPACE\CARLOBACTOL\MISAF\MIS Action Form\MISAF Project\App_Data\TempUploads\faa076e7-f7fb-42c9-9124-ab52f5f82f54.png to Y:\prg\vb\WORKSPACE\CARLOBACTOL\MISAF\MIS Action Form\MISAF Project\App_Data\Attachments\25-000015-00-21-4.png
+2025-06-06 11:21:37.792 [INF] Saving MAF_Attachment with MAF_No: 25-000015-00, FilePath: Y:\prg\vb\WORKSPACE\CARLOBACTOL\MISAF\MIS Action Form\MISAF Project\App_Data\Attachments\25-000015-00-21-4.png
+2025-06-06 11:21:37.815 [INF] Moved attachment from Y:\prg\vb\WORKSPACE\CARLOBACTOL\MISAF\MIS Action Form\MISAF Project\App_Data\TempUploads\9ca094b8-fc8f-47e2-b089-ff83046d2c0c.png to Y:\prg\vb\WORKSPACE\CARLOBACTOL\MISAF\MIS Action Form\MISAF Project\App_Data\Attachments\25-000015-00-22-5.png
+2025-06-06 11:21:37.815 [INF] Saving MAF_Attachment with MAF_No: 25-000015-00, FilePath: Y:\prg\vb\WORKSPACE\CARLOBACTOL\MISAF\MIS Action Form\MISAF Project\App_Data\Attachments\25-000015-00-22-5.png

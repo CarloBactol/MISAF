@@ -1,0 +1,149 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="HRModelStoreContainer" CdmEntityContainer="HREntities">
+    <EntitySetMapping Name="Employees">
+      <EntityTypeMapping TypeName="HRModel.Employee">
+        <MappingFragment StoreEntitySet="Employee">
+          <ScalarProperty Name="Company_Email" ColumnName="Company Email" />
+          <ScalarProperty Name="Cleared" ColumnName="Cleared" />
+          <ScalarProperty Name="Record_ID" ColumnName="Record ID" />
+          <ScalarProperty Name="ID_No" ColumnName="ID No" />
+          <ScalarProperty Name="Last_Name" ColumnName="Last Name" />
+          <ScalarProperty Name="First_Name" ColumnName="First Name" />
+          <ScalarProperty Name="Middle_Name" ColumnName="Middle Name" />
+          <ScalarProperty Name="Name_Suffix" ColumnName="Name Suffix" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Origin" ColumnName="Origin" />
+          <ScalarProperty Name="Workplace" ColumnName="Workplace" />
+          <ScalarProperty Name="Cost_Location" ColumnName="Cost Location" />
+          <ScalarProperty Name="Region" ColumnName="Region" />
+          <ScalarProperty Name="Payroll_Workplace" ColumnName="Payroll Workplace" />
+          <ScalarProperty Name="Original_Workplace" ColumnName="Original Workplace" />
+          <ScalarProperty Name="Division_Code" ColumnName="Division Code" />
+          <ScalarProperty Name="Department_Code" ColumnName="Department Code" />
+          <ScalarProperty Name="Section_Code" ColumnName="Section Code" />
+          <ScalarProperty Name="Position_Code" ColumnName="Position Code" />
+          <ScalarProperty Name="Trainee" ColumnName="Trainee" />
+          <ScalarProperty Name="Class" ColumnName="Class" />
+          <ScalarProperty Name="Date_Hired" ColumnName="Date Hired" />
+          <ScalarProperty Name="Date_Terminated" ColumnName="Date Terminated" />
+          <ScalarProperty Name="Status" ColumnName="Status" />
+          <ScalarProperty Name="Last_Day_of_Employment" ColumnName="Last Day of Employment" />
+          <ScalarProperty Name="Old_ID_No" ColumnName="Old ID No" />
+          <ScalarProperty Name="Applicant_No" ColumnName="Applicant No" />
+          <ScalarProperty Name="Birthdate" ColumnName="Birthdate" />
+          <ScalarProperty Name="TIN" ColumnName="TIN" />
+          <ScalarProperty Name="SSS_No" ColumnName="SSS No" />
+          <ScalarProperty Name="PagIbig_No" ColumnName="PagIbig No" />
+          <ScalarProperty Name="PhilHealth_No" ColumnName="PhilHealth No" />
+          <ScalarProperty Name="Bank_Account_No" ColumnName="Bank Account No" />
+          <ScalarProperty Name="Bank_Code" ColumnName="Bank Code" />
+          <ScalarProperty Name="Bank_Account_Type" ColumnName="Bank Account Type" />
+          <ScalarProperty Name="Job_Level" ColumnName="Job Level" />
+          <ScalarProperty Name="Position_Level" ColumnName="Position Level" />
+          <ScalarProperty Name="Date_Regularized" ColumnName="Date Regularized" />
+          <ScalarProperty Name="First_Evaluation_Date" ColumnName="First Evaluation Date" />
+          <ScalarProperty Name="Second_Evaluation_Date" ColumnName="Second Evaluation Date" />
+          <ScalarProperty Name="Final_Evaluation_Date" ColumnName="Final Evaluation Date" />
+          <ScalarProperty Name="Previous_Evaluation_Date" ColumnName="Previous Evaluation Date" />
+          <ScalarProperty Name="Termination_Reason" ColumnName="Termination Reason" />
+          <ScalarProperty Name="Civil_Status" ColumnName="Civil Status" />
+          <ScalarProperty Name="W4_Status" ColumnName="W4 Status" />
+          <ScalarProperty Name="Sex" ColumnName="Sex" />
+          <ScalarProperty Name="Citizenship" ColumnName="Citizenship" />
+          <ScalarProperty Name="On_Payroll" ColumnName="On Payroll" />
+          <ScalarProperty Name="Superior_Name" ColumnName="Superior Name" />
+          <ScalarProperty Name="Nickname" ColumnName="Nickname" />
+          <ScalarProperty Name="Address_Region" ColumnName="Address Region" />
+          <ScalarProperty Name="Address_City" ColumnName="Address City" />
+          <ScalarProperty Name="Address_Street" ColumnName="Address Street" />
+          <ScalarProperty Name="Address_Barangay" ColumnName="Address Barangay" />
+          <ScalarProperty Name="Address_Number" ColumnName="Address Number" />
+          <ScalarProperty Name="Address_Zip_Code" ColumnName="Address Zip Code" />
+          <ScalarProperty Name="Address" ColumnName="Address" />
+          <ScalarProperty Name="Landline_No" ColumnName="Landline No" />
+          <ScalarProperty Name="Mobile_No" ColumnName="Mobile No" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="Emergency_Contact_Person" ColumnName="Emergency Contact Person" />
+          <ScalarProperty Name="Emergency_Contact_No" ColumnName="Emergency Contact No" />
+          <ScalarProperty Name="Emergency_Contact_Address" ColumnName="Emergency Contact Address" />
+          <ScalarProperty Name="Educational_Attainment" ColumnName="Educational Attainment" />
+          <ScalarProperty Name="Parental_ID" ColumnName="Parental ID" />
+          <ScalarProperty Name="Employee_Type" ColumnName="Employee Type" />
+          <ScalarProperty Name="Project_Name" ColumnName="Project Name" />
+          <ScalarProperty Name="HR_PAT_Assigned" ColumnName="HR_PAT Assigned" />
+          <ScalarProperty Name="Previous_Employer" ColumnName="Previous Employer" />
+          <ScalarProperty Name="Previous_Employer_Tin" ColumnName="Previous Employer Tin" />
+          <ScalarProperty Name="Previous_Employer_From" ColumnName="Previous Employer From" />
+          <ScalarProperty Name="Previous_Employer_To" ColumnName="Previous Employer To" />
+          <ScalarProperty Name="Previous_Employer_Status" ColumnName="Previous Employer Status" />
+          <ScalarProperty Name="Previous_Employer_Reason" ColumnName="Previous Employer Reason" />
+          <ScalarProperty Name="Reliever_ID" ColumnName="Reliever ID" />
+          <ScalarProperty Name="Insert" ColumnName="Insert" />
+          <ScalarProperty Name="Update" ColumnName="Update" />
+          <ScalarProperty Name="Encoded_By" ColumnName="Encoded By" />
+          <ScalarProperty Name="Date_and_Time_Encoded" ColumnName="Date and Time Encoded" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Employee_Classes">
+      <EntityTypeMapping TypeName="HRModel.Employee_Class">
+        <MappingFragment StoreEntitySet="Employee Class">
+          <ScalarProperty Name="Code" ColumnName="Code" />
+          <ScalarProperty Name="Class" ColumnName="Class" />
+          <ScalarProperty Name="Active" ColumnName="Active" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Employee_IDs">
+      <EntityTypeMapping TypeName="HRModel.Employee_ID">
+        <MappingFragment StoreEntitySet="Employee ID">
+          <ScalarProperty Name="ID_No" ColumnName="ID No" />
+          <ScalarProperty Name="Picture" ColumnName="Picture" />
+          <ScalarProperty Name="Signature" ColumnName="Signature" />
+          <ScalarProperty Name="Encoded_By" ColumnName="Encoded By" />
+          <ScalarProperty Name="Date_and_Time_Encoded" ColumnName="Date and Time Encoded" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Employee_Superiors">
+      <EntityTypeMapping TypeName="HRModel.Employee_Superior">
+        <MappingFragment StoreEntitySet="Employee Superior">
+          <ScalarProperty Name="Record_ID" ColumnName="Record ID" />
+          <ScalarProperty Name="ID_No" ColumnName="ID No" />
+          <ScalarProperty Name="Superior_ID_No" ColumnName="Superior ID No" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Positions">
+      <EntityTypeMapping TypeName="HRModel.Position">
+        <MappingFragment StoreEntitySet="Position">
+          <ScalarProperty Name="Code" ColumnName="Code" />
+          <ScalarProperty Name="Position1" ColumnName="Position" />
+          <ScalarProperty Name="Job_Level" ColumnName="Job Level" />
+          <ScalarProperty Name="Division_Code" ColumnName="Division Code" />
+          <ScalarProperty Name="Dept_Code" ColumnName="Dept Code" />
+          <ScalarProperty Name="Section_Code" ColumnName="Section Code" />
+          <ScalarProperty Name="Employee_Class" ColumnName="Employee Class" />
+          <ScalarProperty Name="Level" ColumnName="Level" />
+          <ScalarProperty Name="NCR_Staff_Rate" ColumnName="NCR Staff Rate" />
+          <ScalarProperty Name="NCR_RF_Rate" ColumnName="NCR RF Rate" />
+          <ScalarProperty Name="CAB_Staff_Rate" ColumnName="CAB Staff Rate" />
+          <ScalarProperty Name="CAB_RF_Rate" ColumnName="CAB RF Rate" />
+          <ScalarProperty Name="Active" ColumnName="Active" />
+          <ScalarProperty Name="Encoded_By" ColumnName="Encoded By" />
+          <ScalarProperty Name="Date_and_Time_Encoded" ColumnName="Date and Time Encoded" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Position_Levels">
+      <EntityTypeMapping TypeName="HRModel.Position_Level">
+        <MappingFragment StoreEntitySet="Position Level">
+          <ScalarProperty Name="Code" ColumnName="Code" />
+          <ScalarProperty Name="Level" ColumnName="Level" />
+          <ScalarProperty Name="Active" ColumnName="Active" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

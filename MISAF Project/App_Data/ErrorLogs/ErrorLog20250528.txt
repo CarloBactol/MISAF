@@ -1,0 +1,16 @@
+2025-05-28 08:38:37.751 [INF] Application started
+2025-05-28 10:10:56.026 [INF] Application started
+2025-05-28 11:09:33.439 [INF] Application started
+2025-05-28 11:15:26.075 [INF] Application shutting down
+2025-05-28 11:17:48.290 [INF] Application started
+2025-05-28 11:20:05.021 [INF] Application started
+2025-05-28 11:47:35.009 [INF] Application started
+2025-05-28 12:55:57.226 [INF] Application started
+2025-05-28 13:17:04.242 [INF] Application started
+2025-05-28 13:21:50.960 [INF] Application started
+2025-05-28 13:26:19.676 [INF] Application started
+2025-05-28 13:47:24.241 [INF] Application started
+2025-05-28 15:00:07.085 [INF] Application started
+2025-05-28 15:01:47.332 [INF] Application started
+2025-05-28 15:03:46.819 [INF] Application started
+2025-05-28 15:26:46.802 [INF] Application started

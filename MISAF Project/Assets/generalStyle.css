@@ -1,0 +1,458 @@
+﻿/*body {
+    font-family: 'Balsamiq Sans', cursive;
+}*/
+
+/* Background ng header ng masterpage */
+#row_header #masterHead {
+    /*background-color:#5072A7;*/
+    background-color: #f7f7f7;
+}
+
+    #row_header #masterHead ul {
+        background-color: #343434;
+        font-weight: 600;
+        /*width:300px;*/
+    }
+
+        #row_header #masterHead ul a:hover {
+            /*background-color:#343434;*/
+            border-bottom: 2px solid red;
+            padding-bottom: 3px;
+        }
+
+        #row_header #masterHead ul a.active {
+            /*background-color:#343434;*/
+            border-bottom: 2px solid red;
+            padding-bottom: 3px;
+        }
+
+        #row_header #masterHead ul #home:hover {
+            background-color: #f7f7f7;
+            border-bottom: 2px solid red;
+            padding-bottom: 3px;
+        }
+
+        #row_header #masterHead ul #home.active {
+            background-color: #f7f7f7;
+            border-bottom: 2px solid red;
+            padding-bottom: 3px;
+        }
+
+    #row_header #masterHead #navHead {
+        background-color: #f7f7f7;
+        /*width:300px;*/
+    }
+
+    #row_header #masterHead ul #userName {
+        height: 110px;
+        color: white;
+        align-items: center
+    }
+
+/*#row_header #masterHead ul #userName p{
+    padding-top:40px;
+    padding-left:10px;
+    font-size:18px;
+    text-align:center;
+}*/
+
+.rowHeadButton {
+    color: white;
+    padding: 0;
+    padding-left: 10px;
+    font-size: 15px;
+    font-family: 'Open Sans', sans-serif;
+    font-weight: 500;
+}
+
+    .rowHeadButton:hover {
+        background-color: #343434;
+        color: #e5e4e2;
+    }
+
+/* This is an EXAMPLE.  Selectors will be replaced by elements relevant to your theme */
+#actionlinks {
+    position: relative;
+    z-index: 50;
+}
+
+.nav2 {
+    position: relative;
+    z-index: 30;
+}
+
+/* master header menu button */
+/*.navbar #btnMenu i {
+    font-size:20px;
+    color:dodgerblue;
+}*/
+
+/* master header account button */
+.navbar #userAccnt i {
+    font-size: 25px;
+}
+
+/* master header account button */
+.navbar #userAccnt {
+    color: dodgerblue;
+}
+
+th {
+    font-size: smaller;
+}
+
+h6 {
+    font-size: medium;
+    font-weight: 600;
+}
+
+.field_Border {
+    border-top-style: none;
+    border-left-style: none;
+    border-right-style: none;
+}
+
+.remove_btn_bg {
+    background-color: transparent;
+}
+
+.navbar.navheader {
+    background-color: aliceblue;
+    border-bottom-width: medium;
+    border-bottom-color: red;
+    border-bottom-style: outset;
+}
+
+    .navbar.navheader a:hover {
+        color: red;
+    }
+
+    .navbar.navheader .nav-link {
+        color: #383838;
+        font-weight: 400;
+    }
+
+        .navbar.navheader .nav-link:hover {
+            color: red;
+            font-size: large;
+            font-weight: 600;
+        }
+
+.navbar .navbar-collapse {
+    font-family: 'Montserrat', sans-serif;
+    font-family: 'Open Sans', sans-serif;
+}
+
+.mod_header_style {
+    font-family: 'Balsamiq Sans', cursive;
+    font-size: x-large;
+}
+
+.fields_style {
+    font-family: 'Open Sans', sans-serif;
+    font-weight: 700;
+}
+
+.group_header {
+    font-family: 'Merriweather', serif;
+    font-weight: bolder;
+}
+
+.bd-placeholder-img {
+    font-size: 1.125rem;
+    text-anchor: middle;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    user-select: none;
+}
+
+@media (min-width: 768px) {
+    .bd-placeholder-img-lg {
+        font-size: 3.5rem;
+    }
+}
+
+.custom-border-floating-label {
+    border-top: none;
+    border-left: none;
+    border-right: none;
+    border-bottom-width: 2px;
+    border-radius: 0px 0px;
+    /*padding-left:50px;
+    padding-bottom:0px;*/
+    /*margin-left:10px;*/
+}
+
+.gridview_headerStyle {
+    border-top: none;
+    border-left: none;
+    border-right: none;
+    border-bottom-width: 2px;
+    border-bottom-color: black;
+    border-radius: 0px 0px;
+}
+
+.gridview1_headerStyle {
+    border-top: solid;
+    border-bottom: solid;
+    border-left: solid;
+    border-right: solid;
+    border-radius: 0px 0px;
+    box-shadow: inset 0 3px 0 #013567, inset 0 -3px 0 #013567;
+}
+
+.gridview_contentStyle {
+    height: 40px;
+    /*word-break: break-all;
+     word-wrap: break-word;*/
+    /*border:none;
+     border-color:transparent;
+     background-color:transparent;
+     color:#333333;
+     border:none;*/
+    border-color: lightgray;
+    vertical-align: middle;
+    font-size: small;
+    font-weight: 700;
+}
+
+.gridviewPic_contentStyle {
+    border: none;
+    border-color: transparent;
+    background-color: transparent;
+    color: #333333;
+    border: none;
+    vertical-align: middle;
+    font-size: small;
+    font-weight: 700;
+}
+
+.headerStyle_perGroup {
+    font-size: 14px;
+}
+
+#div_main #AccessPath {
+    /*style="padding-left:10px; font-size:18px; font-family: 'Cabin', sans-serif; color:#525252"*/
+    padding-left: 5px;
+    font-size: 16px;
+    /*font-family: 'Cabin',sans-serif;*/
+    font-family: 'Open Sans', sans-serif;
+    font-weight: 500;
+    color: #525252;
+}
+
+.footer {
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    background-color: #444344; /*5072A7 b7a4a4*/
+    color: white;
+    text-align: center;
+    height: 30px;
+    font-size: 12px;
+    padding: 0px 30px 2px 2px;
+    /*background: radial-gradient(circle, rgba(205,205,205,1) 0%, rgba(80,114,167,1) 100%);*/
+    /*position:relative;
+    height: 5em;
+    margin-bottom:-5em;
+
+    background-repeat:no-repeat;
+    font-family: Verdana, Arial, Helvetica, sans-serif;
+    font-size: 10px;
+    font-weight: bold;
+    color:black;
+    left:5px;
+    right:-5px;
+    width: 982px;*/
+    /* bottom:3px;
+    z-index:05px;
+    margin-top:-5em; */
+    /*background-image:url('bg_footer111.gif');*/
+}
+
+    .footer #dateToday {
+        font-family: 'Open Sans', sans-serif;
+    }
+
+.centerImage {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 50%;
+}
+
+.userImage {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 80%;
+}
+
+.centerU {
+    display: flexbox;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    height: 110px;
+    padding-top: 25px;
+}
+
+.modal-backdrop {
+    z-index: -1;
+}
+
+.accordion-button.collapsed {
+    color: orange;
+}
+
+    .accordion-button.collapsed::after {
+        background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='%23fff'%3e%3cpath fill-rule='evenodd' d='M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z'/%3e%3c/svg%3e");
+    }
+
+.table-wrapper-scroll-y {
+    display: block;
+    overflow-y: auto;
+    -ms-overflow-style: -ms-autohiding-scrollbar;
+}
+
+.BigCheckBox input {
+    width: 15px;
+    height: 15px;
+}
+
+.checkIt {
+    width: 30%;
+    word-break: break-all;
+    word-wrap: break-word;
+}
+
+.gridviewtextAlign {
+    text-align: right;
+    vertical-align: middle;
+}
+
+/*------------------------------------------------------------------------------------------------------------------------------------------------------------------------------*/
+/*          ORDERING                                                                                                                                                            */
+/*------------------------------------------------------------------------------------------------------------------------------------------------------------------------------*/
+td.order_Order_Placed {
+}
+
+td.order_For_Confirmation {
+}
+
+td.order_Order_Confirmed {
+}
+
+td.order_For_Payment {
+}
+
+td.order_Order_Paid {
+}
+
+td.order_Payment_Invalid {
+    background-color: crimson;
+}
+
+td.order_For_Payment_Confirmation {
+    background-color: cornflowerblue;
+}
+
+td.order_Payment_Confirmed {
+    background-color: dodgerblue;
+}
+
+td.order_For_Pickup_Date_Confirmation {
+    background-color: goldenrod;
+}
+
+td.order_For_Shipping_Date_Confirmation {
+    background-color: goldenrod;
+}
+
+td.order_For_Pickup {
+    background-color: coral;
+}
+
+td.order_For_Shipment {
+    background-color: coral;
+}
+
+td.order_Order_Completed {
+    background-color: darkolivegreen;
+}
+
+td.order_Order_Canceled {
+    background-color: crimson;
+}
+
+td.order_Order_Canceled_By_Customer {
+    background-color: crimson;
+}
+
+td.order_Order_Canceled_By_Sales {
+    background-color: crimson;
+}
+
+.glow {
+    color: #fff;
+    text-align: center;
+    animation: glow 1s ease-in-out infinite alternate;
+}
+
+@-webkit-keyframes glow {
+    from {
+        text-shadow: 0 0 10px #fff, 0 0 20px #fff, 0 0 30px #e60073, 0 0 40px #e60073, 0 0 50px #e60073, 0 0 60px #e60073, 0 0 70px #e60073;
+    }
+
+    to {
+        text-shadow: 0 0 20px #fff, 0 0 30px #ff4da6, 0 0 40px #ff4da6, 0 0 50px #ff4da6, 0 0 60px #ff4da6, 0 0 70px #ff4da6, 0 0 80px #ff4da6;
+    }
+}
+
+/*//Payment_Invalid, (RED)
+//For_Payment_Confirmation, (LIGHT BLUE)
+//Payment_Confirmed, (BLUE)
+//For_Pickup_Date_Confirmation, (YELLOW)
+//For_Shipping_Date_Confirmation, (YELLOW)
+//For_Pickup/For_Shipment, (ORANGE)
+//Order_Completed, (GREEN)
+//Order_Canceled, (RED)*/
+
+/*------------------------------------------------------------------------------------------------------------------------------------------------------------------------------*/
+
+/*.bootstrap-select.btn-group .dropdown-menu.inner {
+    position: static;
+    float: none;
+    border: 0;
+    padding: 0;
+    margin: 0;
+    border-radius: 0;
+    -webkit-box-shadow: none;
+    box-shadow: none;
+}
+
+.bootstrap-select.btn-group .dropdown-menu {
+    min-width: 100%;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+.wpdt-c .dropup .dropdown-menu {
+    bottom: -2px;
+}
+.wpdt-c .dropup .dropdown-menu, .wpdt-c .navbar-fixed-bottom .dropdown .dropdown-menu {
+    top: auto;
+    bottom: 100%;
+    margin-bottom: 2px;
+}
+.dropup .dropdown-menu {
+    bottom: -2px;
+}
+
+.dropup .dropdown-menu, .navbar-fixed-bottom .dropdown .dropdown-menu {
+    top: auto;
+    bottom: 100%;
+    margin-bottom: 2px;
+}*/

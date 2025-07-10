@@ -1,0 +1,621 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="ModelStoreContainer" CdmEntityContainer="Master_FilesEntities">
+    <EntitySetMapping Name="Access_Codes">
+      <EntityTypeMapping TypeName="Model.Access_Code">
+        <MappingFragment StoreEntitySet="Access Code">
+          <ScalarProperty Name="Record_ID" ColumnName="Record ID" />
+          <ScalarProperty Name="Access_Code1" ColumnName="Access Code" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="Remarks" ColumnName="Remarks" />
+          <ScalarProperty Name="Active" ColumnName="Active" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Attachment_Modules">
+      <EntityTypeMapping TypeName="Model.Attachment_Module">
+        <MappingFragment StoreEntitySet="Attachment Module">
+          <ScalarProperty Name="Record_ID" ColumnName="Record ID" />
+          <ScalarProperty Name="Attachment_ID" ColumnName="Attachment ID" />
+          <ScalarProperty Name="Module_Code" ColumnName="Module Code" />
+          <ScalarProperty Name="Required_for_Saving" ColumnName="Required for Saving" />
+          <ScalarProperty Name="Required" ColumnName="Required" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Attachment_Types">
+      <EntityTypeMapping TypeName="Model.Attachment_Type">
+        <MappingFragment StoreEntitySet="Attachment Type">
+          <ScalarProperty Name="Record_ID" ColumnName="Record ID" />
+          <ScalarProperty Name="Type" ColumnName="Type" />
+          <ScalarProperty Name="Active" ColumnName="Active" />
+          <ScalarProperty Name="Encoded_By" ColumnName="Encoded By" />
+          <ScalarProperty Name="Date_and_Time_Encoded" ColumnName="Date and Time Encoded" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Banks">
+      <EntityTypeMapping TypeName="Model.Bank">
+        <MappingFragment StoreEntitySet="Bank">
+          <ScalarProperty Name="Bank_ID" ColumnName="Bank ID" />
+          <ScalarProperty Name="Bank_Name" ColumnName="Bank Name" />
+          <ScalarProperty Name="Bank_Short_Name" ColumnName="Bank Short Name" />
+          <ScalarProperty Name="Bank_Type" ColumnName="Bank Type" />
+          <ScalarProperty Name="Account_No__Length" ColumnName="Account No. Length" />
+          <ScalarProperty Name="Active" ColumnName="Active" />
+          <ScalarProperty Name="Encoded_By" ColumnName="Encoded By" />
+          <ScalarProperty Name="Date_and_Time_Encoded" ColumnName="Date and Time Encoded" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Bank_Companies">
+      <EntityTypeMapping TypeName="Model.Bank_Company">
+        <MappingFragment StoreEntitySet="Bank Company">
+          <ScalarProperty Name="Bank_Code" ColumnName="Bank Code" />
+          <ScalarProperty Name="Bank_ID" ColumnName="Bank ID" />
+          <ScalarProperty Name="Bank_Name" ColumnName="Bank Name" />
+          <ScalarProperty Name="Bank_Short_Name" ColumnName="Bank Short Name" />
+          <ScalarProperty Name="Bank_Branch" ColumnName="Bank Branch" />
+          <ScalarProperty Name="Bank_Account_No_" ColumnName="Bank Account No." />
+          <ScalarProperty Name="Bank_Currency" ColumnName="Bank Currency" />
+          <ScalarProperty Name="Bank_Loan_Supplier_Code" ColumnName="Bank Loan Supplier Code" />
+          <ScalarProperty Name="Importation_Code" ColumnName="Importation Code" />
+          <ScalarProperty Name="Payment_Entry_Code" ColumnName="Payment Entry Code" />
+          <ScalarProperty Name="Active" ColumnName="Active" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="BIR_ATC_Codes">
+      <EntityTypeMapping TypeName="Model.BIR_ATC_Code">
+        <MappingFragment StoreEntitySet="BIR ATC Code">
+          <ScalarProperty Name="Record_ID" ColumnName="Record ID" />
+          <ScalarProperty Name="ATC_Code" ColumnName="ATC Code" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="Tax_Percent" ColumnName="Tax Percent" />
+          <ScalarProperty Name="Type" ColumnName="Type" />
+          <ScalarProperty Name="Item_Type" ColumnName="Item Type" />
+          <ScalarProperty Name="Active" ColumnName="Active" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Companies">
+      <EntityTypeMapping TypeName="Model.Company">
+        <MappingFragment StoreEntitySet="Company">
+          <ScalarProperty Name="Company_Code" ColumnName="Company Code" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Short_Name" ColumnName="Short Name" />
+          <ScalarProperty Name="Letter_Code" ColumnName="Letter Code" />
+          <ScalarProperty Name="TIN" ColumnName="TIN" />
+          <ScalarProperty Name="Address" ColumnName="Address" />
+          <ScalarProperty Name="Zip_Code" ColumnName="Zip Code" />
+          <ScalarProperty Name="Phone_No_" ColumnName="Phone No." />
+          <ScalarProperty Name="Type" ColumnName="Type" />
+          <ScalarProperty Name="Branch" ColumnName="Branch" />
+          <ScalarProperty Name="Main_Company" ColumnName="Main Company" />
+          <ScalarProperty Name="Withholding_Agent" ColumnName="Withholding Agent" />
+          <ScalarProperty Name="DBF_Code" ColumnName="DBF Code" />
+          <ScalarProperty Name="Active" ColumnName="Active" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Currencies">
+      <EntityTypeMapping TypeName="Model.Currency">
+        <MappingFragment StoreEntitySet="Currency">
+          <ScalarProperty Name="Record_ID" ColumnName="Record ID" />
+          <ScalarProperty Name="Currency_Code" ColumnName="Currency Code" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="Active" ColumnName="Active" />
+          <ScalarProperty Name="Encoded_By" ColumnName="Encoded By" />
+          <ScalarProperty Name="Date_and_Time_Encoded" ColumnName="Date and Time Encoded" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Currency_Conversions">
+      <EntityTypeMapping TypeName="Model.Currency_Conversion">
+        <MappingFragment StoreEntitySet="Currency Conversion">
+          <ScalarProperty Name="Record_ID" ColumnName="Record ID" />
+          <ScalarProperty Name="Currency_Code" ColumnName="Currency Code" />
+          <ScalarProperty Name="Rate" ColumnName="Rate" />
+          <ScalarProperty Name="Effectivity_Date" ColumnName="Effectivity Date" />
+          <ScalarProperty Name="Encoded_By" ColumnName="Encoded By" />
+          <ScalarProperty Name="Date_and_Time_Encoded" ColumnName="Date and Time Encoded" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Customers">
+      <EntityTypeMapping TypeName="Model.Customer">
+        <MappingFragment StoreEntitySet="Customer">
+          <ScalarProperty Name="Record_ID" ColumnName="Record ID" />
+          <ScalarProperty Name="Customer_Code" ColumnName="Customer Code" />
+          <ScalarProperty Name="Customer_Name" ColumnName="Customer Name" />
+          <ScalarProperty Name="Active" ColumnName="Active" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Dashboard_Details">
+      <EntityTypeMapping TypeName="Model.Dashboard_Detail">
+        <MappingFragment StoreEntitySet="Dashboard Detail">
+          <ScalarProperty Name="Record_ID" ColumnName="Record ID" />
+          <ScalarProperty Name="Dashboard_Code" ColumnName="Dashboard Code" />
+          <ScalarProperty Name="Code" ColumnName="Code" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="Approve" ColumnName="Approve" />
+          <ScalarProperty Name="Disapprove" ColumnName="Disapprove" />
+          <ScalarProperty Name="Edit" ColumnName="Edit" />
+          <ScalarProperty Name="Delete" ColumnName="Delete" />
+          <ScalarProperty Name="Cancel" ColumnName="Cancel" />
+          <ScalarProperty Name="Action_By_ID" ColumnName="Action By ID" />
+          <ScalarProperty Name="Action_By_Name" ColumnName="Action By Name" />
+          <ScalarProperty Name="Action" ColumnName="Action" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Dashboard_Mains">
+      <EntityTypeMapping TypeName="Model.Dashboard_Main">
+        <MappingFragment StoreEntitySet="Dashboard Main">
+          <ScalarProperty Name="Record_ID" ColumnName="Record ID" />
+          <ScalarProperty Name="Dashboard_Code" ColumnName="Dashboard Code" />
+          <ScalarProperty Name="Module_Code" ColumnName="Module Code" />
+          <ScalarProperty Name="Access_Code" ColumnName="Access Code" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="Main_Window_Dir" ColumnName="Main Window Dir" />
+          <ScalarProperty Name="WithPopUp" ColumnName="WithPopUp" />
+          <ScalarProperty Name="NotifOnly" ColumnName="NotifOnly" />
+          <ScalarProperty Name="Notification_Code" ColumnName="Notification Code" />
+          <ScalarProperty Name="Plant_Code" ColumnName="Plant Code" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Error_Logs">
+      <EntityTypeMapping TypeName="Model.Error_Log">
+        <MappingFragment StoreEntitySet="Error Log">
+          <ScalarProperty Name="Details" ColumnName="Details" />
+          <ScalarProperty Name="Message" ColumnName="Message" />
+          <ScalarProperty Name="User_Name" ColumnName="User Name" />
+          <ScalarProperty Name="PC_Name" ColumnName="PC Name" />
+          <ScalarProperty Name="IP_Address" ColumnName="IP Address" />
+          <ScalarProperty Name="Error_Date_Time" ColumnName="Error Date_Time" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Field_Access_Restrictions">
+      <EntityTypeMapping TypeName="Model.Field_Access_Restriction">
+        <MappingFragment StoreEntitySet="Field Access Restriction">
+          <ScalarProperty Name="Record_ID" ColumnName="Record ID" />
+          <ScalarProperty Name="Module_Code" ColumnName="Module Code" />
+          <ScalarProperty Name="Access_Code" ColumnName="Access Code" />
+          <ScalarProperty Name="Field_Name" ColumnName="Field Name" />
+          <ScalarProperty Name="Access_Type" ColumnName="Access Type" />
+          <ScalarProperty Name="Active" ColumnName="Active" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="History_Access_Codes">
+      <EntityTypeMapping TypeName="Model.History_Access_Code">
+        <MappingFragment StoreEntitySet="History Access Code">
+          <ScalarProperty Name="History_ID" ColumnName="History ID" />
+          <ScalarProperty Name="Record_ID" ColumnName="Record ID" />
+          <ScalarProperty Name="Access_Code" ColumnName="Access Code" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="Remarks" ColumnName="Remarks" />
+          <ScalarProperty Name="Active" ColumnName="Active" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="History_Attachment_Modules">
+      <EntityTypeMapping TypeName="Model.History_Attachment_Module">
+        <MappingFragment StoreEntitySet="History Attachment Module">
+          <ScalarProperty Name="Rec_ID" ColumnName="Rec ID" />
+          <ScalarProperty Name="History_ID" ColumnName="History ID" />
+          <ScalarProperty Name="Record_ID" ColumnName="Record ID" />
+          <ScalarProperty Name="Attachment_ID" ColumnName="Attachment ID" />
+          <ScalarProperty Name="Module_Code" ColumnName="Module Code" />
+          <ScalarProperty Name="Required_for_Saving" ColumnName="Required for Saving" />
+          <ScalarProperty Name="Required" ColumnName="Required" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="History_Attachment_Types">
+      <EntityTypeMapping TypeName="Model.History_Attachment_Type">
+        <MappingFragment StoreEntitySet="History Attachment Type">
+          <ScalarProperty Name="History_ID" ColumnName="History ID" />
+          <ScalarProperty Name="Record_ID" ColumnName="Record ID" />
+          <ScalarProperty Name="Type" ColumnName="Type" />
+          <ScalarProperty Name="Active" ColumnName="Active" />
+          <ScalarProperty Name="Encoded_By" ColumnName="Encoded By" />
+          <ScalarProperty Name="Date_and_Time_Encoded" ColumnName="Date and Time Encoded" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="History_Banks">
+      <EntityTypeMapping TypeName="Model.History_Bank">
+        <MappingFragment StoreEntitySet="History Bank">
+          <ScalarProperty Name="History_ID" ColumnName="History ID" />
+          <ScalarProperty Name="Bank_ID" ColumnName="Bank ID" />
+          <ScalarProperty Name="Bank_Name" ColumnName="Bank Name" />
+          <ScalarProperty Name="Bank_Short_Name" ColumnName="Bank Short Name" />
+          <ScalarProperty Name="Bank_Type" ColumnName="Bank Type" />
+          <ScalarProperty Name="Active" ColumnName="Active" />
+          <ScalarProperty Name="Encoded_By" ColumnName="Encoded By" />
+          <ScalarProperty Name="Date_and_Time_Encoded" ColumnName="Date and Time Encoded" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="History_Currencies">
+      <EntityTypeMapping TypeName="Model.History_Currency">
+        <MappingFragment StoreEntitySet="History Currency">
+          <ScalarProperty Name="History_ID" ColumnName="History ID" />
+          <ScalarProperty Name="Record_ID" ColumnName="Record ID" />
+          <ScalarProperty Name="Currency_Code" ColumnName="Currency Code" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="Active" ColumnName="Active" />
+          <ScalarProperty Name="Encoded_By" ColumnName="Encoded By" />
+          <ScalarProperty Name="Date_and_Time_Encoded" ColumnName="Date and Time Encoded" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="History_Currency_Conversions">
+      <EntityTypeMapping TypeName="Model.History_Currency_Conversion">
+        <MappingFragment StoreEntitySet="History Currency Conversion">
+          <ScalarProperty Name="History_ID" ColumnName="History ID" />
+          <ScalarProperty Name="Record_ID" ColumnName="Record ID" />
+          <ScalarProperty Name="Currency_Code" ColumnName="Currency Code" />
+          <ScalarProperty Name="Rate" ColumnName="Rate" />
+          <ScalarProperty Name="Effectivity_Date" ColumnName="Effectivity Date" />
+          <ScalarProperty Name="Encoded_By" ColumnName="Encoded By" />
+          <ScalarProperty Name="Date_and_Time_Encoded" ColumnName="Date and Time Encoded" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="History_Field_Access_Restrictions">
+      <EntityTypeMapping TypeName="Model.History_Field_Access_Restriction">
+        <MappingFragment StoreEntitySet="History Field Access Restriction">
+          <ScalarProperty Name="History_ID" ColumnName="History ID" />
+          <ScalarProperty Name="Record_ID" ColumnName="Record ID" />
+          <ScalarProperty Name="Module_Code" ColumnName="Module Code" />
+          <ScalarProperty Name="Access_Code" ColumnName="Access Code" />
+          <ScalarProperty Name="Field_Name" ColumnName="Field Name" />
+          <ScalarProperty Name="Active" ColumnName="Active" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="History_Modules">
+      <EntityTypeMapping TypeName="Model.History_Module">
+        <MappingFragment StoreEntitySet="History Module">
+          <ScalarProperty Name="History_ID" ColumnName="History ID" />
+          <ScalarProperty Name="Record_ID" ColumnName="Record ID" />
+          <ScalarProperty Name="Module_Code" ColumnName="Module Code" />
+          <ScalarProperty Name="Module_Name" ColumnName="Module Name" />
+          <ScalarProperty Name="Division" ColumnName="Division" />
+          <ScalarProperty Name="Department" ColumnName="Department" />
+          <ScalarProperty Name="Module_Program" ColumnName="Module Program" />
+          <ScalarProperty Name="Exclusive" ColumnName="Exclusive" />
+          <ScalarProperty Name="Active" ColumnName="Active" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="History_Module_Permissions">
+      <EntityTypeMapping TypeName="Model.History_Module_Permission">
+        <MappingFragment StoreEntitySet="History Module Permission">
+          <ScalarProperty Name="History_ID" ColumnName="History ID" />
+          <ScalarProperty Name="Record_ID" ColumnName="Record ID" />
+          <ScalarProperty Name="Module_Code" ColumnName="Module Code" />
+          <ScalarProperty Name="Access_Code" ColumnName="Access Code" />
+          <ScalarProperty Name="Add" ColumnName="Add" />
+          <ScalarProperty Name="Edit" ColumnName="Edit" />
+          <ScalarProperty Name="Cancel" ColumnName="Cancel" />
+          <ScalarProperty Name="Delete" ColumnName="Delete" />
+          <ScalarProperty Name="Print" ColumnName="Print" />
+          <ScalarProperty Name="Approve" ColumnName="Approve" />
+          <ScalarProperty Name="Validate" ColumnName="Validate" />
+          <ScalarProperty Name="Consolidate" ColumnName="Consolidate" />
+          <ScalarProperty Name="Active" ColumnName="Active" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="History_Projects">
+      <EntityTypeMapping TypeName="Model.History_Project">
+        <MappingFragment StoreEntitySet="History Project">
+          <ScalarProperty Name="History_ID" ColumnName="History ID" />
+          <ScalarProperty Name="Project_ID" ColumnName="Project ID" />
+          <ScalarProperty Name="Project_Name" ColumnName="Project Name" />
+          <ScalarProperty Name="Date_Started" ColumnName="Date Started" />
+          <ScalarProperty Name="Date_Finished" ColumnName="Date Finished" />
+          <ScalarProperty Name="Status" ColumnName="Status" />
+          <ScalarProperty Name="Remarks" ColumnName="Remarks" />
+          <ScalarProperty Name="Approver1" ColumnName="Approver1" />
+          <ScalarProperty Name="Approver2" ColumnName="Approver2" />
+          <ScalarProperty Name="Approver3" ColumnName="Approver3" />
+          <ScalarProperty Name="Approver4" ColumnName="Approver4" />
+          <ScalarProperty Name="Estimated_Budget" ColumnName="Estimated Budget" />
+          <ScalarProperty Name="Encoded_By" ColumnName="Encoded By" />
+          <ScalarProperty Name="Date_and_Time_Encoded" ColumnName="Date and Time Encoded" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="History_Unit_Special_Conversions">
+      <EntityTypeMapping TypeName="Model.History_Unit_Special_Conversion">
+        <MappingFragment StoreEntitySet="History Unit Special Conversion">
+          <ScalarProperty Name="Rec_ID" ColumnName="Rec ID" />
+          <ScalarProperty Name="History_ID" ColumnName="History ID" />
+          <ScalarProperty Name="Record_ID" ColumnName="Record ID" />
+          <ScalarProperty Name="Item_Code" ColumnName="Item Code" />
+          <ScalarProperty Name="Full_Description" ColumnName="Full Description" />
+          <ScalarProperty Name="Unit_From" ColumnName="Unit From" />
+          <ScalarProperty Name="Unit_To" ColumnName="Unit To" />
+          <ScalarProperty Name="Qty_Per_Unit_From" ColumnName="Qty Per Unit From" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="History_Users">
+      <EntityTypeMapping TypeName="Model.History_User">
+        <MappingFragment StoreEntitySet="History Users">
+          <ScalarProperty Name="History_ID" ColumnName="History ID" />
+          <ScalarProperty Name="User_ID" ColumnName="User ID" />
+          <ScalarProperty Name="User_Name" ColumnName="User Name" />
+          <ScalarProperty Name="ID_No" ColumnName="ID No" />
+          <ScalarProperty Name="Password" ColumnName="Password" />
+          <ScalarProperty Name="Group" ColumnName="Group" />
+          <ScalarProperty Name="Admin" ColumnName="Admin" />
+          <ScalarProperty Name="Admin_Division" ColumnName="Admin Division" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="Nickname" ColumnName="Nickname" />
+          <ScalarProperty Name="Active" ColumnName="Active" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="History_Users_Accesses">
+      <EntityTypeMapping TypeName="Model.History_Users_Access">
+        <MappingFragment StoreEntitySet="History Users Access">
+          <ScalarProperty Name="History_ID" ColumnName="History ID" />
+          <ScalarProperty Name="Record_ID" ColumnName="Record ID" />
+          <ScalarProperty Name="User_ID" ColumnName="User ID" />
+          <ScalarProperty Name="Access_Code" ColumnName="Access Code" />
+          <ScalarProperty Name="Active" ColumnName="Active" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Item_Types">
+      <EntityTypeMapping TypeName="Model.Item_Type">
+        <MappingFragment StoreEntitySet="Item Type">
+          <ScalarProperty Name="Record_ID" ColumnName="Record ID" />
+          <ScalarProperty Name="Item_Type1" ColumnName="Item Type" />
+          <ScalarProperty Name="Active" ColumnName="Active" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Last_Series">
+      <EntityTypeMapping TypeName="Model.Last_Series">
+        <MappingFragment StoreEntitySet="Last Series">
+          <ScalarProperty Name="Record_ID" ColumnName="Record ID" />
+          <ScalarProperty Name="Table_Name" ColumnName="Table Name" />
+          <ScalarProperty Name="Last_Series1" ColumnName="Last Series" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Modules">
+      <EntityTypeMapping TypeName="Model.Module">
+        <MappingFragment StoreEntitySet="Module">
+          <ScalarProperty Name="Record_ID" ColumnName="Record ID" />
+          <ScalarProperty Name="Module_Code" ColumnName="Module Code" />
+          <ScalarProperty Name="Module_Name" ColumnName="Module Name" />
+          <ScalarProperty Name="Division" ColumnName="Division" />
+          <ScalarProperty Name="Department" ColumnName="Department" />
+          <ScalarProperty Name="Module_Program" ColumnName="Module Program" />
+          <ScalarProperty Name="Exclusive" ColumnName="Exclusive" />
+          <ScalarProperty Name="Payroll_Closure" ColumnName="Payroll Closure" />
+          <ScalarProperty Name="Help_Filename" ColumnName="Help Filename" />
+          <ScalarProperty Name="Active" ColumnName="Active" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Module_Permissions">
+      <EntityTypeMapping TypeName="Model.Module_Permission">
+        <MappingFragment StoreEntitySet="Module Permission">
+          <ScalarProperty Name="Record_ID" ColumnName="Record ID" />
+          <ScalarProperty Name="Module_Code" ColumnName="Module Code" />
+          <ScalarProperty Name="Access_Code" ColumnName="Access Code" />
+          <ScalarProperty Name="Add" ColumnName="Add" />
+          <ScalarProperty Name="Edit" ColumnName="Edit" />
+          <ScalarProperty Name="Cancel" ColumnName="Cancel" />
+          <ScalarProperty Name="Delete" ColumnName="Delete" />
+          <ScalarProperty Name="Print" ColumnName="Print" />
+          <ScalarProperty Name="Approve" ColumnName="Approve" />
+          <ScalarProperty Name="Validate" ColumnName="Validate" />
+          <ScalarProperty Name="Consolidate" ColumnName="Consolidate" />
+          <ScalarProperty Name="Active" ColumnName="Active" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Payment_Types">
+      <EntityTypeMapping TypeName="Model.Payment_Type">
+        <MappingFragment StoreEntitySet="Payment Type">
+          <ScalarProperty Name="Payment_Code" ColumnName="Payment Code" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="Active" ColumnName="Active" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Plants">
+      <EntityTypeMapping TypeName="Model.Plant">
+        <MappingFragment StoreEntitySet="Plant">
+          <ScalarProperty Name="Plant_Code" ColumnName="Plant Code" />
+          <ScalarProperty Name="Plant_Name" ColumnName="Plant Name" />
+          <ScalarProperty Name="Manufacturing" ColumnName="Manufacturing" />
+          <ScalarProperty Name="Showroom" ColumnName="Showroom" />
+          <ScalarProperty Name="Address" ColumnName="Address" />
+          <ScalarProperty Name="Workplace" ColumnName="Workplace" />
+          <ScalarProperty Name="Active" ColumnName="Active" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Programs">
+      <EntityTypeMapping TypeName="Model.Program">
+        <MappingFragment StoreEntitySet="Program">
+          <ScalarProperty Name="Record_ID" ColumnName="Record ID" />
+          <ScalarProperty Name="Parent_ID" ColumnName="Parent ID" />
+          <ScalarProperty Name="Module_Code" ColumnName="Module Code" />
+          <ScalarProperty Name="Header" ColumnName="Header" />
+          <ScalarProperty Name="Sequence" ColumnName="Sequence" />
+          <ScalarProperty Name="Active" ColumnName="Active" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Projects">
+      <EntityTypeMapping TypeName="Model.Project">
+        <MappingFragment StoreEntitySet="Project">
+          <ScalarProperty Name="Project_ID" ColumnName="Project ID" />
+          <ScalarProperty Name="Project_Name" ColumnName="Project Name" />
+          <ScalarProperty Name="Date_Started" ColumnName="Date Started" />
+          <ScalarProperty Name="Date_Finished" ColumnName="Date Finished" />
+          <ScalarProperty Name="Status" ColumnName="Status" />
+          <ScalarProperty Name="Remarks" ColumnName="Remarks" />
+          <ScalarProperty Name="Approver1" ColumnName="Approver1" />
+          <ScalarProperty Name="Approver2" ColumnName="Approver2" />
+          <ScalarProperty Name="Approver3" ColumnName="Approver3" />
+          <ScalarProperty Name="Approver4" ColumnName="Approver4" />
+          <ScalarProperty Name="Estimated_Budget" ColumnName="Estimated Budget" />
+          <ScalarProperty Name="Category_Code" ColumnName="Category Code" />
+          <ScalarProperty Name="Category_Description" ColumnName="Category Description" />
+          <ScalarProperty Name="Encoded_By" ColumnName="Encoded By" />
+          <ScalarProperty Name="Date_and_Time_Encoded" ColumnName="Date and Time Encoded" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Project_Categories">
+      <EntityTypeMapping TypeName="Model.Project_Category">
+        <MappingFragment StoreEntitySet="Project Category">
+          <ScalarProperty Name="Code" ColumnName="Code" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="Active" ColumnName="Active" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="RegionCityBgies">
+      <EntityTypeMapping TypeName="Model.RegionCityBgy">
+        <MappingFragment StoreEntitySet="RegionCityBgy">
+          <ScalarProperty Name="Record_ID" ColumnName="Record ID" />
+          <ScalarProperty Name="PSGC_Code" ColumnName="PSGC Code" />
+          <ScalarProperty Name="Type" ColumnName="Type" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Active" ColumnName="Active" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Suppliers">
+      <EntityTypeMapping TypeName="Model.Supplier">
+        <MappingFragment StoreEntitySet="Supplier">
+          <ScalarProperty Name="Supplier_Code" ColumnName="Supplier Code" />
+          <ScalarProperty Name="Supplier_Name" ColumnName="Supplier Name" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Units">
+      <EntityTypeMapping TypeName="Model.Unit">
+        <MappingFragment StoreEntitySet="Unit">
+          <ScalarProperty Name="Unit1" ColumnName="Unit" />
+          <ScalarProperty Name="Standard" ColumnName="Standard" />
+          <ScalarProperty Name="Unix_Code" ColumnName="Unix Code" />
+          <ScalarProperty Name="Active" ColumnName="Active" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Unit_Special_Conversions">
+      <EntityTypeMapping TypeName="Model.Unit_Special_Conversion">
+        <MappingFragment StoreEntitySet="Unit Special Conversion">
+          <ScalarProperty Name="Record_ID" ColumnName="Record ID" />
+          <ScalarProperty Name="Item_Code" ColumnName="Item Code" />
+          <ScalarProperty Name="Full_Description" ColumnName="Full Description" />
+          <ScalarProperty Name="Unit_From" ColumnName="Unit From" />
+          <ScalarProperty Name="Unit_To" ColumnName="Unit To" />
+          <ScalarProperty Name="Qty_Per_Unit_From" ColumnName="Qty Per Unit From" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Unit_Standard_Conversions">
+      <EntityTypeMapping TypeName="Model.Unit_Standard_Conversion">
+        <MappingFragment StoreEntitySet="Unit Standard Conversion">
+          <ScalarProperty Name="Record_ID" ColumnName="Record ID" />
+          <ScalarProperty Name="Unit_From" ColumnName="Unit From" />
+          <ScalarProperty Name="Unit_To" ColumnName="Unit To" />
+          <ScalarProperty Name="Qty_Per_Unit_From" ColumnName="Qty Per Unit From" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Users">
+      <EntityTypeMapping TypeName="Model.User">
+        <MappingFragment StoreEntitySet="Users">
+          <ScalarProperty Name="User_ID" ColumnName="User ID" />
+          <ScalarProperty Name="User_Name" ColumnName="User Name" />
+          <ScalarProperty Name="ID_No" ColumnName="ID No" />
+          <ScalarProperty Name="Password" ColumnName="Password" />
+          <ScalarProperty Name="Group" ColumnName="Group" />
+          <ScalarProperty Name="Admin" ColumnName="Admin" />
+          <ScalarProperty Name="Admin_Division" ColumnName="Admin Division" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="Nickname" ColumnName="Nickname" />
+          <ScalarProperty Name="Supplier_Group" ColumnName="Supplier Group" />
+          <ScalarProperty Name="Active" ColumnName="Active" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Users_Accesses">
+      <EntityTypeMapping TypeName="Model.Users_Access">
+        <MappingFragment StoreEntitySet="Users Access">
+          <ScalarProperty Name="Record_ID" ColumnName="Record ID" />
+          <ScalarProperty Name="User_ID" ColumnName="User ID" />
+          <ScalarProperty Name="Access_Code" ColumnName="Access Code" />
+          <ScalarProperty Name="Active" ColumnName="Active" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Users_Access2">
+      <EntityTypeMapping TypeName="Model.Users_Access2">
+        <MappingFragment StoreEntitySet="Users Access2">
+          <ScalarProperty Name="Record_ID" ColumnName="Record ID" />
+          <ScalarProperty Name="User_ID" ColumnName="User ID" />
+          <ScalarProperty Name="User_Name" ColumnName="User Name" />
+          <ScalarProperty Name="ID_No" ColumnName="ID No" />
+          <ScalarProperty Name="Module_Code" ColumnName="Module Code" />
+          <ScalarProperty Name="Workplace" ColumnName="Workplace" />
+          <ScalarProperty Name="Payroll_Workplace" ColumnName="Payroll Workplace" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Users_Groups">
+      <EntityTypeMapping TypeName="Model.Users_Group">
+        <MappingFragment StoreEntitySet="Users Group">
+          <ScalarProperty Name="Group" ColumnName="Group" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="VAT_Percents">
+      <EntityTypeMapping TypeName="Model.VAT_Percent">
+        <MappingFragment StoreEntitySet="VAT Percent">
+          <ScalarProperty Name="Record_ID" ColumnName="Record ID" />
+          <ScalarProperty Name="Percent" ColumnName="Percent" />
+          <ScalarProperty Name="Divisor" ColumnName="Divisor" />
+          <ScalarProperty Name="Effectivity_Date" ColumnName="Effectivity Date" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="VAT_Types">
+      <EntityTypeMapping TypeName="Model.VAT_Type">
+        <MappingFragment StoreEntitySet="VAT Type">
+          <ScalarProperty Name="Record_ID" ColumnName="Record ID" />
+          <ScalarProperty Name="VAT_Type1" ColumnName="VAT Type" />
+          <ScalarProperty Name="Active" ColumnName="Active" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Countries">
+      <EntityTypeMapping TypeName="Model.Country">
+        <MappingFragment StoreEntitySet="Country">
+          <ScalarProperty Name="Country1" ColumnName="Country" />
+          <ScalarProperty Name="Active" ColumnName="Active" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

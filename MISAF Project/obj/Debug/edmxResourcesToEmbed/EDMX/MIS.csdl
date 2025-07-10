@@ -1,0 +1,155 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="MISModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityContainer Name="MISEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="History_MAF_Attachments" EntityType="MISModel.History_MAF_Attachment" />
+    <EntitySet Name="History_MAF_Details" EntityType="MISModel.History_MAF_Detail" />
+    <EntitySet Name="History_MAF_Mains" EntityType="MISModel.History_MAF_Main" />
+    <EntitySet Name="MAF_Approvers" EntityType="MISModel.MAF_Approver" />
+    <EntitySet Name="MAF_Attachments" EntityType="MISModel.MAF_Attachment" />
+    <EntitySet Name="MAF_Categories" EntityType="MISModel.MAF_Category" />
+    <EntitySet Name="MAF_Details" EntityType="MISModel.MAF_Detail" />
+    <EntitySet Name="MAF_Last_Series" EntityType="MISModel.MAF_Last_Series" />
+    <EntitySet Name="MAF_Mains" EntityType="MISModel.MAF_Main" />
+    <EntitySet Name="MAF_Reasons" EntityType="MISModel.MAF_Reason" />
+  </EntityContainer>
+  <EntityType Name="History_MAF_Attachment">
+    <Key>
+      <PropertyRef Name="Rec_ID" />
+    </Key>
+    <Property Name="Rec_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="History_ID" Type="Int32" Nullable="false" />
+    <Property Name="Record_ID" Type="Int32" Nullable="false" />
+    <Property Name="MAF_No" Type="String" Nullable="false" MaxLength="12" FixedLength="true" Unicode="false" />
+    <Property Name="Filename" Type="String" Nullable="false" MaxLength="500" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="History_MAF_Detail">
+    <Key>
+      <PropertyRef Name="Rec_ID" />
+    </Key>
+    <Property Name="Rec_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="History_ID" Type="Int32" Nullable="false" />
+    <Property Name="Record_ID" Type="Int32" Nullable="false" />
+    <Property Name="MAF_No" Type="String" Nullable="false" MaxLength="12" FixedLength="true" Unicode="false" />
+    <Property Name="Category_ID" Type="Int32" Nullable="false" />
+    <Property Name="Category" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Request" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="Reason_ID" Type="Int32" Nullable="false" />
+    <Property Name="Reason" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Status" Type="String" Nullable="false" MaxLength="30" FixedLength="false" Unicode="false" />
+    <Property Name="Status_DateTime" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="Status_Remarks" Type="String" MaxLength="2000" FixedLength="false" Unicode="false" />
+    <Property Name="Status_Updated_By" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="History_MAF_Main">
+    <Key>
+      <PropertyRef Name="History_ID" />
+    </Key>
+    <Property Name="History_ID" Type="Int32" Nullable="false" />
+    <Property Name="MAF_No" Type="String" Nullable="false" MaxLength="12" FixedLength="true" Unicode="false" />
+    <Property Name="Requestor_ID_No" Type="String" Nullable="false" MaxLength="6" FixedLength="true" Unicode="false" />
+    <Property Name="Requestor_Name" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="Requestor_Workplace" Type="String" Nullable="false" MaxLength="3" FixedLength="true" Unicode="false" />
+    <Property Name="Requestor_Div_Dep" Type="String" Nullable="false" MaxLength="7" FixedLength="true" Unicode="false" />
+    <Property Name="DateTime_Requested" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="Endorsed_By" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="DateTime_Endorsed" Type="DateTime" Precision="3" />
+    <Property Name="Endorser_Remarks" Type="String" MaxLength="2000" FixedLength="false" Unicode="false" />
+    <Property Name="Final_Approver" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="DateTime_Approved" Type="DateTime" Precision="3" />
+    <Property Name="Final_Approver_Remarks" Type="String" MaxLength="2000" FixedLength="false" Unicode="false" />
+    <Property Name="PreApproved" Type="String" Nullable="false" MaxLength="1" FixedLength="true" Unicode="false" />
+    <Property Name="Target_Date" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+    <Property Name="Status" Type="String" Nullable="false" MaxLength="30" FixedLength="false" Unicode="false" />
+    <Property Name="Status_DateTime" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="Status_Updated_By" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="Status_Remarks" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="Encoded_By" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="DateTime_Encoded" Type="DateTime" Nullable="false" Precision="3" />
+  </EntityType>
+  <EntityType Name="MAF_Approver">
+    <Key>
+      <PropertyRef Name="Approver_ID" />
+    </Key>
+    <Property Name="Approver_ID" Type="Int32" Nullable="false" />
+    <Property Name="ID_No" Type="String" Nullable="false" MaxLength="6" FixedLength="true" Unicode="false" />
+    <Property Name="Name" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="Endorser_Only" Type="String" Nullable="false" MaxLength="1" FixedLength="true" Unicode="false" />
+    <Property Name="Email_CC" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="MIS" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+    <Property Name="Active" Type="String" Nullable="false" MaxLength="1" FixedLength="true" Unicode="false" />
+  </EntityType>
+  <EntityType Name="MAF_Attachment">
+    <Key>
+      <PropertyRef Name="Record_ID" />
+    </Key>
+    <Property Name="Record_ID" Type="Int32" Nullable="false" />
+    <Property Name="MAF_No" Type="String" Nullable="false" MaxLength="12" FixedLength="true" Unicode="false" />
+    <Property Name="Filename" Type="String" Nullable="false" MaxLength="500" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="MAF_Category">
+    <Key>
+      <PropertyRef Name="Category_ID" />
+    </Key>
+    <Property Name="Category_ID" Type="Int32" Nullable="false" />
+    <Property Name="Category" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Active" Type="String" Nullable="false" MaxLength="1" FixedLength="true" Unicode="false" />
+  </EntityType>
+  <EntityType Name="MAF_Detail">
+    <Key>
+      <PropertyRef Name="Record_ID" />
+    </Key>
+    <Property Name="Record_ID" Type="Int32" Nullable="false" />
+    <Property Name="MAF_No" Type="String" Nullable="false" MaxLength="12" FixedLength="true" Unicode="false" />
+    <Property Name="Category_ID" Type="Int32" Nullable="false" />
+    <Property Name="Category" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Request" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="Reason_ID" Type="Int32" Nullable="false" />
+    <Property Name="Reason" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Status" Type="String" Nullable="false" MaxLength="30" FixedLength="false" Unicode="false" />
+    <Property Name="Status_DateTime" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="Status_Remarks" Type="String" MaxLength="2000" FixedLength="false" Unicode="false" />
+    <Property Name="Status_Updated_By" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="MAF_Last_Series">
+    <Key>
+      <PropertyRef Name="Record_ID" />
+    </Key>
+    <Property Name="Record_ID" Type="Int32" Nullable="false" />
+    <Property Name="Table_Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Year" Type="String" MaxLength="4" FixedLength="true" Unicode="false" />
+    <Property Name="Series" Type="Int32" Nullable="false" />
+  </EntityType>
+  <EntityType Name="MAF_Main">
+    <Key>
+      <PropertyRef Name="MAF_No" />
+    </Key>
+    <Property Name="MAF_No" Type="String" Nullable="false" MaxLength="12" FixedLength="true" Unicode="false" />
+    <Property Name="Requestor_ID_No" Type="String" Nullable="false" MaxLength="6" FixedLength="true" Unicode="false" />
+    <Property Name="Requestor_Name" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="Requestor_Workplace" Type="String" Nullable="false" MaxLength="3" FixedLength="true" Unicode="false" />
+    <Property Name="Requestor_Div_Dep" Type="String" Nullable="false" MaxLength="7" FixedLength="true" Unicode="false" />
+    <Property Name="DateTime_Requested" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="Endorsed_By" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="DateTime_Endorsed" Type="DateTime" Precision="3" />
+    <Property Name="Endorser_Remarks" Type="String" MaxLength="2000" FixedLength="false" Unicode="false" />
+    <Property Name="Final_Approver" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="DateTime_Approved" Type="DateTime" Precision="3" />
+    <Property Name="Final_Approver_Remarks" Type="String" MaxLength="2000" FixedLength="false" Unicode="false" />
+    <Property Name="PreApproved" Type="String" Nullable="false" MaxLength="1" FixedLength="true" Unicode="false" />
+    <Property Name="Target_Date" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+    <Property Name="Status" Type="String" Nullable="false" MaxLength="30" FixedLength="false" Unicode="false" />
+    <Property Name="Status_DateTime" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="Status_Updated_By" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="Status_Remarks" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="Encoded_By" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="DateTime_Encoded" Type="DateTime" Nullable="false" Precision="3" />
+  </EntityType>
+  <EntityType Name="MAF_Reason">
+    <Key>
+      <PropertyRef Name="Reason_ID" />
+    </Key>
+    <Property Name="Reason_ID" Type="Int32" Nullable="false" />
+    <Property Name="Reason" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Active" Type="String" Nullable="false" MaxLength="1" FixedLength="true" Unicode="false" />
+  </EntityType>
+</Schema>

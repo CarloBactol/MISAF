@@ -1,0 +1,96 @@
+2025-07-03 08:51:38.472 [INF] Application started
+2025-07-03 08:55:14.186 [INF] Application started
+2025-07-03 09:29:46.086 [INF] Saving MAF_Main with MAF_No: 25-000021-00
+2025-07-03 09:29:46.102 [INF] Saving MAF_Detail with MAF_No: 25-000021-00
+2025-07-03 09:29:46.119 [INF] Saving MAF_Detail with MAF_No: 25-000021-00
+2025-07-03 09:29:46.136 [INF] Saving MAF_Detail with MAF_No: 25-000021-00
+2025-07-03 09:29:46.136 [INF] Saving MAF_Detail with MAF_No: 25-000021-00
+2025-07-03 09:29:46.169 [INF] Moved attachment from Y:\prg\vb\WORKSPACE\CARLOBACTOL\MISAF\MIS Action Form\MISAF Project\App_Data\TempUploads\56f31806-c010-42d7-b214-f2d83bf201b2.pdf to Y:\prg\vb\WORKSPACE\CARLOBACTOL\MISAF\MIS Action Form\MISAF Project\App_Data\Attachments\25-000021-00-36-test.pdf
+2025-07-03 09:29:46.169 [INF] Saving MAF_Attachment with MAF_No: 25-000021-00, FilePath: Y:\prg\vb\WORKSPACE\CARLOBACTOL\MISAF\MIS Action Form\MISAF Project\App_Data\Attachments\25-000021-00-36-test.pdf
+2025-07-03 09:30:48.210 [INF] Saving MAF_Main with MAF_No: 25-000021-00
+2025-07-03 09:30:48.299 [INF] Saving MAF_Detail with MAF_No: 25-000021-00
+2025-07-03 09:30:48.315 [INF] Saving MAF_Detail with MAF_No: 25-000021-00
+2025-07-03 09:30:48.332 [INF] Saving MAF_Detail with MAF_No: 25-000021-00
+2025-07-03 09:30:48.332 [INF] Saving MAF_Detail with MAF_No: 25-000021-00
+2025-07-03 09:30:48.349 [INF] Saving MAF_Detail with MAF_No: 25-000021-00
+2025-07-03 09:30:48.433 [INF] Moved attachment from Y:\prg\vb\WORKSPACE\CARLOBACTOL\MISAF\MIS Action Form\MISAF Project\App_Data\TempUploads\4cb33957-8293-45c0-9bd4-e978b28f2896.pdf to Y:\prg\vb\WORKSPACE\CARLOBACTOL\MISAF\MIS Action Form\MISAF Project\App_Data\Attachments\25-000021-00-37-test.pdf
+2025-07-03 09:30:48.433 [INF] Saving MAF_Attachment with MAF_No: 25-000021-00, FilePath: Y:\prg\vb\WORKSPACE\CARLOBACTOL\MISAF\MIS Action Form\MISAF Project\App_Data\Attachments\25-000021-00-37-test.pdf
+2025-07-03 10:34:40.632 [INF] Application started
+2025-07-03 13:31:49.784 [INF] Application started
+2025-07-03 14:23:54.484 [INF] Application started
+2025-07-03 14:34:40.447 [INF] Saving MAF_Main with MAF_No: 25-000001-00
+2025-07-03 14:34:40.463 [INF] Saving MAF_Detail with MAF_No: 25-000001-00
+2025-07-03 14:34:40.513 [ERR] An error occurred in SaveMisaf
+System.Data.Entity.Validation.DbEntityValidationException: Validation failed for one or more entities. See 'EntityValidationErrors' property for more details.
+   at System.Data.Entity.Internal.InternalContext.SaveChangesAsync(CancellationToken cancellationToken)
+   at System.Data.Entity.Internal.LazyInternalContext.SaveChangesAsync(CancellationToken cancellationToken)
+   at System.Data.Entity.DbContext.SaveChangesAsync(CancellationToken cancellationToken)
+   at System.Data.Entity.DbContext.SaveChangesAsync()
+   at MISAF_Project.Repositories.BaseRepository`1.<SaveChangesAsync>d__8.MoveNext() in Y:\prg\vb\WORKSPACE\CARLOBACTOL\MISAF\MIS Action Form\MISAF Project\Repositories\BaseRepository.cs:line 63
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.ExceptionServices.ExceptionDispatchInfo.Throw()
+   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   at System.Runtime.CompilerServices.TaskAwaiter.GetResult()
+   at MISAF_Project.Services.DetailsService.<AddAsync>d__3.MoveNext() in Y:\prg\vb\WORKSPACE\CARLOBACTOL\MISAF\MIS Action Form\MISAF Project\Services\DetailsService.cs:line 27
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.ExceptionServices.ExceptionDispatchInfo.Throw()
+   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   at System.Runtime.CompilerServices.TaskAwaiter.GetResult()
+   at MISAF_Project.Controllers.RequestorController.<SaveMisafAsync>d__23.MoveNext() in Y:\prg\vb\WORKSPACE\CARLOBACTOL\MISAF\MIS Action Form\MISAF Project\Controllers\RequestorController.cs:line 456
+2025-07-03 14:34:40.513 [ERR] Entity: MAF_Detail, State: "Added"
+2025-07-03 14:34:40.513 [ERR] Property: Reason, Error: The Reason field is required.
+2025-07-03 14:41:55.890 [INF] Saving MAF_Main with MAF_No: 25-000001-00
+2025-07-03 14:41:55.895 [INF] Saving MAF_Detail with MAF_No: 25-000001-00
+2025-07-03 14:42:04.847 [ERR] An error occurred in SaveMisaf
+FluentValidation.ValidationException: Entity validation failed: Reason_ID is required, Reason is required
+   at MISAF_Project.Services.DetailsService.ValidateEntity(MAF_Detail detail)
+   at MISAF_Project.Services.DetailsService.<AddAsync>d__3.MoveNext()
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.ExceptionServices.ExceptionDispatchInfo.Throw()
+   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   at System.Runtime.CompilerServices.TaskAwaiter.GetResult()
+   at MISAF_Project.Controllers.RequestorController.<SaveMisafAsync>d__23.MoveNext()
+2025-07-03 14:54:20.129 [INF] Saving MAF_Main with MAF_No: 25-000001-00
+2025-07-03 14:54:20.144 [INF] Saving MAF_Detail with MAF_No: 25-000001-00
+2025-07-03 14:54:49.385 [ERR] An error occurred in SaveMisaf
+FluentValidation.ValidationException: Entity validation failed: Reason_ID is required, Reason is required
+   at MISAF_Project.Services.DetailsService.ValidateEntity(MAF_Detail detail)
+   at MISAF_Project.Services.DetailsService.<AddAsync>d__3.MoveNext()
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.ExceptionServices.ExceptionDispatchInfo.Throw()
+   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   at System.Runtime.CompilerServices.TaskAwaiter.GetResult()
+   at MISAF_Project.Controllers.RequestorController.<SaveMisafAsync>d__23.MoveNext()
+2025-07-03 14:58:27.402 [INF] Saving MAF_Main with MAF_No: 25-000001-00
+2025-07-03 14:58:27.418 [INF] Saving MAF_Detail with MAF_No: 25-000001-00
+2025-07-03 14:58:30.604 [ERR] An error occurred in SaveMisaf
+FluentValidation.ValidationException: Entity validation failed: Reason_ID is required, Reason is required
+   at MISAF_Project.Services.DetailsService.ValidateEntity(MAF_Detail detail)
+   at MISAF_Project.Services.DetailsService.<AddAsync>d__3.MoveNext()
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.ExceptionServices.ExceptionDispatchInfo.Throw()
+   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   at System.Runtime.CompilerServices.TaskAwaiter.GetResult()
+   at MISAF_Project.Controllers.RequestorController.<SaveMisafAsync>d__23.MoveNext()
+2025-07-03 15:22:00.382 [INF] Saving MAF_Main with MAF_No: 25-000001-00
+2025-07-03 15:22:00.397 [INF] Saving MAF_Detail with MAF_No: 25-000001-00
+2025-07-03 15:22:03.031 [ERR] An error occurred in SaveMisaf
+FluentValidation.ValidationException: Entity validation failed: Reason_ID is required, Reason is required
+   at MISAF_Project.Services.DetailsService.ValidateEntity(MAF_Detail detail)
+   at MISAF_Project.Services.DetailsService.<AddAsync>d__3.MoveNext()
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.ExceptionServices.ExceptionDispatchInfo.Throw()
+   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   at System.Runtime.CompilerServices.TaskAwaiter.GetResult()
+   at MISAF_Project.Controllers.RequestorController.<SaveMisafAsync>d__23.MoveNext()
+2025-07-03 15:59:38.077 [INF] Saving MAF_Main with MAF_No: 25-000001-00
+2025-07-03 15:59:38.091 [INF] Saving MAF_Detail with MAF_No: 25-000001-00
+2025-07-03 15:59:39.793 [ERR] An error occurred in SaveMisaf
+FluentValidation.ValidationException: Entity validation failed: Reason_ID is required, Reason is required
+   at MISAF_Project.Services.DetailsService.ValidateEntity(MAF_Detail detail)
+   at MISAF_Project.Services.DetailsService.<AddAsync>d__3.MoveNext()
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.ExceptionServices.ExceptionDispatchInfo.Throw()
+   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   at System.Runtime.CompilerServices.TaskAwaiter.GetResult()
+   at MISAF_Project.Controllers.RequestorController.<SaveMisafAsync>d__23.MoveNext()

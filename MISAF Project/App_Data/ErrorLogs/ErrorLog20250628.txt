@@ -1,0 +1,2 @@
+2025-06-28 08:53:10.372 [INF] Application started
+2025-06-28 13:28:24.326 [INF] Application started

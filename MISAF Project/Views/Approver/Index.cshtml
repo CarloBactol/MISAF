@@ -1,0 +1,218 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+}
+
+<div class="container-fluid">
+
+    <!-- start page title -->
+    <div class="row">
+        <div class="col-12">
+            <div class="page-title-box">
+                <div class="page-title-right">
+                    <ol class="breadcrumb m-0">
+                        <li class="breadcrumb-item"><a href="/"><i class="uil-home-alt"></i>&nbsp;Home</a></li>
+                        <li class="breadcrumb-item active">Approver - List</li>
+                    </ol>
+                </div>
+                <h4 class="page-title">Approver</h4>
+            </div>
+        </div>
+    </div>
+    <!-- end page title -->
+    <!-- Start Content-->
+    <div class="row">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-sm-4">
+                            @*<a href="/Approver/Create" class="btn btn-primary pull-right rounded-pill mb-3">
+                                    <i class="mdi mdi-plus"></i>
+                                    Add Approver
+                                </a>*@
+                            <div class="col-sm-5">
+                                <button id="btnAddApprover" type="button" class="btn btn-danger mb-2" data-toggle="modal" data-target="#approverModal">
+                                    <i class="mdi mdi-plus-circle me-2"></i> Add Approver
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row mt-2">
+                        <div class="table-responsive">
+                            <table class="table table-striped table-centered  mb-0" id="approverTable" style="width: 100%">
+                                <thead class="table-light text-center">
+                                    <tr style="font-size: 14px; font-weight: bold;">
+                                        <th>ID No</th>
+                                        <th>Name</th>
+                                        <th>Endorser Only</th>
+                                        <th>Email CC</th>
+                                        <th>Active</th>
+                                        <th>MIS</th>
+                                        <th>&nbsp;</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="approverTableBody">
+                                    <!-- Filled by ajax -->
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- end col -->
+    </div>
+    <!-- end row -->
+    <!-- End Content-->
+    <!-- Modal Approver-->
+    <div class="container">
+        <div class="modal fade" id="approverModal" tabindex="-1" role="dialog">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="approverModalLabel"></h5>
+                    </div>
+                    <div class="modal-body">
+                        @Html.AntiForgeryToken()
+                        <div class="row">
+                            <div class="col-lg-6 col-md-6 col-sm-12">
+                                <div class="form-group mb-2">
+                                    @Html.Label("Approver ID", new { @for = "approverID" })
+                                    @Html.TextBox("ApproverID", "", new { @class = "form-control", @readonly = "readonly", id = "approverID" })
+                                </div>
+                            </div>
+                            <div class="col-lg-6 col-md-6 col-sm-12">
+                                <div class="form-group mb-2">
+                                    @Html.Label("ID No", new { @for = "IDNo" })
+                                    @Html.TextBox("IDNo", "", new { @class = "form-control", id = "IDNo", autocomplete = "off" })
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-12">
+                                <div class="form-group mb-2">
+                                    @Html.Label("Name", new { @for = "name" })
+                                    @Html.TextBox("Name", "", new { @class = "form-control", id = "name", autocomplete = "off" })
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row mb-2">
+                            <div class="col-12">
+                                <div class="form-group mb-2">
+                                    @Html.Label("Email CC", new { @for = "emailCC" })
+                                    @Html.TextBox("EmailCC", "", new { @class = "form-control", id = "emailCC", autocomplete = "off" })
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-6 mb-2">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" value="" id="endorserOnly" checked>
+                                    <label class="form-check-label" for="endorserOnly">
+                                        Endorser Only
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="col-6 mb-2">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" value="" id="active" checked>
+                                    <label class="form-check-label" for="active">
+                                        Active
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-6 mb-2">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" value="" id="mis">
+                                    <label class="form-check-label" for="mis">
+                                        MIS
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+
+                        <input type="hidden" id="editIndex" value="-1" />
+                    </div>
+                    <div class="modal-footer">
+                        <button onclick="saveApprover(event)" type="button" class="btn btn-primary">Save</button>
+                        <button id="btnClose" type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal -->
+    <div class="modal fade" id="employeeModal" tabindex="-1" role="dialog" aria-labelledby="employeeModalLabel" aria-hidden="true" data-backdrop="false">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+
+                <div class="modal-header">
+                    <h5 class="modal-title" id="employeeModalLabel"></h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+
+                <div class="modal-body">
+                    <div class="form-group">
+                        <label for="empName" id="empNameLabel" style="display: none"></label>
+                        <select id="empName" class="form-control chosen-single-select"  style="display: none"></select>
+
+                        <label for="empEmail" id="empEmailLabel"  style="display: none"></label>
+                        <select id="empEmail" class="form-control chosen-single-select"  style="display: none"></select>
+
+                        <input type="text" name="selIDNo" id="selIDNo"   style="display: none"/>
+                        <input type="text" name="selEmailCC" id="selEmailCC"   style="display: none"/>
+                        <input type="text" name="selName" id="selName"   style="display: none"/>
+                    </div>
+                </div>
+
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" id="btnSelectEmpName">Select</button>
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+@section styles{
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.13.6/css/jquery.dataTables.min.css">
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css">
+    @Styles.Render("~/Content/chosen")
+    <style>
+        .custom-toastr {
+            z-index: 9999 !important; /* Fix it when the taostr show within the modal */
+        }
+
+        /* Invalid state */
+        .is-invalid {
+            border: 1px solid red;
+            background-color: #ffe6e6; /* Light red background */
+        }
+
+        /* Valid state */
+        .is-valid {
+            border: 1px solid green; /* Green border for valid input */
+            background-color: #e6ffed; /* Light green background */
+        }
+
+        .custom-toastr {
+            z-index: 9999 !important;
+        }
+    </style>
+
+
+}
+
+
+@section scripts{
+
+    @Scripts.Render("~/bundles/chosen")
+    <script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
+    <script type="text/javascript" src="~/Scripts/approvers.js?nocache=@DateTime.Now.Ticks"></script>
+}

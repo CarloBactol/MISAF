@@ -1,0 +1,355 @@
+﻿@{
+    ViewBag.Title = "Index";
+}
+<div class="container-fluid">
+
+    <!-- Pre-loader HTML -->
+    <div id="loading" style="display: none;">
+        <div class="loader"></div>
+        <p>Loading...</p>
+    </div>
+
+    <!-- start page title -->
+    <div class="row">
+        <div class="col-12">
+            <div class="page-title-box">
+                <div class="page-title-right">
+                    <ol class="breadcrumb m-0">
+                        <li class="breadcrumb-item"><a href="/"><i class="uil-home-alt"></i>&nbsp;Home</a></li>
+                        <li class="breadcrumb-item active">Final Approver Management</li>
+                    </ol>
+                </div>
+                <h4 class="page-title">Final Approver</h4>
+            </div>
+        </div>
+    </div>
+    <!-- end page title -->
+
+    <!-- Start Content-->
+    <div class="row">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-body">
+                    <div class="table-responsive-sm mt-2">
+                        <table id="misafTable" class="table table-bordered table-centered  mb-0">
+                            <thead>
+                                <tr>
+                                    <th>MAF No</th>
+                                    <th>Requested By</th>
+                                    <th>Requested For</th>
+                                    <th>Status</th>
+                                    <th>Status Date</th>
+                                    <th>Status Upadated By</th>
+                                    <th>Status Remarks</th>
+                                    <th>&nbsp;</th>
+
+                                </tr>
+                            </thead>
+                            <tbody id="misafTableBody">
+                                <!-- Filled via AJAX -->
+                            </tbody>
+                        </table>
+                    </div>
+
+                </div> <!-- end card-body-->
+            </div> <!-- end card-->
+        </div>
+    </div>
+    <!-- end row -->
+
+    <!-- End Content-->
+
+</div>
+
+<!-- Remarks Modal -->
+<div class="modal fade" id="remarksModal" tabindex="-1" role="dialog" aria-labelledby="remarksModalLabel" style="z-index: 1050;">
+    <div class="modal-dialog modal-md modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-body">
+                @Html.AntiForgeryToken()
+                <label for="remarks" class="form-label">Remarks</label>
+                <textarea id="remarks" class="form-control" cols="10"></textarea>
+                <input type="hidden" id="remarksIndex" />
+                <input type="hidden" id="remarksMAFNo" />
+                <input type="hidden" id="remarksStatus" />
+            </div>
+            <div class="modal-footer">
+                <button id="btnSaveRemarksAcknowledge" type="button" class="btn btn-success">Save</button>
+                <button id="btnSaveRemarksReject" type="button" class="btn btn-success">Save</button>
+                <button id="btnClose" type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Remarks Modal All-->
+<div class="modal fade" id="remarksModalAll" tabindex="-1" role="dialog" aria-labelledby="remarksModalLabelAll" style="z-index: 1050;">
+    <div class="modal-dialog modal-md modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-body">
+                @Html.AntiForgeryToken()
+                <label for="remarks" class="form-label">Remarks</label>
+                <textarea id="remarksAll" class="form-control" cols="10"></textarea>
+                <input type="text" name="MAF_No" value="" hidden />
+            </div>
+            <div class="modal-footer">
+                <button id="btnApproveAll" type="button" class="btn btn-md btn-outline-success">Save</button>
+                <button id="btnRejectAll" type="button" class="btn btn-md btn-outline-success">Save</button>
+                <button id="btnClose" type="button" class="btn btn-md btn-outline-secondary" data-bs-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Final Approver Modal -->
+<div class="modal fade" id="approverModal" tabindex="-1" role="dialog" style="z-index: 1040;">
+    <div class="modal-dialog modal-xl">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="approveModalLabel"></h5>
+                <button type="button" class="btn btn-danger btn-sm" data-bs-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                @Html.AntiForgeryToken()
+                <div class="container">
+
+                    <!-- Requestor -->
+                    <div class="card shadow-lg">
+                        <div class="card-body">
+                            <h4 class="card-title"><i class="mdi mdi-account"></i> Requestor</h4>
+                            <hr />
+                            <div class="row mb-2">
+                                <div class="col-md-4 col-sm-6 mb-2">
+                                    <label for="MAF_No">MAF No</label>
+                                    <input type="text" id="MAF_No" value="" class="form-control" disabled />
+                                </div>
+                                <div class="col-md-4 col-sm-6 mb-2">
+                                    <label for="Requested_By">Requested By</label>
+                                    <input type="text" id="Requested_By" class="form-control" disabled />
+                                </div>
+                                <div class="col-md-4 col-sm-6 mb-2">
+                                    <label for="Requested_For">Requested For</label>
+                                    <input type="text" id="Requested_For" class="form-control" disabled />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Request Details -->
+                    <div class="card shadow-lg">
+                        <div class="card-body">
+                            <div class="card-body">
+                                <div class="d-flex justify-content-between align-items-center">
+                                    <h4 class="card-title"><i class="mdi mdi-form-select"></i> Request Details</h4>
+                                    <div>
+                                        <button type="button" class="btn btn-md btn-outline-success" id="fApproveAll">
+                                            <i class="mdi mdi-check-all me-1"></i> Approve All
+                                        </button>
+                                        <button type="button" class="btn btn-md btn-outline-danger" id="fRejectAll">
+                                            <i class="mdi mdi-cancel me-1"></i> Reject All
+                                        </button>
+                                    </div>
+                                </div>
+                                <hr />
+                                <div class="row mb-3" style="overflow-x:auto;">
+                                    <table class="table table-bordered table-centered" id="requestTableEndorser">
+                                        <thead>
+                                            <tr>
+                                                <th>Category</th>
+                                                <th>Request / Problem Recommendation</th>
+                                                <th>Status</th>
+                                                <th>Status Date</th>
+                                                <th>Remarks</th>
+                                                <th>Action</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody id="requestTableBodyEndorser">
+                                            <!-- Populated dynamically -->
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Endorser & Requestor -->
+                    <div class="row mb-2">
+
+                        <div class="col-md-6">
+                            <div class="card shadow-lg">
+                                <div class="card-body">
+                                    <h4 class="card-title"><i class="mdi mdi-account"></i> Endorser</h4>
+                                    <hr />
+                                    <div class="col-md-12 col-sm-12 mb-2">
+                                        <label for="Endorsed_By">Endorsed / Noted By</label>
+                                        <input type="text" id="Endorsed_By" class="form-control" disabled />
+                                    </div>
+                                    <div class="col-md-12 col-sm-12 mb-2">
+                                        <label for="DateTime_Endorsed">Status Date (Endorsed / Noted By)</label>
+                                        <input type="date" id="DateTime_Endorsed" class="form-control" disabled />
+                                    </div>
+                                    <div class="col-md-12 col-sm-12 mb-2">
+                                        <label for="Endorser_Remarks">Remarks (Endorsed / Noted By)</label>
+                                        <textarea class="form-control" id="Endorser_Remarks" disabled></textarea>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-md-6">
+                            <div class="card shadow-lg">
+                                <div class="card-body">
+                                    <h4 class="card-title"><i class="mdi mdi-account"></i> Approver</h4>
+                                    <hr />
+                                    <div class="col-md-12 col-sm-12 mb-2">
+                                        <label for="Final_Approver">Final Approver</label>
+                                        <input type="text" id="Final_Approver" class="form-control" disabled />
+                                    </div>
+                                    <div class="col-md-12 col-sm-12 mb-2">
+                                        <label for="DateTime_Approved">Status Date (Final Approver)</label>
+                                        <input type="date" id="DateTime_Approved" class="form-control" disabled />
+                                    </div>
+                                    <div class="col-md-12 col-sm-12 mb-2">
+                                        <label for="Final_Approver_Remarks">Remarks (Final Approver)</label>
+                                        <textarea class="form-control" id="Final_Approver_Remarks" disabled></textarea>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <!-- Status -->
+                    <div class="card shadow-lg">
+                        <div class="card-body">
+                            <h4 class="card-title"><i class="mdi mdi-clock"></i> Status</h4>
+                            <hr />
+                            <div class="row mb-2">
+                                <div class="col-md-4 col-sm-6 mb-2">
+                                    <label for="Status">Status</label>
+                                    <input type="text" id="Status" class="form-control" disabled />
+                                </div>
+                                <div class="col-md-4 col-sm-6 mb-2">
+                                    <label for="Status_DateTime1">Status Date</label>
+                                    <input type="date" id="Status_DateTime1" class="form-control" disabled />
+                                </div>
+                                <div class="col-md-4 col-sm-6">
+                                    <div class="row">
+                                        <div class="col-7">
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="checkbox" value="" id="preApproved" disabled>
+                                                <label class="form-check-label" for="preApproved">
+                                                    Pre-Approved ?
+                                                </label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Attachment -->
+                    <div class="card shadow-lg">
+                        <div class="card-body">
+                            <h4 class="card-title"><i class="mdi mdi-attachment"></i> Attachment</h4>
+                            <hr />
+                            <div class="row mb-2" style="overflow-x:auto;">
+                                <!-- Attachment Table -->
+                                <table class="table table-bordered table-centered" id="attachmentTableApprover">
+                                    <thead>
+                                        <tr>
+                                            <th>Attachment</th>
+                                            <th></th>
+                                            <th>Action</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="attachmentTableBodyApprover">
+                                        <!-- Populated dynamically -->
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+                <input type="hidden" id="editIndex" value="-1" />
+            </div>
+            <div class="modal-footer">
+                <input type="hidden" id="recordIDAcknowledge" />
+                <input type="hidden" id="mafNoAcknowledge" />
+                <button id="btnClose" type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Image Modal -->
+<div class="modal fade" id="imageModal" tabindex="-1" role="dialog" aria-labelledby="imageModalLabel" aria-hidden="true" style="z-index: 1050;">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="imageModalLabel">Image Preview</h5>
+                <button type="button" class="btn btn-sm btn-danger" data-bs-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <img id="modalImage" src="" class="img-fluid" alt="Attachment Preview">
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section styles{
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.13.6/css/jquery.dataTables.min.css">
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css">
+    <style>
+        /* Toastr */
+        #toast-container > .toast {
+            z-index: 10000 !important; /* Above pre-loader */
+        }
+
+        /* Modal backdrops */
+        .modal-backdrop {
+            z-index: 1030 !important; /* Below approverModal */
+        }
+
+        /* Ensure remarksModal backdrop is above approverModal */
+        #remarksModal + .modal-backdrop {
+            z-index: 1045 !important; /* Below remarksModal, above approverModal */
+        }
+
+        /* Ensure remarksModalAll backdrop is above approverModal */
+        #remarksModalAll + .modal-backdrop {
+            z-index: 1045 !important; /* Below remarksModal, above approverModal */
+        }
+
+        /* Ensure imageModal backdrop is above approverModal */
+        #imageModal + .modal-backdrop {
+            z-index: 1045 !important; /* Below imageModal, above approverModal */
+        }
+
+        /* Modal content styling */
+        .modal-content {
+            background: #fff;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+    </style>
+    <link href="~/Content/pre-loader.css" rel="stylesheet" />
+}
+
+@section scripts{
+    <script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
+    <script type="text/javascript" src="~/Scripts/final-approver.js?nocache=@DateTime.Now.Ticks"></script>
+}
+
+
+
+
+

@@ -1,0 +1,5 @@
+2025-06-20 08:43:13.601 [INF] Application started
+2025-06-20 10:12:55.331 [INF] Application shutting down
+2025-06-20 10:43:03.827 [INF] Application started
+2025-06-20 12:57:37.850 [INF] Application started
+2025-06-20 14:37:21.075 [INF] Application started

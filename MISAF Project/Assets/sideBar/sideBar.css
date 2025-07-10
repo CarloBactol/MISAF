@@ -1,0 +1,484 @@
+﻿* {
+    margin:0;
+    padding:0;
+    box-sizing: border-box;
+    font-family: "Lato", sans-serif;
+}
+
+body {
+  position: relative;
+  min-height: 100vh;
+}
+
+/* Fixed sidenav, full height */
+.sidenav { 
+  height: 100%;
+  width: 50px;
+  position: fixed;
+  /*z-index: 1;*/
+  left: 0;
+  background-color: #E1EBEE;
+  overflow-x: hidden;
+  padding-left:0px;
+  padding-bottom:200px;
+  /*transition: all 0.5s ease;*/
+
+}
+/* Change width of scrollbar */
+.sidenav::-webkit-scrollbar {
+    width: 3px;
+  background-color: white; /* or add it to the track */
+  
+}
+
+/* Add a thumb on scrollbar */
+.sidenav::-webkit-scrollbar-thumb {
+    background:	#BEBEBE;
+    border-radius:20px;
+}
+
+.sidenav .div_sideBar #myMenu {
+    margin-top:0px;
+}
+
+/* Sidenav search button size */
+/*.sidenav ul #myUser{
+    margin-top: 0px;
+    height:40px;
+    margin-bottom:10px;
+    background-color:#6699CC;
+}*/
+
+.sidenav #myUser{
+    margin-top: 0px;
+    height:60px;
+    margin-bottom:10px;
+    background-color:#6699CC;
+}
+
+.sidenav ul #mySearchID {
+    height:32px;
+    width:30px;
+    margin-bottom:10px;
+    margin-left: 15px;
+    margin-right: 20px;
+    background-color:white;
+    border: 1px solid gray;
+}
+
+.sidenav.active ul #mySearchID {
+    height:32px;
+    width:225px;
+    margin-bottom:10px;
+    margin-left: 15px;
+    margin-right: 20px;
+    background-color:white;
+    border: 1px solid gray;
+}
+
+/* Sidenav search button size */ to be delete
+.sidenav ul #searchId{
+    height:40px;
+    margin-bottom:10px;
+    /*margin-left: 20px;
+    margin-right: 100px;*/
+}
+
+/* Sidenav list layout */
+.sidenav ul li {
+    list-style:none;
+    position:relative;
+    width:100%;
+    margin:0px 0px 0px 0px;
+    padding:0px 0px 0px 0px;
+    /*margin-left: 0 5px;
+    margin-top:5px;
+    line-height: 25px;
+    border-radius:12px;
+    padding-left:6px;*/
+    background-color:#E1EBEE;
+}
+
+/* Sidenav seacrh input */
+.sidenav ul li input{
+    opacity: 0;
+}
+/* Sidenav.active seacrh input */
+
+.sidenav.active ul li input{
+    opacity: 1;
+    background:white;
+    color:black;
+    outline: none;
+    border: none;
+}
+
+/* Sidenav seacrh input */
+/*.sidenav ul li input{
+    opacity: 0;
+}*/
+/* Sidenav.active seacrh input */
+/*.sidenav.active ul li input{
+    opacity: 1;
+    position:absolute;
+    height: 100%;
+    width: 100%;
+    left:0;
+    top:0;
+    border-radius:12px;
+    outline: none;
+    border: none;
+    background:white;
+    padding-left:37px;
+    font-size:20px;
+    color:black;
+    box-shadow: 10px 5px 10px rgba(0,0,0,0.2);
+}*/
+
+
+/* Sidenav seacrh button */
+.sidenav ul li .bx-search {
+    position:absolute;
+    z-index:99;   
+    font-size:22px;
+    left:0;
+    top:2px;
+    padding:7px;
+    background:white;
+    border-radius:12px;
+    border-left:none;
+    /*box-shadow: 10px 5px 10px rgba(0,0,0,0.2);*/
+}
+
+.sidenav ul li.active {
+    background-color: #63C5DA;
+    color:white;
+}
+
+.sidenav ul li.active a {
+    color: white;
+}
+
+/*.nav_name::before,
+.nav_name::after
+ {
+    position:absolute;
+    top: -.25rem;
+    left: 50%;
+    transform: translateX(-50%) translateY(-100%)
+}
+
+.nav_name::before {
+    content: attr(data-tooltip);
+    color:white;
+    padding:.5rem;
+    width: auto;
+    background: black;
+}
+
+.dropdown-toggle:hover::after {
+    
+}*/
+
+/* Sidenav tooltip */
+[data-tooltip] {
+    position:relative;
+    cursor:default;
+}
+/* Sidenav tooltip */
+[data-tooltip]::after {
+    position:absolute;
+    width:140px;
+    left: calc(50% - 100px);
+    bottom:125%;
+    text-align: center;
+    box-sizing:border-box;
+
+    content: attr(data-tooltip);
+    color:#ffffff;
+    background:black;
+    padding:8px;
+    border-radius: 10px;
+    font-size:0.9em;
+    font-weight: bold;
+
+    visibility:hidden;
+    opacity:0;
+    transform: translateY(10px);
+    transition: opacity 0.3s, transform 0.2s;
+}
+/* Sidenav tooltip hover */
+[data-tooltip]:hover::after {
+    opacity:1;
+    visibility:visible;
+    transform: translateY(0);
+}
+
+/* Style the sidenav links and the dropdown button */
+.sidenav ul li a {
+    color:GrayText;
+    display:flexbox;
+    align-items:center; 
+    text-decoration:none;
+    padding:6px 8px 6px 2px;
+      text-decoration: none;
+      font-size: 17px;
+      color: #818181;
+      display: block; 
+      transition: all 0.4s ease;  
+}
+
+
+
+/* Sidenav On mouse-over */
+.sidenav ul li a:hover {
+    color: #63C5DA;
+  /*color: #0093af;*/
+  /*background:#fff;*/
+}
+
+.sidenav ul li.active a:hover {
+    color: white;
+}
+
+
+
+/* Sidenav button */
+.sidenav ul li a i {
+    /*height: 50px;
+    min-width: 50px;*/
+    border-radius:12px;  
+    text-align:center;
+    margin-left:2px;
+}
+
+/* Sidenav button */
+.sidenav li .Parent {
+    font-weight:600;
+}
+
+/* Sidenav button */
+.sidenav ul .subMenu_li {
+    padding-left:0px;
+    margin-left: 30px;
+}
+
+/* Sidenav button */
+.sidenav ul .subMenu_li_li {
+    padding-left:0px;
+    margin-left: 20px;
+}
+
+/* Sidenav button */
+.sidenav ul li a .sub_icon {
+    /*padding-left:10px;*/
+     padding-left:0px;
+    margin-left: -10px;
+}
+/* Sidenav button */
+.sidenav.active ul li a .sub_icon {
+    /*margin-left:20px;*/
+    padding-left:0px;
+    margin-left: 10px;
+}
+
+/* Sidenav button */
+.sidenav ul li a .sub_icon1 {
+    /*padding-left:10px;*/
+     padding-left:0px;
+    margin-left: -30px;
+}
+/* Sidenav button */
+.sidenav.active ul li a .sub_icon1 {
+    /*margin-left:20px;*/
+    padding-left:0px;
+    margin-left: 10px;
+}
+
+/* Sidenav button */
+.sidenav ul li a .sub_icon2 {
+    /*padding-left:10px;*/
+     padding-left:0px;
+    margin-left: -50px;
+}
+/* Sidenav button */
+.sidenav.active ul li a .sub_icon2 {
+    /*margin-left:20px;*/
+    padding-left:0px;
+    margin-left: 10px;
+}
+
+/* Sidenav active */
+.sidenav.active {
+    width: 300px;    
+}
+/* Sidenav text */
+.sidenav .nav_name {
+    opacity: 0;
+    pointer-events:none;
+    }
+/* Sidenav.active text */
+.sidenav.active .nav_name {
+    opacity: 1;
+    pointer-events:visible;
+    }
+
+/* Sidenav.active treeview visibility */
+.sidenav.active .treeview {
+    visibility:visible;
+    }
+
+/* Sidenav not active treeview visibility */
+.sidenav .treeview {
+    visibility:hidden;
+    }
+
+
+
+
+.sidenav.active #btnMenu {
+    font-size:30px;
+    margin-top :8px;
+    margin-left:265px;
+    opacity: 1;
+    position: absolute;
+    /*width: 35px;
+    height: 35px;
+    position: absolute;
+    top: 15px;
+    right: 8px;
+    transition: all 0.1s ease;*/ 
+}
+
+.sidenav #btnMenu {
+    font-size:30px;
+    margin-top :8px;
+    margin-left:265px;
+    opacity: 0;
+    position: absolute;
+    /*width: 35px;
+    height: 35px;
+    position: absolute;
+    top: 15px;
+    right: 8px;
+    transition: all 0.1s ease;*/ 
+}
+
+.sidenav.active #btnMenu1 {
+    font-size:20px;
+    top: 15px;
+    position: absolute;
+    opacity: 0;
+    /*width: 35px;
+    height: 35px;
+    position: absolute;
+    top: 15px;
+    right: 8px;
+    transition: all 0.1s ease;*/ 
+}
+
+
+.sidenav #btnMenu1 {
+    font-size:20px;
+    top: 15px;
+    position: absolute;
+    opacity: 1;
+    /*width: 35px;
+    height: 35px;
+    position: absolute;
+    top: 15px;
+    right: 8px;
+    transition: all 0.1s ease;*/ 
+}
+
+.sidenav.active #role {
+    padding-top:20px;
+    opacity: 1;
+}
+
+.sidenav #role {
+    padding-top:20px;
+    opacity: 0;
+}
+
+
+/* para sa side bar para hini magresponsive kapag collapse */
+.div_sideBar {
+    width: 300px;
+}
+
+/* Main content */
+.main {
+  margin-left: 50px; /* Same as the width of the sidenav */
+  padding-bottom:50px; 
+  padding-left:0px; 
+  padding-right:0px;
+}
+.main.active {
+    margin-left: 300px;    
+}
+
+/*.sidenav ul li .tooltip {
+    position:absolute;
+    left: 10px;
+    top: 0;
+    transform: translateY(-50%);
+    border-radius: 9px;
+    height: 35px;
+    width: 122px;
+    background:black;
+    line-height: 35px;
+    text-align: center;
+    box-shadow: 0 5px 10px rgba(0,0,0,0.2);
+    transition: 0s;
+    opacity: 0;
+    pointer-events:none;
+    display:block;
+}
+
+.sidenav.active ul li .tooltip {
+    display:none;
+}
+
+.sidenav ul li:hover .tooltip {
+    transition: all 0.5s ease;
+    opacity:1;
+    top: 50%;
+}*/
+
+/* Some media queries for responsiveness */
+/*@media screen and (min-width: 600px) {
+  .sidenav {padding-top: 100px; width:50px;}
+  .sidenav a {font-size: 18px;}
+  
+}*/
+
+/* Some media queries for responsiveness */
+/*@media screen and (max-width: 480px) {
+  .sidenav {padding-top: 15px;}
+  .sidenav a {font-size: 18px;}
+  .sidenav {
+    width: 50px;    
+    }
+  .main {
+    margin-left: 50px;    
+}
+}*/
+
+
+
+/*tr {
+  background-color: #fcf;
+}
+
+tda {
+    pointer-events: none;
+}
+
+.child {
+    background-color: #efd;
+}*/
+
+.mainA {
+  padding: 60px 15px 0;
+}

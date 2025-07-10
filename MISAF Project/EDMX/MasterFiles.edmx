@@ -1,0 +1,1935 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="Model.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Access Code">
+          <Key>
+            <PropertyRef Name="Record ID" />
+          </Key>
+          <Property Name="Record ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Access Code" Type="varchar" MaxLength="16" Nullable="false" />
+          <Property Name="Description" Type="varchar" MaxLength="60" Nullable="false" />
+          <Property Name="Remarks" Type="varchar(max)" />
+          <Property Name="Active" Type="char" MaxLength="1" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Attachment Module">
+          <Key>
+            <PropertyRef Name="Record ID" />
+          </Key>
+          <Property Name="Record ID" Type="int" Nullable="false" />
+          <Property Name="Attachment ID" Type="int" Nullable="false" />
+          <Property Name="Module Code" Type="varchar" MaxLength="15" Nullable="false" />
+          <Property Name="Required for Saving" Type="char" MaxLength="1" Nullable="false" />
+          <Property Name="Required" Type="char" MaxLength="1" />
+        </EntityType>
+        <EntityType Name="Attachment Type">
+          <Key>
+            <PropertyRef Name="Record ID" />
+          </Key>
+          <Property Name="Record ID" Type="int" Nullable="false" />
+          <Property Name="Type" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="Active" Type="char" MaxLength="1" Nullable="false" />
+          <Property Name="Encoded By" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="Date and Time Encoded" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Bank">
+          <Key>
+            <PropertyRef Name="Bank ID" />
+          </Key>
+          <Property Name="Bank ID" Type="int" Nullable="false" />
+          <Property Name="Bank Name" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="Bank Short Name" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="Bank Type" Type="char" MaxLength="1" />
+          <Property Name="Account No. Length" Type="varchar" MaxLength="20" />
+          <Property Name="Active" Type="char" MaxLength="1" Nullable="false" />
+          <Property Name="Encoded By" Type="varchar" MaxLength="100" />
+          <Property Name="Date and Time Encoded" Type="datetime" />
+        </EntityType>
+        <EntityType Name="Bank Company">
+          <Key>
+            <PropertyRef Name="Bank Code" />
+          </Key>
+          <Property Name="Bank Code" Type="int" Nullable="false" />
+          <Property Name="Bank ID" Type="int" Nullable="false" />
+          <Property Name="Bank Name" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Bank Short Name" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="Bank Branch" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="Bank Account No." Type="varchar" MaxLength="20" />
+          <Property Name="Bank Currency" Type="varchar" MaxLength="10" />
+          <Property Name="Bank Loan Supplier Code" Type="char" MaxLength="16" />
+          <Property Name="Importation Code" Type="char" MaxLength="1" />
+          <Property Name="Payment Entry Code" Type="char" MaxLength="2" />
+          <Property Name="Active" Type="char" MaxLength="1" Nullable="false" />
+        </EntityType>
+        <EntityType Name="BIR ATC Code">
+          <Key>
+            <PropertyRef Name="Record ID" />
+          </Key>
+          <Property Name="Record ID" Type="int" Nullable="false" />
+          <Property Name="ATC Code" Type="varchar" MaxLength="5" Nullable="false" />
+          <Property Name="Description" Type="varchar" MaxLength="500" Nullable="false" />
+          <Property Name="Tax Percent" Type="decimal" Precision="6" Scale="2" />
+          <Property Name="Type" Type="varchar" MaxLength="20" />
+          <Property Name="Item Type" Type="varchar" MaxLength="20" />
+          <Property Name="Active" Type="char" MaxLength="1" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Company">
+          <Key>
+            <PropertyRef Name="Company Code" />
+          </Key>
+          <Property Name="Company Code" Type="nchar" MaxLength="3" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" />
+          <Property Name="Short Name" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="Letter Code" Type="char" MaxLength="1" Nullable="false" />
+          <Property Name="TIN" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="Address" Type="varchar" MaxLength="120" Nullable="false" />
+          <Property Name="Zip Code" Type="char" MaxLength="4" />
+          <Property Name="Phone No." Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Type" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="Branch" Type="char" MaxLength="1" Nullable="false" />
+          <Property Name="Main Company" Type="char" MaxLength="3" />
+          <Property Name="Withholding Agent" Type="char" MaxLength="1" Nullable="false" />
+          <Property Name="DBF Code" Type="char" MaxLength="3" />
+          <Property Name="Active" Type="nchar" MaxLength="1" Nullable="false" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'Master Files.dbo.Country' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="Country">
+          <Key>
+            <PropertyRef Name="Country" />
+          </Key>
+          <Property Name="Country" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="Active" Type="char" MaxLength="1" />
+        </EntityType>
+        <EntityType Name="Currency">
+          <Key>
+            <PropertyRef Name="Record ID" />
+          </Key>
+          <Property Name="Record ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Currency Code" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="Description" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="Active" Type="char" MaxLength="1" Nullable="false" />
+          <Property Name="Encoded By" Type="varchar" MaxLength="100" />
+          <Property Name="Date and Time Encoded" Type="datetime" />
+        </EntityType>
+        <EntityType Name="Currency Conversion">
+          <Key>
+            <PropertyRef Name="Record ID" />
+          </Key>
+          <Property Name="Record ID" Type="int" Nullable="false" />
+          <Property Name="Currency Code" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="Rate" Type="decimal" Precision="18" Scale="5" Nullable="false" />
+          <Property Name="Effectivity Date" Type="date" Nullable="false" />
+          <Property Name="Encoded By" Type="varchar" MaxLength="70" Nullable="false" />
+          <Property Name="Date and Time Encoded" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Customer">
+          <Key>
+            <PropertyRef Name="Record ID" />
+          </Key>
+          <Property Name="Record ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Customer Code" Type="char" MaxLength="3" Nullable="false" />
+          <Property Name="Customer Name" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Active" Type="char" MaxLength="1" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Dashboard Detail">
+          <Key>
+            <PropertyRef Name="Record ID" />
+          </Key>
+          <Property Name="Record ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Dashboard Code" Type="int" Nullable="false" />
+          <Property Name="Code" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="Description" Type="varchar" MaxLength="100" />
+          <Property Name="Approve" Type="char" MaxLength="1" />
+          <Property Name="Disapprove" Type="char" MaxLength="1" />
+          <Property Name="Edit" Type="char" MaxLength="1" />
+          <Property Name="Delete" Type="char" MaxLength="1" />
+          <Property Name="Cancel" Type="char" MaxLength="1" />
+          <Property Name="Action By ID" Type="int" />
+          <Property Name="Action By Name" Type="varchar" MaxLength="20" />
+          <Property Name="Action" Type="varchar" MaxLength="30" />
+        </EntityType>
+        <EntityType Name="Dashboard Main">
+          <Key>
+            <PropertyRef Name="Record ID" />
+          </Key>
+          <Property Name="Record ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Dashboard Code" Type="int" Nullable="false" />
+          <Property Name="Module Code" Type="varchar" MaxLength="15" Nullable="false" />
+          <Property Name="Access Code" Type="varchar" MaxLength="16" Nullable="false" />
+          <Property Name="Description" Type="varchar" MaxLength="100" />
+          <Property Name="Main Window Dir" Type="varchar" MaxLength="500" />
+          <Property Name="WithPopUp" Type="char" MaxLength="1" />
+          <Property Name="NotifOnly" Type="char" MaxLength="1" />
+          <Property Name="Notification Code" Type="varchar" MaxLength="20" />
+          <Property Name="Plant Code" Type="varchar" MaxLength="30" />
+        </EntityType>
+        <EntityType Name="Error Log">
+          <Key>
+            <PropertyRef Name="Error Date_Time" />
+          </Key>
+          <Property Name="Details" Type="nvarchar(max)" />
+          <Property Name="Message" Type="nvarchar(max)" />
+          <Property Name="User Name" Type="nvarchar" MaxLength="50" />
+          <Property Name="PC Name" Type="nvarchar" MaxLength="50" />
+          <Property Name="IP Address" Type="nvarchar" MaxLength="50" />
+          <Property Name="Error Date_Time" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Field Access Restriction">
+          <Key>
+            <PropertyRef Name="Record ID" />
+          </Key>
+          <Property Name="Record ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Module Code" Type="varchar" MaxLength="15" Nullable="false" />
+          <Property Name="Access Code" Type="varchar" MaxLength="16" Nullable="false" />
+          <Property Name="Field Name" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Access Type" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="Active" Type="char" MaxLength="1" Nullable="false" />
+        </EntityType>
+        <EntityType Name="History Access Code">
+          <Key>
+            <PropertyRef Name="History ID" />
+          </Key>
+          <Property Name="History ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Record ID" Type="int" Nullable="false" />
+          <Property Name="Access Code" Type="varchar" MaxLength="16" Nullable="false" />
+          <Property Name="Description" Type="varchar" MaxLength="60" Nullable="false" />
+          <Property Name="Remarks" Type="varchar(max)" />
+          <Property Name="Active" Type="char" MaxLength="1" Nullable="false" />
+        </EntityType>
+        <EntityType Name="History Attachment Module">
+          <Key>
+            <PropertyRef Name="Rec ID" />
+          </Key>
+          <Property Name="Rec ID" Type="int" Nullable="false" />
+          <Property Name="History ID" Type="int" Nullable="false" />
+          <Property Name="Record ID" Type="int" Nullable="false" />
+          <Property Name="Attachment ID" Type="int" Nullable="false" />
+          <Property Name="Module Code" Type="varchar" MaxLength="15" Nullable="false" />
+          <Property Name="Required for Saving" Type="char" MaxLength="1" Nullable="false" />
+          <Property Name="Required" Type="char" MaxLength="1" />
+        </EntityType>
+        <EntityType Name="History Attachment Type">
+          <Key>
+            <PropertyRef Name="History ID" />
+          </Key>
+          <Property Name="History ID" Type="int" Nullable="false" />
+          <Property Name="Record ID" Type="int" Nullable="false" />
+          <Property Name="Type" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="Active" Type="char" MaxLength="1" Nullable="false" />
+          <Property Name="Encoded By" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="Date and Time Encoded" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="History Bank">
+          <Key>
+            <PropertyRef Name="History ID" />
+          </Key>
+          <Property Name="History ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Bank ID" Type="int" Nullable="false" />
+          <Property Name="Bank Name" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="Bank Short Name" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="Bank Type" Type="char" MaxLength="1" Nullable="false" />
+          <Property Name="Active" Type="char" MaxLength="1" Nullable="false" />
+          <Property Name="Encoded By" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="Date and Time Encoded" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="History Currency">
+          <Key>
+            <PropertyRef Name="History ID" />
+          </Key>
+          <Property Name="History ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Record ID" Type="int" Nullable="false" />
+          <Property Name="Currency Code" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="Description" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="Active" Type="char" MaxLength="1" Nullable="false" />
+          <Property Name="Encoded By" Type="varchar" MaxLength="100" />
+          <Property Name="Date and Time Encoded" Type="datetime" />
+        </EntityType>
+        <EntityType Name="History Currency Conversion">
+          <Key>
+            <PropertyRef Name="History ID" />
+          </Key>
+          <Property Name="History ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Record ID" Type="int" Nullable="false" />
+          <Property Name="Currency Code" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="Rate" Type="decimal" Precision="18" Scale="5" Nullable="false" />
+          <Property Name="Effectivity Date" Type="date" Nullable="false" />
+          <Property Name="Encoded By" Type="varchar" MaxLength="70" Nullable="false" />
+          <Property Name="Date and Time Encoded" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="History Field Access Restriction">
+          <Key>
+            <PropertyRef Name="History ID" />
+          </Key>
+          <Property Name="History ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Record ID" Type="int" Nullable="false" />
+          <Property Name="Module Code" Type="varchar" MaxLength="15" Nullable="false" />
+          <Property Name="Access Code" Type="varchar" MaxLength="16" Nullable="false" />
+          <Property Name="Field Name" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Active" Type="char" MaxLength="1" Nullable="false" />
+        </EntityType>
+        <EntityType Name="History Module">
+          <Key>
+            <PropertyRef Name="History ID" />
+          </Key>
+          <Property Name="History ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Record ID" Type="int" Nullable="false" />
+          <Property Name="Module Code" Type="varchar" MaxLength="15" Nullable="false" />
+          <Property Name="Module Name" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Division" Type="char" MaxLength="3" Nullable="false" />
+          <Property Name="Department" Type="char" MaxLength="3" />
+          <Property Name="Module Program" Type="varchar" MaxLength="200" Nullable="false" />
+          <Property Name="Exclusive" Type="char" MaxLength="1" />
+          <Property Name="Active" Type="char" MaxLength="1" Nullable="false" />
+        </EntityType>
+        <EntityType Name="History Module Permission">
+          <Key>
+            <PropertyRef Name="History ID" />
+          </Key>
+          <Property Name="History ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Record ID" Type="int" Nullable="false" />
+          <Property Name="Module Code" Type="varchar" MaxLength="15" Nullable="false" />
+          <Property Name="Access Code" Type="varchar" MaxLength="16" Nullable="false" />
+          <Property Name="Add" Type="char" MaxLength="1" Nullable="false" />
+          <Property Name="Edit" Type="char" MaxLength="1" Nullable="false" />
+          <Property Name="Cancel" Type="char" MaxLength="1" />
+          <Property Name="Delete" Type="char" MaxLength="1" Nullable="false" />
+          <Property Name="Print" Type="char" MaxLength="1" Nullable="false" />
+          <Property Name="Approve" Type="char" MaxLength="1" Nullable="false" />
+          <Property Name="Validate" Type="char" MaxLength="1" Nullable="false" />
+          <Property Name="Consolidate" Type="char" MaxLength="1" Nullable="false" />
+          <Property Name="Active" Type="char" MaxLength="1" Nullable="false" />
+        </EntityType>
+        <EntityType Name="History Project">
+          <Key>
+            <PropertyRef Name="History ID" />
+          </Key>
+          <Property Name="History ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Project ID" Type="int" Nullable="false" />
+          <Property Name="Project Name" Type="varchar" MaxLength="70" Nullable="false" />
+          <Property Name="Date Started" Type="date" />
+          <Property Name="Date Finished" Type="date" />
+          <Property Name="Status" Type="varchar" MaxLength="20" />
+          <Property Name="Remarks" Type="varchar(max)" />
+          <Property Name="Approver1" Type="varchar" MaxLength="5" />
+          <Property Name="Approver2" Type="varchar" MaxLength="5" />
+          <Property Name="Approver3" Type="varchar" MaxLength="5" />
+          <Property Name="Approver4" Type="varchar" MaxLength="5" />
+          <Property Name="Estimated Budget" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="Encoded By" Type="varchar" MaxLength="70" Nullable="false" />
+          <Property Name="Date and Time Encoded" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="History Unit Special Conversion">
+          <Key>
+            <PropertyRef Name="Rec ID" />
+          </Key>
+          <Property Name="Rec ID" Type="bigint" Nullable="false" />
+          <Property Name="History ID" Type="bigint" Nullable="false" />
+          <Property Name="Record ID" Type="bigint" Nullable="false" />
+          <Property Name="Item Code" Type="int" Nullable="false" />
+          <Property Name="Full Description" Type="varchar" MaxLength="70" Nullable="false" />
+          <Property Name="Unit From" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="Unit To" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="Qty Per Unit From" Type="decimal" Precision="18" Scale="5" Nullable="false" />
+        </EntityType>
+        <EntityType Name="History Users">
+          <Key>
+            <PropertyRef Name="History ID" />
+          </Key>
+          <Property Name="History ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="User ID" Type="int" Nullable="false" />
+          <Property Name="User Name" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="ID No" Type="char" MaxLength="6" />
+          <Property Name="Password" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="Group" Type="tinyint" Nullable="false" />
+          <Property Name="Admin" Type="char" MaxLength="1" Nullable="false" />
+          <Property Name="Admin Division" Type="char" MaxLength="3" Nullable="false" />
+          <Property Name="Email" Type="varchar" MaxLength="40" />
+          <Property Name="Nickname" Type="varchar" MaxLength="20" />
+          <Property Name="Active" Type="char" MaxLength="1" Nullable="false" />
+        </EntityType>
+        <EntityType Name="History Users Access">
+          <Key>
+            <PropertyRef Name="History ID" />
+          </Key>
+          <Property Name="History ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Record ID" Type="int" Nullable="false" />
+          <Property Name="User ID" Type="int" Nullable="false" />
+          <Property Name="Access Code" Type="varchar" MaxLength="16" Nullable="false" />
+          <Property Name="Active" Type="char" MaxLength="1" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Item Type">
+          <Key>
+            <PropertyRef Name="Record ID" />
+          </Key>
+          <Property Name="Record ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Item Type" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="Active" Type="char" MaxLength="1" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Last Series">
+          <Key>
+            <PropertyRef Name="Record ID" />
+          </Key>
+          <Property Name="Record ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Table Name" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Last Series" Type="bigint" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Module">
+          <Key>
+            <PropertyRef Name="Record ID" />
+          </Key>
+          <Property Name="Record ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Module Code" Type="varchar" MaxLength="15" Nullable="false" />
+          <Property Name="Module Name" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Division" Type="char" MaxLength="3" Nullable="false" />
+          <Property Name="Department" Type="char" MaxLength="3" />
+          <Property Name="Module Program" Type="varchar" MaxLength="200" Nullable="false" />
+          <Property Name="Exclusive" Type="char" MaxLength="1" />
+          <Property Name="Payroll Closure" Type="char" MaxLength="1" />
+          <Property Name="Help Filename" Type="varchar" MaxLength="50" />
+          <Property Name="Active" Type="char" MaxLength="1" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Module Permission">
+          <Key>
+            <PropertyRef Name="Record ID" />
+          </Key>
+          <Property Name="Record ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Module Code" Type="varchar" MaxLength="15" Nullable="false" />
+          <Property Name="Access Code" Type="varchar" MaxLength="16" Nullable="false" />
+          <Property Name="Add" Type="char" MaxLength="1" Nullable="false" />
+          <Property Name="Edit" Type="char" MaxLength="1" Nullable="false" />
+          <Property Name="Cancel" Type="char" MaxLength="1" />
+          <Property Name="Delete" Type="char" MaxLength="1" Nullable="false" />
+          <Property Name="Print" Type="char" MaxLength="1" Nullable="false" />
+          <Property Name="Approve" Type="char" MaxLength="1" Nullable="false" />
+          <Property Name="Validate" Type="char" MaxLength="1" Nullable="false" />
+          <Property Name="Consolidate" Type="char" MaxLength="1" Nullable="false" />
+          <Property Name="Active" Type="char" MaxLength="1" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Payment Type">
+          <Key>
+            <PropertyRef Name="Payment Code" />
+          </Key>
+          <Property Name="Payment Code" Type="varchar" MaxLength="15" Nullable="false" />
+          <Property Name="Description" Type="varchar" MaxLength="40" Nullable="false" />
+          <Property Name="Active" Type="char" MaxLength="1" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Plant">
+          <Key>
+            <PropertyRef Name="Plant Code" />
+          </Key>
+          <Property Name="Plant Code" Type="char" MaxLength="2" Nullable="false" />
+          <Property Name="Plant Name" Type="varchar" MaxLength="25" Nullable="false" />
+          <Property Name="Manufacturing" Type="char" MaxLength="1" Nullable="false" />
+          <Property Name="Showroom" Type="char" MaxLength="1" Nullable="false" />
+          <Property Name="Address" Type="varchar" MaxLength="80" Nullable="false" />
+          <Property Name="Workplace" Type="char" MaxLength="3" />
+          <Property Name="Active" Type="char" MaxLength="1" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Program">
+          <Key>
+            <PropertyRef Name="Record ID" />
+          </Key>
+          <Property Name="Record ID" Type="int" Nullable="false" />
+          <Property Name="Parent ID" Type="int" />
+          <Property Name="Module Code" Type="varchar" MaxLength="15" />
+          <Property Name="Header" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Sequence" Type="int" />
+          <Property Name="Active" Type="char" MaxLength="1" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Project">
+          <Key>
+            <PropertyRef Name="Project ID" />
+          </Key>
+          <Property Name="Project ID" Type="int" Nullable="false" />
+          <Property Name="Project Name" Type="varchar" MaxLength="70" Nullable="false" />
+          <Property Name="Date Started" Type="date" />
+          <Property Name="Date Finished" Type="date" />
+          <Property Name="Status" Type="varchar" MaxLength="20" />
+          <Property Name="Remarks" Type="varchar(max)" />
+          <Property Name="Approver1" Type="varchar" MaxLength="5" />
+          <Property Name="Approver2" Type="varchar" MaxLength="5" />
+          <Property Name="Approver3" Type="varchar" MaxLength="5" />
+          <Property Name="Approver4" Type="varchar" MaxLength="5" />
+          <Property Name="Estimated Budget" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="Category Code" Type="int" />
+          <Property Name="Category Description" Type="varchar" MaxLength="40" />
+          <Property Name="Encoded By" Type="varchar" MaxLength="70" Nullable="false" />
+          <Property Name="Date and Time Encoded" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Project Category">
+          <Key>
+            <PropertyRef Name="Code" />
+          </Key>
+          <Property Name="Code" Type="int" Nullable="false" />
+          <Property Name="Description" Type="varchar" MaxLength="40" Nullable="false" />
+          <Property Name="Active" Type="char" MaxLength="1" Nullable="false" />
+        </EntityType>
+        <EntityType Name="RegionCityBgy">
+          <Key>
+            <PropertyRef Name="Record ID" />
+          </Key>
+          <Property Name="Record ID" Type="int" Nullable="false" />
+          <Property Name="PSGC Code" Type="char" MaxLength="10" Nullable="false" />
+          <Property Name="Type" Type="varchar" MaxLength="15" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="70" Nullable="false" />
+          <Property Name="Active" Type="char" MaxLength="1" />
+        </EntityType>
+        <EntityType Name="Supplier">
+          <Key>
+            <PropertyRef Name="Supplier Code" />
+          </Key>
+          <Property Name="Supplier Code" Type="char" MaxLength="4" Nullable="false" />
+          <Property Name="Supplier Name" Type="varchar" MaxLength="40" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Unit">
+          <Key>
+            <PropertyRef Name="Unit" />
+          </Key>
+          <Property Name="Unit" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="Standard" Type="char" MaxLength="1" Nullable="false" />
+          <Property Name="Unix Code" Type="varchar" MaxLength="25" />
+          <Property Name="Active" Type="char" MaxLength="1" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Unit Special Conversion">
+          <Key>
+            <PropertyRef Name="Record ID" />
+          </Key>
+          <Property Name="Record ID" Type="bigint" Nullable="false" />
+          <Property Name="Item Code" Type="int" Nullable="false" />
+          <Property Name="Full Description" Type="varchar" MaxLength="70" Nullable="false" />
+          <Property Name="Unit From" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="Unit To" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="Qty Per Unit From" Type="decimal" Precision="18" Scale="5" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Unit Standard Conversion">
+          <Key>
+            <PropertyRef Name="Record ID" />
+          </Key>
+          <Property Name="Record ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Unit From" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="Unit To" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="Qty Per Unit From" Type="decimal" Precision="18" Scale="5" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Users">
+          <Key>
+            <PropertyRef Name="User ID" />
+          </Key>
+          <Property Name="User ID" Type="int" Nullable="false" />
+          <Property Name="User Name" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="ID No" Type="char" MaxLength="6" />
+          <Property Name="Password" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="Group" Type="tinyint" Nullable="false" />
+          <Property Name="Admin" Type="char" MaxLength="1" Nullable="false" />
+          <Property Name="Admin Division" Type="char" MaxLength="3" Nullable="false" />
+          <Property Name="Email" Type="varchar" MaxLength="40" />
+          <Property Name="Nickname" Type="varchar" MaxLength="20" />
+          <Property Name="Supplier Group" Type="smallint" />
+          <Property Name="Active" Type="char" MaxLength="1" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Users Access">
+          <Key>
+            <PropertyRef Name="Record ID" />
+          </Key>
+          <Property Name="Record ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="User ID" Type="int" Nullable="false" />
+          <Property Name="Access Code" Type="varchar" MaxLength="16" Nullable="false" />
+          <Property Name="Active" Type="char" MaxLength="1" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Users Access2">
+          <Key>
+            <PropertyRef Name="Record ID" />
+          </Key>
+          <Property Name="Record ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="User ID" Type="int" Nullable="false" />
+          <Property Name="User Name" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="ID No" Type="char" MaxLength="6" Nullable="false" />
+          <Property Name="Module Code" Type="varchar" MaxLength="15" Nullable="false" />
+          <Property Name="Workplace" Type="varchar" MaxLength="100" />
+          <Property Name="Payroll Workplace" Type="varchar" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="Users Group">
+          <Key>
+            <PropertyRef Name="Group" />
+          </Key>
+          <Property Name="Group" Type="smallint" Nullable="false" />
+          <Property Name="Description" Type="varchar" MaxLength="300" Nullable="false" />
+        </EntityType>
+        <EntityType Name="VAT Percent">
+          <Key>
+            <PropertyRef Name="Record ID" />
+          </Key>
+          <Property Name="Record ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Percent" Type="decimal" Precision="8" Scale="2" Nullable="false" />
+          <Property Name="Divisor" Type="decimal" Precision="6" Scale="4" />
+          <Property Name="Effectivity Date" Type="date" Nullable="false" />
+        </EntityType>
+        <EntityType Name="VAT Type">
+          <Key>
+            <PropertyRef Name="Record ID" />
+          </Key>
+          <Property Name="Record ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="VAT Type" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="Active" Type="char" MaxLength="1" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_Users_Users">
+          <End Role="Users" Type="Self.Users" Multiplicity="1" />
+          <End Role="Users1" Type="Self.Users" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="User ID" />
+            </Principal>
+            <Dependent Role="Users1">
+              <PropertyRef Name="User ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="ModelStoreContainer">
+          <EntitySet Name="Access Code" EntityType="Self.Access Code" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Attachment Module" EntityType="Self.Attachment Module" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Attachment Type" EntityType="Self.Attachment Type" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Bank" EntityType="Self.Bank" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Bank Company" EntityType="Self.Bank Company" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="BIR ATC Code" EntityType="Self.BIR ATC Code" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Company" EntityType="Self.Company" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Currency" EntityType="Self.Currency" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Currency Conversion" EntityType="Self.Currency Conversion" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Customer" EntityType="Self.Customer" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Dashboard Detail" EntityType="Self.Dashboard Detail" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Dashboard Main" EntityType="Self.Dashboard Main" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Error Log" EntityType="Self.Error Log" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Field Access Restriction" EntityType="Self.Field Access Restriction" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="History Access Code" EntityType="Self.History Access Code" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="History Attachment Module" EntityType="Self.History Attachment Module" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="History Attachment Type" EntityType="Self.History Attachment Type" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="History Bank" EntityType="Self.History Bank" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="History Currency" EntityType="Self.History Currency" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="History Currency Conversion" EntityType="Self.History Currency Conversion" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="History Field Access Restriction" EntityType="Self.History Field Access Restriction" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="History Module" EntityType="Self.History Module" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="History Module Permission" EntityType="Self.History Module Permission" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="History Project" EntityType="Self.History Project" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="History Unit Special Conversion" EntityType="Self.History Unit Special Conversion" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="History Users" EntityType="Self.History Users" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="History Users Access" EntityType="Self.History Users Access" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Item Type" EntityType="Self.Item Type" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Last Series" EntityType="Self.Last Series" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Module" EntityType="Self.Module" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Module Permission" EntityType="Self.Module Permission" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Payment Type" EntityType="Self.Payment Type" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Plant" EntityType="Self.Plant" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Program" EntityType="Self.Program" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Project" EntityType="Self.Project" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Project Category" EntityType="Self.Project Category" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="RegionCityBgy" EntityType="Self.RegionCityBgy" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Supplier" EntityType="Self.Supplier" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Unit" EntityType="Self.Unit" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Unit Special Conversion" EntityType="Self.Unit Special Conversion" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Unit Standard Conversion" EntityType="Self.Unit Standard Conversion" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Users" EntityType="Self.Users" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Users Access" EntityType="Self.Users Access" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Users Access2" EntityType="Self.Users Access2" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Users Group" EntityType="Self.Users Group" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="VAT Percent" EntityType="Self.VAT Percent" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="VAT Type" EntityType="Self.VAT Type" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Country" EntityType="Self.Country" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [Country].[Country] AS [Country], 
+    [Country].[Active] AS [Active]
+    FROM [dbo].[Country] AS [Country]</DefiningQuery>
+          </EntitySet>
+          <AssociationSet Name="FK_Users_Users" Association="Self.FK_Users_Users">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="Users1" EntitySet="Users" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Access_Code">
+          <Key>
+            <PropertyRef Name="Record_ID" />
+          </Key>
+          <Property Name="Record_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Access_Code1" Type="String" MaxLength="16" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Description" Type="String" MaxLength="60" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Remarks" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Active" Type="String" MaxLength="1" FixedLength="true" Unicode="false" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Attachment_Module">
+          <Key>
+            <PropertyRef Name="Record_ID" />
+          </Key>
+          <Property Name="Record_ID" Type="Int32" Nullable="false" />
+          <Property Name="Attachment_ID" Type="Int32" Nullable="false" />
+          <Property Name="Module_Code" Type="String" MaxLength="15" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Required_for_Saving" Type="String" MaxLength="1" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="Required" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+        </EntityType>
+        <EntityType Name="Attachment_Type">
+          <Key>
+            <PropertyRef Name="Record_ID" />
+          </Key>
+          <Property Name="Record_ID" Type="Int32" Nullable="false" />
+          <Property Name="Type" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Active" Type="String" MaxLength="1" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="Encoded_By" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Date_and_Time_Encoded" Type="DateTime" Nullable="false" Precision="3" />
+        </EntityType>
+        <EntityType Name="Bank">
+          <Key>
+            <PropertyRef Name="Bank_ID" />
+          </Key>
+          <Property Name="Bank_ID" Type="Int32" Nullable="false" />
+          <Property Name="Bank_Name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Bank_Short_Name" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Bank_Type" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Name="Account_No__Length" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="Active" Type="String" MaxLength="1" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="Encoded_By" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Date_and_Time_Encoded" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="Bank_Company">
+          <Key>
+            <PropertyRef Name="Bank_Code" />
+          </Key>
+          <Property Name="Bank_Code" Type="Int32" Nullable="false" />
+          <Property Name="Bank_ID" Type="Int32" Nullable="false" />
+          <Property Name="Bank_Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Bank_Short_Name" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Bank_Branch" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Bank_Account_No_" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="Bank_Currency" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="Bank_Loan_Supplier_Code" Type="String" MaxLength="16" FixedLength="true" Unicode="false" />
+          <Property Name="Importation_Code" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Name="Payment_Entry_Code" Type="String" MaxLength="2" FixedLength="true" Unicode="false" />
+          <Property Name="Active" Type="String" MaxLength="1" FixedLength="true" Unicode="false" Nullable="false" />
+        </EntityType>
+        <EntityType Name="BIR_ATC_Code">
+          <Key>
+            <PropertyRef Name="Record_ID" />
+          </Key>
+          <Property Name="Record_ID" Type="Int32" Nullable="false" />
+          <Property Name="ATC_Code" Type="String" MaxLength="5" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Description" Type="String" MaxLength="500" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Tax_Percent" Type="Decimal" Precision="6" Scale="2" />
+          <Property Name="Type" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="Item_Type" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="Active" Type="String" MaxLength="1" FixedLength="true" Unicode="false" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Company">
+          <Key>
+            <PropertyRef Name="Company_Code" />
+          </Key>
+          <Property Name="Company_Code" Type="String" MaxLength="3" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Short_Name" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Letter_Code" Type="String" MaxLength="1" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="TIN" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Address" Type="String" MaxLength="120" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Zip_Code" Type="String" MaxLength="4" FixedLength="true" Unicode="false" />
+          <Property Name="Phone_No_" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Type" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Branch" Type="String" MaxLength="1" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="Main_Company" Type="String" MaxLength="3" FixedLength="true" Unicode="false" />
+          <Property Name="Withholding_Agent" Type="String" MaxLength="1" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="DBF_Code" Type="String" MaxLength="3" FixedLength="true" Unicode="false" />
+          <Property Name="Active" Type="String" MaxLength="1" FixedLength="true" Unicode="true" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Currency">
+          <Key>
+            <PropertyRef Name="Record_ID" />
+          </Key>
+          <Property Name="Record_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Currency_Code" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Description" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Active" Type="String" MaxLength="1" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="Encoded_By" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Date_and_Time_Encoded" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="Currency_Conversion">
+          <Key>
+            <PropertyRef Name="Record_ID" />
+          </Key>
+          <Property Name="Record_ID" Type="Int32" Nullable="false" />
+          <Property Name="Currency_Code" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Rate" Type="Decimal" Precision="18" Scale="5" Nullable="false" />
+          <Property Name="Effectivity_Date" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="Encoded_By" Type="String" MaxLength="70" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Date_and_Time_Encoded" Type="DateTime" Nullable="false" Precision="3" />
+        </EntityType>
+        <EntityType Name="Customer">
+          <Key>
+            <PropertyRef Name="Record_ID" />
+          </Key>
+          <Property Name="Record_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Customer_Code" Type="String" MaxLength="3" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="Customer_Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Active" Type="String" MaxLength="1" FixedLength="true" Unicode="false" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Dashboard_Detail">
+          <Key>
+            <PropertyRef Name="Record_ID" />
+          </Key>
+          <Property Name="Record_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Dashboard_Code" Type="Int32" Nullable="false" />
+          <Property Name="Code" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Description" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Approve" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Name="Disapprove" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Name="Edit" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Name="Delete" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Name="Cancel" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Name="Action_By_ID" Type="Int32" />
+          <Property Name="Action_By_Name" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="Action" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="Dashboard_Main">
+          <Key>
+            <PropertyRef Name="Record_ID" />
+          </Key>
+          <Property Name="Record_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Dashboard_Code" Type="Int32" Nullable="false" />
+          <Property Name="Module_Code" Type="String" MaxLength="15" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Access_Code" Type="String" MaxLength="16" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Description" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Main_Window_Dir" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="WithPopUp" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Name="NotifOnly" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Name="Notification_Code" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="Plant_Code" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="Error_Log">
+          <Key>
+            <PropertyRef Name="Error_Date_Time" />
+          </Key>
+          <Property Name="Details" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Message" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="User_Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="PC_Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="IP_Address" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Error_Date_Time" Type="DateTime" Nullable="false" Precision="3" />
+        </EntityType>
+        <EntityType Name="Field_Access_Restriction">
+          <Key>
+            <PropertyRef Name="Record_ID" />
+          </Key>
+          <Property Name="Record_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Module_Code" Type="String" MaxLength="15" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Access_Code" Type="String" MaxLength="16" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Field_Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Access_Type" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Active" Type="String" MaxLength="1" FixedLength="true" Unicode="false" Nullable="false" />
+        </EntityType>
+        <EntityType Name="History_Access_Code">
+          <Key>
+            <PropertyRef Name="History_ID" />
+          </Key>
+          <Property Name="History_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Record_ID" Type="Int32" Nullable="false" />
+          <Property Name="Access_Code" Type="String" MaxLength="16" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Description" Type="String" MaxLength="60" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Remarks" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Active" Type="String" MaxLength="1" FixedLength="true" Unicode="false" Nullable="false" />
+        </EntityType>
+        <EntityType Name="History_Attachment_Module">
+          <Key>
+            <PropertyRef Name="Rec_ID" />
+          </Key>
+          <Property Name="Rec_ID" Type="Int32" Nullable="false" />
+          <Property Name="History_ID" Type="Int32" Nullable="false" />
+          <Property Name="Record_ID" Type="Int32" Nullable="false" />
+          <Property Name="Attachment_ID" Type="Int32" Nullable="false" />
+          <Property Name="Module_Code" Type="String" MaxLength="15" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Required_for_Saving" Type="String" MaxLength="1" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="Required" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+        </EntityType>
+        <EntityType Name="History_Attachment_Type">
+          <Key>
+            <PropertyRef Name="History_ID" />
+          </Key>
+          <Property Name="History_ID" Type="Int32" Nullable="false" />
+          <Property Name="Record_ID" Type="Int32" Nullable="false" />
+          <Property Name="Type" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Active" Type="String" MaxLength="1" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="Encoded_By" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Date_and_Time_Encoded" Type="DateTime" Nullable="false" Precision="3" />
+        </EntityType>
+        <EntityType Name="History_Bank">
+          <Key>
+            <PropertyRef Name="History_ID" />
+          </Key>
+          <Property Name="History_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Bank_ID" Type="Int32" Nullable="false" />
+          <Property Name="Bank_Name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Bank_Short_Name" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Bank_Type" Type="String" MaxLength="1" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="Active" Type="String" MaxLength="1" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="Encoded_By" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Date_and_Time_Encoded" Type="DateTime" Nullable="false" Precision="3" />
+        </EntityType>
+        <EntityType Name="History_Currency">
+          <Key>
+            <PropertyRef Name="History_ID" />
+          </Key>
+          <Property Name="History_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Record_ID" Type="Int32" Nullable="false" />
+          <Property Name="Currency_Code" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Description" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Active" Type="String" MaxLength="1" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="Encoded_By" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Date_and_Time_Encoded" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="History_Currency_Conversion">
+          <Key>
+            <PropertyRef Name="History_ID" />
+          </Key>
+          <Property Name="History_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Record_ID" Type="Int32" Nullable="false" />
+          <Property Name="Currency_Code" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Rate" Type="Decimal" Precision="18" Scale="5" Nullable="false" />
+          <Property Name="Effectivity_Date" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="Encoded_By" Type="String" MaxLength="70" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Date_and_Time_Encoded" Type="DateTime" Nullable="false" Precision="3" />
+        </EntityType>
+        <EntityType Name="History_Field_Access_Restriction">
+          <Key>
+            <PropertyRef Name="History_ID" />
+          </Key>
+          <Property Name="History_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Record_ID" Type="Int32" Nullable="false" />
+          <Property Name="Module_Code" Type="String" MaxLength="15" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Access_Code" Type="String" MaxLength="16" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Field_Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Active" Type="String" MaxLength="1" FixedLength="true" Unicode="false" Nullable="false" />
+        </EntityType>
+        <EntityType Name="History_Module">
+          <Key>
+            <PropertyRef Name="History_ID" />
+          </Key>
+          <Property Name="History_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Record_ID" Type="Int32" Nullable="false" />
+          <Property Name="Module_Code" Type="String" MaxLength="15" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Module_Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Division" Type="String" MaxLength="3" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="Department" Type="String" MaxLength="3" FixedLength="true" Unicode="false" />
+          <Property Name="Module_Program" Type="String" MaxLength="200" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Exclusive" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Name="Active" Type="String" MaxLength="1" FixedLength="true" Unicode="false" Nullable="false" />
+        </EntityType>
+        <EntityType Name="History_Module_Permission">
+          <Key>
+            <PropertyRef Name="History_ID" />
+          </Key>
+          <Property Name="History_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Record_ID" Type="Int32" Nullable="false" />
+          <Property Name="Module_Code" Type="String" MaxLength="15" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Access_Code" Type="String" MaxLength="16" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Add" Type="String" MaxLength="1" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="Edit" Type="String" MaxLength="1" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="Cancel" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Name="Delete" Type="String" MaxLength="1" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="Print" Type="String" MaxLength="1" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="Approve" Type="String" MaxLength="1" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="Validate" Type="String" MaxLength="1" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="Consolidate" Type="String" MaxLength="1" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="Active" Type="String" MaxLength="1" FixedLength="true" Unicode="false" Nullable="false" />
+        </EntityType>
+        <EntityType Name="History_Project">
+          <Key>
+            <PropertyRef Name="History_ID" />
+          </Key>
+          <Property Name="History_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Project_ID" Type="Int32" Nullable="false" />
+          <Property Name="Project_Name" Type="String" MaxLength="70" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Date_Started" Type="DateTime" Precision="0" />
+          <Property Name="Date_Finished" Type="DateTime" Precision="0" />
+          <Property Name="Status" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="Remarks" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Approver1" Type="String" MaxLength="5" FixedLength="false" Unicode="false" />
+          <Property Name="Approver2" Type="String" MaxLength="5" FixedLength="false" Unicode="false" />
+          <Property Name="Approver3" Type="String" MaxLength="5" FixedLength="false" Unicode="false" />
+          <Property Name="Approver4" Type="String" MaxLength="5" FixedLength="false" Unicode="false" />
+          <Property Name="Estimated_Budget" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="Encoded_By" Type="String" MaxLength="70" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Date_and_Time_Encoded" Type="DateTime" Nullable="false" Precision="3" />
+        </EntityType>
+        <EntityType Name="History_Unit_Special_Conversion">
+          <Key>
+            <PropertyRef Name="Rec_ID" />
+          </Key>
+          <Property Name="Rec_ID" Type="Int64" Nullable="false" />
+          <Property Name="History_ID" Type="Int64" Nullable="false" />
+          <Property Name="Record_ID" Type="Int64" Nullable="false" />
+          <Property Name="Item_Code" Type="Int32" Nullable="false" />
+          <Property Name="Full_Description" Type="String" MaxLength="70" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Unit_From" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Unit_To" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Qty_Per_Unit_From" Type="Decimal" Precision="18" Scale="5" Nullable="false" />
+        </EntityType>
+        <EntityType Name="History_User">
+          <Key>
+            <PropertyRef Name="History_ID" />
+          </Key>
+          <Property Name="History_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="User_ID" Type="Int32" Nullable="false" />
+          <Property Name="User_Name" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="ID_No" Type="String" MaxLength="6" FixedLength="true" Unicode="false" />
+          <Property Name="Password" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Group" Type="Byte" Nullable="false" />
+          <Property Name="Admin" Type="String" MaxLength="1" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="Admin_Division" Type="String" MaxLength="3" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="Email" Type="String" MaxLength="40" FixedLength="false" Unicode="false" />
+          <Property Name="Nickname" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="Active" Type="String" MaxLength="1" FixedLength="true" Unicode="false" Nullable="false" />
+        </EntityType>
+        <EntityType Name="History_Users_Access">
+          <Key>
+            <PropertyRef Name="History_ID" />
+          </Key>
+          <Property Name="History_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Record_ID" Type="Int32" Nullable="false" />
+          <Property Name="User_ID" Type="Int32" Nullable="false" />
+          <Property Name="Access_Code" Type="String" MaxLength="16" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Active" Type="String" MaxLength="1" FixedLength="true" Unicode="false" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Item_Type">
+          <Key>
+            <PropertyRef Name="Record_ID" />
+          </Key>
+          <Property Name="Record_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Item_Type1" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Active" Type="String" MaxLength="1" FixedLength="true" Unicode="false" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Last_Series">
+          <Key>
+            <PropertyRef Name="Record_ID" />
+          </Key>
+          <Property Name="Record_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Table_Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Last_Series1" Type="Int64" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Module">
+          <Key>
+            <PropertyRef Name="Record_ID" />
+          </Key>
+          <Property Name="Record_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Module_Code" Type="String" MaxLength="15" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Module_Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Division" Type="String" MaxLength="3" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="Department" Type="String" MaxLength="3" FixedLength="true" Unicode="false" />
+          <Property Name="Module_Program" Type="String" MaxLength="200" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Exclusive" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Name="Payroll_Closure" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Name="Help_Filename" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Active" Type="String" MaxLength="1" FixedLength="true" Unicode="false" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Module_Permission">
+          <Key>
+            <PropertyRef Name="Record_ID" />
+          </Key>
+          <Property Name="Record_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Module_Code" Type="String" MaxLength="15" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Access_Code" Type="String" MaxLength="16" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Add" Type="String" MaxLength="1" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="Edit" Type="String" MaxLength="1" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="Cancel" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Name="Delete" Type="String" MaxLength="1" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="Print" Type="String" MaxLength="1" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="Approve" Type="String" MaxLength="1" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="Validate" Type="String" MaxLength="1" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="Consolidate" Type="String" MaxLength="1" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="Active" Type="String" MaxLength="1" FixedLength="true" Unicode="false" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Payment_Type">
+          <Key>
+            <PropertyRef Name="Payment_Code" />
+          </Key>
+          <Property Name="Payment_Code" Type="String" MaxLength="15" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Description" Type="String" MaxLength="40" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Active" Type="String" MaxLength="1" FixedLength="true" Unicode="false" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Plant">
+          <Key>
+            <PropertyRef Name="Plant_Code" />
+          </Key>
+          <Property Name="Plant_Code" Type="String" MaxLength="2" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="Plant_Name" Type="String" MaxLength="25" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Manufacturing" Type="String" MaxLength="1" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="Showroom" Type="String" MaxLength="1" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="Address" Type="String" MaxLength="80" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Workplace" Type="String" MaxLength="3" FixedLength="true" Unicode="false" />
+          <Property Name="Active" Type="String" MaxLength="1" FixedLength="true" Unicode="false" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Program">
+          <Key>
+            <PropertyRef Name="Record_ID" />
+          </Key>
+          <Property Name="Record_ID" Type="Int32" Nullable="false" />
+          <Property Name="Parent_ID" Type="Int32" />
+          <Property Name="Module_Code" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+          <Property Name="Header" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Sequence" Type="Int32" />
+          <Property Name="Active" Type="String" MaxLength="1" FixedLength="true" Unicode="false" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Project">
+          <Key>
+            <PropertyRef Name="Project_ID" />
+          </Key>
+          <Property Name="Project_ID" Type="Int32" Nullable="false" />
+          <Property Name="Project_Name" Type="String" MaxLength="70" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Date_Started" Type="DateTime" Precision="0" />
+          <Property Name="Date_Finished" Type="DateTime" Precision="0" />
+          <Property Name="Status" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="Remarks" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Approver1" Type="String" MaxLength="5" FixedLength="false" Unicode="false" />
+          <Property Name="Approver2" Type="String" MaxLength="5" FixedLength="false" Unicode="false" />
+          <Property Name="Approver3" Type="String" MaxLength="5" FixedLength="false" Unicode="false" />
+          <Property Name="Approver4" Type="String" MaxLength="5" FixedLength="false" Unicode="false" />
+          <Property Name="Estimated_Budget" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="Category_Code" Type="Int32" />
+          <Property Name="Category_Description" Type="String" MaxLength="40" FixedLength="false" Unicode="false" />
+          <Property Name="Encoded_By" Type="String" MaxLength="70" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Date_and_Time_Encoded" Type="DateTime" Nullable="false" Precision="3" />
+        </EntityType>
+        <EntityType Name="Project_Category">
+          <Key>
+            <PropertyRef Name="Code" />
+          </Key>
+          <Property Name="Code" Type="Int32" Nullable="false" />
+          <Property Name="Description" Type="String" MaxLength="40" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Active" Type="String" MaxLength="1" FixedLength="true" Unicode="false" Nullable="false" />
+        </EntityType>
+        <EntityType Name="RegionCityBgy">
+          <Key>
+            <PropertyRef Name="Record_ID" />
+          </Key>
+          <Property Name="Record_ID" Type="Int32" Nullable="false" />
+          <Property Name="PSGC_Code" Type="String" MaxLength="10" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="Type" Type="String" MaxLength="15" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="70" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Active" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+        </EntityType>
+        <EntityType Name="Supplier">
+          <Key>
+            <PropertyRef Name="Supplier_Code" />
+          </Key>
+          <Property Name="Supplier_Code" Type="String" MaxLength="4" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="Supplier_Name" Type="String" MaxLength="40" FixedLength="false" Unicode="false" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Unit">
+          <Key>
+            <PropertyRef Name="Unit1" />
+          </Key>
+          <Property Name="Unit1" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Standard" Type="String" MaxLength="1" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="Unix_Code" Type="String" MaxLength="25" FixedLength="false" Unicode="false" />
+          <Property Name="Active" Type="String" MaxLength="1" FixedLength="true" Unicode="false" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Unit_Special_Conversion">
+          <Key>
+            <PropertyRef Name="Record_ID" />
+          </Key>
+          <Property Name="Record_ID" Type="Int64" Nullable="false" />
+          <Property Name="Item_Code" Type="Int32" Nullable="false" />
+          <Property Name="Full_Description" Type="String" MaxLength="70" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Unit_From" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Unit_To" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Qty_Per_Unit_From" Type="Decimal" Precision="18" Scale="5" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Unit_Standard_Conversion">
+          <Key>
+            <PropertyRef Name="Record_ID" />
+          </Key>
+          <Property Name="Record_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Unit_From" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Unit_To" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Qty_Per_Unit_From" Type="Decimal" Precision="18" Scale="5" Nullable="false" />
+        </EntityType>
+        <EntityType Name="User">
+          <Key>
+            <PropertyRef Name="User_ID" />
+          </Key>
+          <Property Name="User_ID" Type="Int32" Nullable="false" />
+          <Property Name="User_Name" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="ID_No" Type="String" MaxLength="6" FixedLength="true" Unicode="false" />
+          <Property Name="Password" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Group" Type="Byte" Nullable="false" />
+          <Property Name="Admin" Type="String" MaxLength="1" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="Admin_Division" Type="String" MaxLength="3" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="Email" Type="String" MaxLength="40" FixedLength="false" Unicode="false" />
+          <Property Name="Nickname" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="Supplier_Group" Type="Int16" />
+          <Property Name="Active" Type="String" MaxLength="1" FixedLength="true" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Users1" Relationship="Self.FK_Users_Users" FromRole="Users" ToRole="Users1" />
+          <NavigationProperty Name="User1" Relationship="Self.FK_Users_Users" FromRole="Users1" ToRole="Users" />
+        </EntityType>
+        <EntityType Name="Users_Access">
+          <Key>
+            <PropertyRef Name="Record_ID" />
+          </Key>
+          <Property Name="Record_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="User_ID" Type="Int32" Nullable="false" />
+          <Property Name="Access_Code" Type="String" MaxLength="16" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Active" Type="String" MaxLength="1" FixedLength="true" Unicode="false" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Users_Access2">
+          <Key>
+            <PropertyRef Name="Record_ID" />
+          </Key>
+          <Property Name="Record_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="User_ID" Type="Int32" Nullable="false" />
+          <Property Name="User_Name" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="ID_No" Type="String" MaxLength="6" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="Module_Code" Type="String" MaxLength="15" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Workplace" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Payroll_Workplace" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="Users_Group">
+          <Key>
+            <PropertyRef Name="Group" />
+          </Key>
+          <Property Name="Group" Type="Int16" Nullable="false" />
+          <Property Name="Description" Type="String" MaxLength="300" FixedLength="false" Unicode="false" Nullable="false" />
+        </EntityType>
+        <EntityType Name="VAT_Percent">
+          <Key>
+            <PropertyRef Name="Record_ID" />
+          </Key>
+          <Property Name="Record_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Percent" Type="Decimal" Precision="8" Scale="2" Nullable="false" />
+          <Property Name="Divisor" Type="Decimal" Precision="6" Scale="4" />
+          <Property Name="Effectivity_Date" Type="DateTime" Nullable="false" Precision="0" />
+        </EntityType>
+        <EntityType Name="VAT_Type">
+          <Key>
+            <PropertyRef Name="Record_ID" />
+          </Key>
+          <Property Name="Record_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="VAT_Type1" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Active" Type="String" MaxLength="1" FixedLength="true" Unicode="false" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Country">
+          <Key>
+            <PropertyRef Name="Country1" />
+          </Key>
+          <Property Name="Country1" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Active" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+        </EntityType>
+        <Association Name="FK_Users_Users">
+          <End Role="Users" Type="Self.User" Multiplicity="1" />
+          <End Role="Users1" Type="Self.User" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="User_ID" />
+            </Principal>
+            <Dependent Role="Users1">
+              <PropertyRef Name="User_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="Master_FilesEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Access_Codes" EntityType="Self.Access_Code" />
+          <EntitySet Name="Attachment_Modules" EntityType="Self.Attachment_Module" />
+          <EntitySet Name="Attachment_Types" EntityType="Self.Attachment_Type" />
+          <EntitySet Name="Banks" EntityType="Self.Bank" />
+          <EntitySet Name="Bank_Companies" EntityType="Self.Bank_Company" />
+          <EntitySet Name="BIR_ATC_Codes" EntityType="Self.BIR_ATC_Code" />
+          <EntitySet Name="Companies" EntityType="Self.Company" />
+          <EntitySet Name="Currencies" EntityType="Self.Currency" />
+          <EntitySet Name="Currency_Conversions" EntityType="Self.Currency_Conversion" />
+          <EntitySet Name="Customers" EntityType="Self.Customer" />
+          <EntitySet Name="Dashboard_Details" EntityType="Self.Dashboard_Detail" />
+          <EntitySet Name="Dashboard_Mains" EntityType="Self.Dashboard_Main" />
+          <EntitySet Name="Error_Logs" EntityType="Self.Error_Log" />
+          <EntitySet Name="Field_Access_Restrictions" EntityType="Self.Field_Access_Restriction" />
+          <EntitySet Name="History_Access_Codes" EntityType="Self.History_Access_Code" />
+          <EntitySet Name="History_Attachment_Modules" EntityType="Self.History_Attachment_Module" />
+          <EntitySet Name="History_Attachment_Types" EntityType="Self.History_Attachment_Type" />
+          <EntitySet Name="History_Banks" EntityType="Self.History_Bank" />
+          <EntitySet Name="History_Currencies" EntityType="Self.History_Currency" />
+          <EntitySet Name="History_Currency_Conversions" EntityType="Self.History_Currency_Conversion" />
+          <EntitySet Name="History_Field_Access_Restrictions" EntityType="Self.History_Field_Access_Restriction" />
+          <EntitySet Name="History_Modules" EntityType="Self.History_Module" />
+          <EntitySet Name="History_Module_Permissions" EntityType="Self.History_Module_Permission" />
+          <EntitySet Name="History_Projects" EntityType="Self.History_Project" />
+          <EntitySet Name="History_Unit_Special_Conversions" EntityType="Self.History_Unit_Special_Conversion" />
+          <EntitySet Name="History_Users" EntityType="Self.History_User" />
+          <EntitySet Name="History_Users_Accesses" EntityType="Self.History_Users_Access" />
+          <EntitySet Name="Item_Types" EntityType="Self.Item_Type" />
+          <EntitySet Name="Last_Series" EntityType="Self.Last_Series" />
+          <EntitySet Name="Modules" EntityType="Self.Module" />
+          <EntitySet Name="Module_Permissions" EntityType="Self.Module_Permission" />
+          <EntitySet Name="Payment_Types" EntityType="Self.Payment_Type" />
+          <EntitySet Name="Plants" EntityType="Self.Plant" />
+          <EntitySet Name="Programs" EntityType="Self.Program" />
+          <EntitySet Name="Projects" EntityType="Self.Project" />
+          <EntitySet Name="Project_Categories" EntityType="Self.Project_Category" />
+          <EntitySet Name="RegionCityBgies" EntityType="Self.RegionCityBgy" />
+          <EntitySet Name="Suppliers" EntityType="Self.Supplier" />
+          <EntitySet Name="Units" EntityType="Self.Unit" />
+          <EntitySet Name="Unit_Special_Conversions" EntityType="Self.Unit_Special_Conversion" />
+          <EntitySet Name="Unit_Standard_Conversions" EntityType="Self.Unit_Standard_Conversion" />
+          <EntitySet Name="Users" EntityType="Self.User" />
+          <EntitySet Name="Users_Accesses" EntityType="Self.Users_Access" />
+          <EntitySet Name="Users_Access2" EntityType="Self.Users_Access2" />
+          <EntitySet Name="Users_Groups" EntityType="Self.Users_Group" />
+          <EntitySet Name="VAT_Percents" EntityType="Self.VAT_Percent" />
+          <EntitySet Name="VAT_Types" EntityType="Self.VAT_Type" />
+          <EntitySet Name="Countries" EntityType="Self.Country" />
+          <AssociationSet Name="FK_Users_Users" Association="Self.FK_Users_Users">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="Users1" EntitySet="Users" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="ModelStoreContainer" CdmEntityContainer="Master_FilesEntities">
+          <EntitySetMapping Name="Access_Codes">
+            <EntityTypeMapping TypeName="Model.Access_Code">
+              <MappingFragment StoreEntitySet="Access Code">
+                <ScalarProperty Name="Record_ID" ColumnName="Record ID" />
+                <ScalarProperty Name="Access_Code1" ColumnName="Access Code" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Remarks" ColumnName="Remarks" />
+                <ScalarProperty Name="Active" ColumnName="Active" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Attachment_Modules">
+            <EntityTypeMapping TypeName="Model.Attachment_Module">
+              <MappingFragment StoreEntitySet="Attachment Module">
+                <ScalarProperty Name="Record_ID" ColumnName="Record ID" />
+                <ScalarProperty Name="Attachment_ID" ColumnName="Attachment ID" />
+                <ScalarProperty Name="Module_Code" ColumnName="Module Code" />
+                <ScalarProperty Name="Required_for_Saving" ColumnName="Required for Saving" />
+                <ScalarProperty Name="Required" ColumnName="Required" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Attachment_Types">
+            <EntityTypeMapping TypeName="Model.Attachment_Type">
+              <MappingFragment StoreEntitySet="Attachment Type">
+                <ScalarProperty Name="Record_ID" ColumnName="Record ID" />
+                <ScalarProperty Name="Type" ColumnName="Type" />
+                <ScalarProperty Name="Active" ColumnName="Active" />
+                <ScalarProperty Name="Encoded_By" ColumnName="Encoded By" />
+                <ScalarProperty Name="Date_and_Time_Encoded" ColumnName="Date and Time Encoded" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Banks">
+            <EntityTypeMapping TypeName="Model.Bank">
+              <MappingFragment StoreEntitySet="Bank">
+                <ScalarProperty Name="Bank_ID" ColumnName="Bank ID" />
+                <ScalarProperty Name="Bank_Name" ColumnName="Bank Name" />
+                <ScalarProperty Name="Bank_Short_Name" ColumnName="Bank Short Name" />
+                <ScalarProperty Name="Bank_Type" ColumnName="Bank Type" />
+                <ScalarProperty Name="Account_No__Length" ColumnName="Account No. Length" />
+                <ScalarProperty Name="Active" ColumnName="Active" />
+                <ScalarProperty Name="Encoded_By" ColumnName="Encoded By" />
+                <ScalarProperty Name="Date_and_Time_Encoded" ColumnName="Date and Time Encoded" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Bank_Companies">
+            <EntityTypeMapping TypeName="Model.Bank_Company">
+              <MappingFragment StoreEntitySet="Bank Company">
+                <ScalarProperty Name="Bank_Code" ColumnName="Bank Code" />
+                <ScalarProperty Name="Bank_ID" ColumnName="Bank ID" />
+                <ScalarProperty Name="Bank_Name" ColumnName="Bank Name" />
+                <ScalarProperty Name="Bank_Short_Name" ColumnName="Bank Short Name" />
+                <ScalarProperty Name="Bank_Branch" ColumnName="Bank Branch" />
+                <ScalarProperty Name="Bank_Account_No_" ColumnName="Bank Account No." />
+                <ScalarProperty Name="Bank_Currency" ColumnName="Bank Currency" />
+                <ScalarProperty Name="Bank_Loan_Supplier_Code" ColumnName="Bank Loan Supplier Code" />
+                <ScalarProperty Name="Importation_Code" ColumnName="Importation Code" />
+                <ScalarProperty Name="Payment_Entry_Code" ColumnName="Payment Entry Code" />
+                <ScalarProperty Name="Active" ColumnName="Active" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="BIR_ATC_Codes">
+            <EntityTypeMapping TypeName="Model.BIR_ATC_Code">
+              <MappingFragment StoreEntitySet="BIR ATC Code">
+                <ScalarProperty Name="Record_ID" ColumnName="Record ID" />
+                <ScalarProperty Name="ATC_Code" ColumnName="ATC Code" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Tax_Percent" ColumnName="Tax Percent" />
+                <ScalarProperty Name="Type" ColumnName="Type" />
+                <ScalarProperty Name="Item_Type" ColumnName="Item Type" />
+                <ScalarProperty Name="Active" ColumnName="Active" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Companies">
+            <EntityTypeMapping TypeName="Model.Company">
+              <MappingFragment StoreEntitySet="Company">
+                <ScalarProperty Name="Company_Code" ColumnName="Company Code" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Short_Name" ColumnName="Short Name" />
+                <ScalarProperty Name="Letter_Code" ColumnName="Letter Code" />
+                <ScalarProperty Name="TIN" ColumnName="TIN" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="Zip_Code" ColumnName="Zip Code" />
+                <ScalarProperty Name="Phone_No_" ColumnName="Phone No." />
+                <ScalarProperty Name="Type" ColumnName="Type" />
+                <ScalarProperty Name="Branch" ColumnName="Branch" />
+                <ScalarProperty Name="Main_Company" ColumnName="Main Company" />
+                <ScalarProperty Name="Withholding_Agent" ColumnName="Withholding Agent" />
+                <ScalarProperty Name="DBF_Code" ColumnName="DBF Code" />
+                <ScalarProperty Name="Active" ColumnName="Active" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Currencies">
+            <EntityTypeMapping TypeName="Model.Currency">
+              <MappingFragment StoreEntitySet="Currency">
+                <ScalarProperty Name="Record_ID" ColumnName="Record ID" />
+                <ScalarProperty Name="Currency_Code" ColumnName="Currency Code" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Active" ColumnName="Active" />
+                <ScalarProperty Name="Encoded_By" ColumnName="Encoded By" />
+                <ScalarProperty Name="Date_and_Time_Encoded" ColumnName="Date and Time Encoded" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Currency_Conversions">
+            <EntityTypeMapping TypeName="Model.Currency_Conversion">
+              <MappingFragment StoreEntitySet="Currency Conversion">
+                <ScalarProperty Name="Record_ID" ColumnName="Record ID" />
+                <ScalarProperty Name="Currency_Code" ColumnName="Currency Code" />
+                <ScalarProperty Name="Rate" ColumnName="Rate" />
+                <ScalarProperty Name="Effectivity_Date" ColumnName="Effectivity Date" />
+                <ScalarProperty Name="Encoded_By" ColumnName="Encoded By" />
+                <ScalarProperty Name="Date_and_Time_Encoded" ColumnName="Date and Time Encoded" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Customers">
+            <EntityTypeMapping TypeName="Model.Customer">
+              <MappingFragment StoreEntitySet="Customer">
+                <ScalarProperty Name="Record_ID" ColumnName="Record ID" />
+                <ScalarProperty Name="Customer_Code" ColumnName="Customer Code" />
+                <ScalarProperty Name="Customer_Name" ColumnName="Customer Name" />
+                <ScalarProperty Name="Active" ColumnName="Active" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Dashboard_Details">
+            <EntityTypeMapping TypeName="Model.Dashboard_Detail">
+              <MappingFragment StoreEntitySet="Dashboard Detail">
+                <ScalarProperty Name="Record_ID" ColumnName="Record ID" />
+                <ScalarProperty Name="Dashboard_Code" ColumnName="Dashboard Code" />
+                <ScalarProperty Name="Code" ColumnName="Code" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Approve" ColumnName="Approve" />
+                <ScalarProperty Name="Disapprove" ColumnName="Disapprove" />
+                <ScalarProperty Name="Edit" ColumnName="Edit" />
+                <ScalarProperty Name="Delete" ColumnName="Delete" />
+                <ScalarProperty Name="Cancel" ColumnName="Cancel" />
+                <ScalarProperty Name="Action_By_ID" ColumnName="Action By ID" />
+                <ScalarProperty Name="Action_By_Name" ColumnName="Action By Name" />
+                <ScalarProperty Name="Action" ColumnName="Action" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Dashboard_Mains">
+            <EntityTypeMapping TypeName="Model.Dashboard_Main">
+              <MappingFragment StoreEntitySet="Dashboard Main">
+                <ScalarProperty Name="Record_ID" ColumnName="Record ID" />
+                <ScalarProperty Name="Dashboard_Code" ColumnName="Dashboard Code" />
+                <ScalarProperty Name="Module_Code" ColumnName="Module Code" />
+                <ScalarProperty Name="Access_Code" ColumnName="Access Code" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Main_Window_Dir" ColumnName="Main Window Dir" />
+                <ScalarProperty Name="WithPopUp" ColumnName="WithPopUp" />
+                <ScalarProperty Name="NotifOnly" ColumnName="NotifOnly" />
+                <ScalarProperty Name="Notification_Code" ColumnName="Notification Code" />
+                <ScalarProperty Name="Plant_Code" ColumnName="Plant Code" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Error_Logs">
+            <EntityTypeMapping TypeName="Model.Error_Log">
+              <MappingFragment StoreEntitySet="Error Log">
+                <ScalarProperty Name="Details" ColumnName="Details" />
+                <ScalarProperty Name="Message" ColumnName="Message" />
+                <ScalarProperty Name="User_Name" ColumnName="User Name" />
+                <ScalarProperty Name="PC_Name" ColumnName="PC Name" />
+                <ScalarProperty Name="IP_Address" ColumnName="IP Address" />
+                <ScalarProperty Name="Error_Date_Time" ColumnName="Error Date_Time" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Field_Access_Restrictions">
+            <EntityTypeMapping TypeName="Model.Field_Access_Restriction">
+              <MappingFragment StoreEntitySet="Field Access Restriction">
+                <ScalarProperty Name="Record_ID" ColumnName="Record ID" />
+                <ScalarProperty Name="Module_Code" ColumnName="Module Code" />
+                <ScalarProperty Name="Access_Code" ColumnName="Access Code" />
+                <ScalarProperty Name="Field_Name" ColumnName="Field Name" />
+                <ScalarProperty Name="Access_Type" ColumnName="Access Type" />
+                <ScalarProperty Name="Active" ColumnName="Active" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="History_Access_Codes">
+            <EntityTypeMapping TypeName="Model.History_Access_Code">
+              <MappingFragment StoreEntitySet="History Access Code">
+                <ScalarProperty Name="History_ID" ColumnName="History ID" />
+                <ScalarProperty Name="Record_ID" ColumnName="Record ID" />
+                <ScalarProperty Name="Access_Code" ColumnName="Access Code" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Remarks" ColumnName="Remarks" />
+                <ScalarProperty Name="Active" ColumnName="Active" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="History_Attachment_Modules">
+            <EntityTypeMapping TypeName="Model.History_Attachment_Module">
+              <MappingFragment StoreEntitySet="History Attachment Module">
+                <ScalarProperty Name="Rec_ID" ColumnName="Rec ID" />
+                <ScalarProperty Name="History_ID" ColumnName="History ID" />
+                <ScalarProperty Name="Record_ID" ColumnName="Record ID" />
+                <ScalarProperty Name="Attachment_ID" ColumnName="Attachment ID" />
+                <ScalarProperty Name="Module_Code" ColumnName="Module Code" />
+                <ScalarProperty Name="Required_for_Saving" ColumnName="Required for Saving" />
+                <ScalarProperty Name="Required" ColumnName="Required" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="History_Attachment_Types">
+            <EntityTypeMapping TypeName="Model.History_Attachment_Type">
+              <MappingFragment StoreEntitySet="History Attachment Type">
+                <ScalarProperty Name="History_ID" ColumnName="History ID" />
+                <ScalarProperty Name="Record_ID" ColumnName="Record ID" />
+                <ScalarProperty Name="Type" ColumnName="Type" />
+                <ScalarProperty Name="Active" ColumnName="Active" />
+                <ScalarProperty Name="Encoded_By" ColumnName="Encoded By" />
+                <ScalarProperty Name="Date_and_Time_Encoded" ColumnName="Date and Time Encoded" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="History_Banks">
+            <EntityTypeMapping TypeName="Model.History_Bank">
+              <MappingFragment StoreEntitySet="History Bank">
+                <ScalarProperty Name="History_ID" ColumnName="History ID" />
+                <ScalarProperty Name="Bank_ID" ColumnName="Bank ID" />
+                <ScalarProperty Name="Bank_Name" ColumnName="Bank Name" />
+                <ScalarProperty Name="Bank_Short_Name" ColumnName="Bank Short Name" />
+                <ScalarProperty Name="Bank_Type" ColumnName="Bank Type" />
+                <ScalarProperty Name="Active" ColumnName="Active" />
+                <ScalarProperty Name="Encoded_By" ColumnName="Encoded By" />
+                <ScalarProperty Name="Date_and_Time_Encoded" ColumnName="Date and Time Encoded" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="History_Currencies">
+            <EntityTypeMapping TypeName="Model.History_Currency">
+              <MappingFragment StoreEntitySet="History Currency">
+                <ScalarProperty Name="History_ID" ColumnName="History ID" />
+                <ScalarProperty Name="Record_ID" ColumnName="Record ID" />
+                <ScalarProperty Name="Currency_Code" ColumnName="Currency Code" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Active" ColumnName="Active" />
+                <ScalarProperty Name="Encoded_By" ColumnName="Encoded By" />
+                <ScalarProperty Name="Date_and_Time_Encoded" ColumnName="Date and Time Encoded" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="History_Currency_Conversions">
+            <EntityTypeMapping TypeName="Model.History_Currency_Conversion">
+              <MappingFragment StoreEntitySet="History Currency Conversion">
+                <ScalarProperty Name="History_ID" ColumnName="History ID" />
+                <ScalarProperty Name="Record_ID" ColumnName="Record ID" />
+                <ScalarProperty Name="Currency_Code" ColumnName="Currency Code" />
+                <ScalarProperty Name="Rate" ColumnName="Rate" />
+                <ScalarProperty Name="Effectivity_Date" ColumnName="Effectivity Date" />
+                <ScalarProperty Name="Encoded_By" ColumnName="Encoded By" />
+                <ScalarProperty Name="Date_and_Time_Encoded" ColumnName="Date and Time Encoded" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="History_Field_Access_Restrictions">
+            <EntityTypeMapping TypeName="Model.History_Field_Access_Restriction">
+              <MappingFragment StoreEntitySet="History Field Access Restriction">
+                <ScalarProperty Name="History_ID" ColumnName="History ID" />
+                <ScalarProperty Name="Record_ID" ColumnName="Record ID" />
+                <ScalarProperty Name="Module_Code" ColumnName="Module Code" />
+                <ScalarProperty Name="Access_Code" ColumnName="Access Code" />
+                <ScalarProperty Name="Field_Name" ColumnName="Field Name" />
+                <ScalarProperty Name="Active" ColumnName="Active" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="History_Modules">
+            <EntityTypeMapping TypeName="Model.History_Module">
+              <MappingFragment StoreEntitySet="History Module">
+                <ScalarProperty Name="History_ID" ColumnName="History ID" />
+                <ScalarProperty Name="Record_ID" ColumnName="Record ID" />
+                <ScalarProperty Name="Module_Code" ColumnName="Module Code" />
+                <ScalarProperty Name="Module_Name" ColumnName="Module Name" />
+                <ScalarProperty Name="Division" ColumnName="Division" />
+                <ScalarProperty Name="Department" ColumnName="Department" />
+                <ScalarProperty Name="Module_Program" ColumnName="Module Program" />
+                <ScalarProperty Name="Exclusive" ColumnName="Exclusive" />
+                <ScalarProperty Name="Active" ColumnName="Active" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="History_Module_Permissions">
+            <EntityTypeMapping TypeName="Model.History_Module_Permission">
+              <MappingFragment StoreEntitySet="History Module Permission">
+                <ScalarProperty Name="History_ID" ColumnName="History ID" />
+                <ScalarProperty Name="Record_ID" ColumnName="Record ID" />
+                <ScalarProperty Name="Module_Code" ColumnName="Module Code" />
+                <ScalarProperty Name="Access_Code" ColumnName="Access Code" />
+                <ScalarProperty Name="Add" ColumnName="Add" />
+                <ScalarProperty Name="Edit" ColumnName="Edit" />
+                <ScalarProperty Name="Cancel" ColumnName="Cancel" />
+                <ScalarProperty Name="Delete" ColumnName="Delete" />
+                <ScalarProperty Name="Print" ColumnName="Print" />
+                <ScalarProperty Name="Approve" ColumnName="Approve" />
+                <ScalarProperty Name="Validate" ColumnName="Validate" />
+                <ScalarProperty Name="Consolidate" ColumnName="Consolidate" />
+                <ScalarProperty Name="Active" ColumnName="Active" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="History_Projects">
+            <EntityTypeMapping TypeName="Model.History_Project">
+              <MappingFragment StoreEntitySet="History Project">
+                <ScalarProperty Name="History_ID" ColumnName="History ID" />
+                <ScalarProperty Name="Project_ID" ColumnName="Project ID" />
+                <ScalarProperty Name="Project_Name" ColumnName="Project Name" />
+                <ScalarProperty Name="Date_Started" ColumnName="Date Started" />
+                <ScalarProperty Name="Date_Finished" ColumnName="Date Finished" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="Remarks" ColumnName="Remarks" />
+                <ScalarProperty Name="Approver1" ColumnName="Approver1" />
+                <ScalarProperty Name="Approver2" ColumnName="Approver2" />
+                <ScalarProperty Name="Approver3" ColumnName="Approver3" />
+                <ScalarProperty Name="Approver4" ColumnName="Approver4" />
+                <ScalarProperty Name="Estimated_Budget" ColumnName="Estimated Budget" />
+                <ScalarProperty Name="Encoded_By" ColumnName="Encoded By" />
+                <ScalarProperty Name="Date_and_Time_Encoded" ColumnName="Date and Time Encoded" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="History_Unit_Special_Conversions">
+            <EntityTypeMapping TypeName="Model.History_Unit_Special_Conversion">
+              <MappingFragment StoreEntitySet="History Unit Special Conversion">
+                <ScalarProperty Name="Rec_ID" ColumnName="Rec ID" />
+                <ScalarProperty Name="History_ID" ColumnName="History ID" />
+                <ScalarProperty Name="Record_ID" ColumnName="Record ID" />
+                <ScalarProperty Name="Item_Code" ColumnName="Item Code" />
+                <ScalarProperty Name="Full_Description" ColumnName="Full Description" />
+                <ScalarProperty Name="Unit_From" ColumnName="Unit From" />
+                <ScalarProperty Name="Unit_To" ColumnName="Unit To" />
+                <ScalarProperty Name="Qty_Per_Unit_From" ColumnName="Qty Per Unit From" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="History_Users">
+            <EntityTypeMapping TypeName="Model.History_User">
+              <MappingFragment StoreEntitySet="History Users">
+                <ScalarProperty Name="History_ID" ColumnName="History ID" />
+                <ScalarProperty Name="User_ID" ColumnName="User ID" />
+                <ScalarProperty Name="User_Name" ColumnName="User Name" />
+                <ScalarProperty Name="ID_No" ColumnName="ID No" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="Group" ColumnName="Group" />
+                <ScalarProperty Name="Admin" ColumnName="Admin" />
+                <ScalarProperty Name="Admin_Division" ColumnName="Admin Division" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Nickname" ColumnName="Nickname" />
+                <ScalarProperty Name="Active" ColumnName="Active" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="History_Users_Accesses">
+            <EntityTypeMapping TypeName="Model.History_Users_Access">
+              <MappingFragment StoreEntitySet="History Users Access">
+                <ScalarProperty Name="History_ID" ColumnName="History ID" />
+                <ScalarProperty Name="Record_ID" ColumnName="Record ID" />
+                <ScalarProperty Name="User_ID" ColumnName="User ID" />
+                <ScalarProperty Name="Access_Code" ColumnName="Access Code" />
+                <ScalarProperty Name="Active" ColumnName="Active" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Item_Types">
+            <EntityTypeMapping TypeName="Model.Item_Type">
+              <MappingFragment StoreEntitySet="Item Type">
+                <ScalarProperty Name="Record_ID" ColumnName="Record ID" />
+                <ScalarProperty Name="Item_Type1" ColumnName="Item Type" />
+                <ScalarProperty Name="Active" ColumnName="Active" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Last_Series">
+            <EntityTypeMapping TypeName="Model.Last_Series">
+              <MappingFragment StoreEntitySet="Last Series">
+                <ScalarProperty Name="Record_ID" ColumnName="Record ID" />
+                <ScalarProperty Name="Table_Name" ColumnName="Table Name" />
+                <ScalarProperty Name="Last_Series1" ColumnName="Last Series" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Modules">
+            <EntityTypeMapping TypeName="Model.Module">
+              <MappingFragment StoreEntitySet="Module">
+                <ScalarProperty Name="Record_ID" ColumnName="Record ID" />
+                <ScalarProperty Name="Module_Code" ColumnName="Module Code" />
+                <ScalarProperty Name="Module_Name" ColumnName="Module Name" />
+                <ScalarProperty Name="Division" ColumnName="Division" />
+                <ScalarProperty Name="Department" ColumnName="Department" />
+                <ScalarProperty Name="Module_Program" ColumnName="Module Program" />
+                <ScalarProperty Name="Exclusive" ColumnName="Exclusive" />
+                <ScalarProperty Name="Payroll_Closure" ColumnName="Payroll Closure" />
+                <ScalarProperty Name="Help_Filename" ColumnName="Help Filename" />
+                <ScalarProperty Name="Active" ColumnName="Active" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Module_Permissions">
+            <EntityTypeMapping TypeName="Model.Module_Permission">
+              <MappingFragment StoreEntitySet="Module Permission">
+                <ScalarProperty Name="Record_ID" ColumnName="Record ID" />
+                <ScalarProperty Name="Module_Code" ColumnName="Module Code" />
+                <ScalarProperty Name="Access_Code" ColumnName="Access Code" />
+                <ScalarProperty Name="Add" ColumnName="Add" />
+                <ScalarProperty Name="Edit" ColumnName="Edit" />
+                <ScalarProperty Name="Cancel" ColumnName="Cancel" />
+                <ScalarProperty Name="Delete" ColumnName="Delete" />
+                <ScalarProperty Name="Print" ColumnName="Print" />
+                <ScalarProperty Name="Approve" ColumnName="Approve" />
+                <ScalarProperty Name="Validate" ColumnName="Validate" />
+                <ScalarProperty Name="Consolidate" ColumnName="Consolidate" />
+                <ScalarProperty Name="Active" ColumnName="Active" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Payment_Types">
+            <EntityTypeMapping TypeName="Model.Payment_Type">
+              <MappingFragment StoreEntitySet="Payment Type">
+                <ScalarProperty Name="Payment_Code" ColumnName="Payment Code" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Active" ColumnName="Active" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Plants">
+            <EntityTypeMapping TypeName="Model.Plant">
+              <MappingFragment StoreEntitySet="Plant">
+                <ScalarProperty Name="Plant_Code" ColumnName="Plant Code" />
+                <ScalarProperty Name="Plant_Name" ColumnName="Plant Name" />
+                <ScalarProperty Name="Manufacturing" ColumnName="Manufacturing" />
+                <ScalarProperty Name="Showroom" ColumnName="Showroom" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="Workplace" ColumnName="Workplace" />
+                <ScalarProperty Name="Active" ColumnName="Active" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Programs">
+            <EntityTypeMapping TypeName="Model.Program">
+              <MappingFragment StoreEntitySet="Program">
+                <ScalarProperty Name="Record_ID" ColumnName="Record ID" />
+                <ScalarProperty Name="Parent_ID" ColumnName="Parent ID" />
+                <ScalarProperty Name="Module_Code" ColumnName="Module Code" />
+                <ScalarProperty Name="Header" ColumnName="Header" />
+                <ScalarProperty Name="Sequence" ColumnName="Sequence" />
+                <ScalarProperty Name="Active" ColumnName="Active" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Projects">
+            <EntityTypeMapping TypeName="Model.Project">
+              <MappingFragment StoreEntitySet="Project">
+                <ScalarProperty Name="Project_ID" ColumnName="Project ID" />
+                <ScalarProperty Name="Project_Name" ColumnName="Project Name" />
+                <ScalarProperty Name="Date_Started" ColumnName="Date Started" />
+                <ScalarProperty Name="Date_Finished" ColumnName="Date Finished" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="Remarks" ColumnName="Remarks" />
+                <ScalarProperty Name="Approver1" ColumnName="Approver1" />
+                <ScalarProperty Name="Approver2" ColumnName="Approver2" />
+                <ScalarProperty Name="Approver3" ColumnName="Approver3" />
+                <ScalarProperty Name="Approver4" ColumnName="Approver4" />
+                <ScalarProperty Name="Estimated_Budget" ColumnName="Estimated Budget" />
+                <ScalarProperty Name="Category_Code" ColumnName="Category Code" />
+                <ScalarProperty Name="Category_Description" ColumnName="Category Description" />
+                <ScalarProperty Name="Encoded_By" ColumnName="Encoded By" />
+                <ScalarProperty Name="Date_and_Time_Encoded" ColumnName="Date and Time Encoded" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Project_Categories">
+            <EntityTypeMapping TypeName="Model.Project_Category">
+              <MappingFragment StoreEntitySet="Project Category">
+                <ScalarProperty Name="Code" ColumnName="Code" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Active" ColumnName="Active" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="RegionCityBgies">
+            <EntityTypeMapping TypeName="Model.RegionCityBgy">
+              <MappingFragment StoreEntitySet="RegionCityBgy">
+                <ScalarProperty Name="Record_ID" ColumnName="Record ID" />
+                <ScalarProperty Name="PSGC_Code" ColumnName="PSGC Code" />
+                <ScalarProperty Name="Type" ColumnName="Type" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Active" ColumnName="Active" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Suppliers">
+            <EntityTypeMapping TypeName="Model.Supplier">
+              <MappingFragment StoreEntitySet="Supplier">
+                <ScalarProperty Name="Supplier_Code" ColumnName="Supplier Code" />
+                <ScalarProperty Name="Supplier_Name" ColumnName="Supplier Name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Units">
+            <EntityTypeMapping TypeName="Model.Unit">
+              <MappingFragment StoreEntitySet="Unit">
+                <ScalarProperty Name="Unit1" ColumnName="Unit" />
+                <ScalarProperty Name="Standard" ColumnName="Standard" />
+                <ScalarProperty Name="Unix_Code" ColumnName="Unix Code" />
+                <ScalarProperty Name="Active" ColumnName="Active" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Unit_Special_Conversions">
+            <EntityTypeMapping TypeName="Model.Unit_Special_Conversion">
+              <MappingFragment StoreEntitySet="Unit Special Conversion">
+                <ScalarProperty Name="Record_ID" ColumnName="Record ID" />
+                <ScalarProperty Name="Item_Code" ColumnName="Item Code" />
+                <ScalarProperty Name="Full_Description" ColumnName="Full Description" />
+                <ScalarProperty Name="Unit_From" ColumnName="Unit From" />
+                <ScalarProperty Name="Unit_To" ColumnName="Unit To" />
+                <ScalarProperty Name="Qty_Per_Unit_From" ColumnName="Qty Per Unit From" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Unit_Standard_Conversions">
+            <EntityTypeMapping TypeName="Model.Unit_Standard_Conversion">
+              <MappingFragment StoreEntitySet="Unit Standard Conversion">
+                <ScalarProperty Name="Record_ID" ColumnName="Record ID" />
+                <ScalarProperty Name="Unit_From" ColumnName="Unit From" />
+                <ScalarProperty Name="Unit_To" ColumnName="Unit To" />
+                <ScalarProperty Name="Qty_Per_Unit_From" ColumnName="Qty Per Unit From" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Users">
+            <EntityTypeMapping TypeName="Model.User">
+              <MappingFragment StoreEntitySet="Users">
+                <ScalarProperty Name="User_ID" ColumnName="User ID" />
+                <ScalarProperty Name="User_Name" ColumnName="User Name" />
+                <ScalarProperty Name="ID_No" ColumnName="ID No" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="Group" ColumnName="Group" />
+                <ScalarProperty Name="Admin" ColumnName="Admin" />
+                <ScalarProperty Name="Admin_Division" ColumnName="Admin Division" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Nickname" ColumnName="Nickname" />
+                <ScalarProperty Name="Supplier_Group" ColumnName="Supplier Group" />
+                <ScalarProperty Name="Active" ColumnName="Active" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Users_Accesses">
+            <EntityTypeMapping TypeName="Model.Users_Access">
+              <MappingFragment StoreEntitySet="Users Access">
+                <ScalarProperty Name="Record_ID" ColumnName="Record ID" />
+                <ScalarProperty Name="User_ID" ColumnName="User ID" />
+                <ScalarProperty Name="Access_Code" ColumnName="Access Code" />
+                <ScalarProperty Name="Active" ColumnName="Active" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Users_Access2">
+            <EntityTypeMapping TypeName="Model.Users_Access2">
+              <MappingFragment StoreEntitySet="Users Access2">
+                <ScalarProperty Name="Record_ID" ColumnName="Record ID" />
+                <ScalarProperty Name="User_ID" ColumnName="User ID" />
+                <ScalarProperty Name="User_Name" ColumnName="User Name" />
+                <ScalarProperty Name="ID_No" ColumnName="ID No" />
+                <ScalarProperty Name="Module_Code" ColumnName="Module Code" />
+                <ScalarProperty Name="Workplace" ColumnName="Workplace" />
+                <ScalarProperty Name="Payroll_Workplace" ColumnName="Payroll Workplace" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Users_Groups">
+            <EntityTypeMapping TypeName="Model.Users_Group">
+              <MappingFragment StoreEntitySet="Users Group">
+                <ScalarProperty Name="Group" ColumnName="Group" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="VAT_Percents">
+            <EntityTypeMapping TypeName="Model.VAT_Percent">
+              <MappingFragment StoreEntitySet="VAT Percent">
+                <ScalarProperty Name="Record_ID" ColumnName="Record ID" />
+                <ScalarProperty Name="Percent" ColumnName="Percent" />
+                <ScalarProperty Name="Divisor" ColumnName="Divisor" />
+                <ScalarProperty Name="Effectivity_Date" ColumnName="Effectivity Date" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="VAT_Types">
+            <EntityTypeMapping TypeName="Model.VAT_Type">
+              <MappingFragment StoreEntitySet="VAT Type">
+                <ScalarProperty Name="Record_ID" ColumnName="Record ID" />
+                <ScalarProperty Name="VAT_Type1" ColumnName="VAT Type" />
+                <ScalarProperty Name="Active" ColumnName="Active" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Countries">
+            <EntityTypeMapping TypeName="Model.Country">
+              <MappingFragment StoreEntitySet="Country">
+                <ScalarProperty Name="Country1" ColumnName="Country" />
+                <ScalarProperty Name="Active" ColumnName="Active" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

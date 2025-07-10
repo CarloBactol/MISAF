@@ -1,0 +1,155 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="MISModelStoreContainer" CdmEntityContainer="MISEntities">
+    <EntitySetMapping Name="History_MAF_Attachments">
+      <EntityTypeMapping TypeName="MISModel.History_MAF_Attachment">
+        <MappingFragment StoreEntitySet="History MAF Attachments">
+          <ScalarProperty Name="Filename" ColumnName="Filename" />
+          <ScalarProperty Name="MAF_No" ColumnName="MAF No" />
+          <ScalarProperty Name="Record_ID" ColumnName="Record ID" />
+          <ScalarProperty Name="History_ID" ColumnName="History ID" />
+          <ScalarProperty Name="Rec_ID" ColumnName="Rec ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="History_MAF_Details">
+      <EntityTypeMapping TypeName="MISModel.History_MAF_Detail">
+        <MappingFragment StoreEntitySet="History MAF Detail">
+          <ScalarProperty Name="Status_Updated_By" ColumnName="Status Updated By" />
+          <ScalarProperty Name="Status_Remarks" ColumnName="Status Remarks" />
+          <ScalarProperty Name="Status_DateTime" ColumnName="Status DateTime" />
+          <ScalarProperty Name="Status" ColumnName="Status" />
+          <ScalarProperty Name="Reason" ColumnName="Reason" />
+          <ScalarProperty Name="Reason_ID" ColumnName="Reason ID" />
+          <ScalarProperty Name="Request" ColumnName="Request" />
+          <ScalarProperty Name="Category" ColumnName="Category" />
+          <ScalarProperty Name="Category_ID" ColumnName="Category ID" />
+          <ScalarProperty Name="MAF_No" ColumnName="MAF No" />
+          <ScalarProperty Name="Record_ID" ColumnName="Record ID" />
+          <ScalarProperty Name="History_ID" ColumnName="History ID" />
+          <ScalarProperty Name="Rec_ID" ColumnName="Rec ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="History_MAF_Mains">
+      <EntityTypeMapping TypeName="MISModel.History_MAF_Main">
+        <MappingFragment StoreEntitySet="History MAF Main">
+          <ScalarProperty Name="DateTime_Encoded" ColumnName="DateTime Encoded" />
+          <ScalarProperty Name="Encoded_By" ColumnName="Encoded By" />
+          <ScalarProperty Name="Status_Remarks" ColumnName="Status Remarks" />
+          <ScalarProperty Name="Status_Updated_By" ColumnName="Status Updated By" />
+          <ScalarProperty Name="Status_DateTime" ColumnName="Status DateTime" />
+          <ScalarProperty Name="Status" ColumnName="Status" />
+          <ScalarProperty Name="Target_Date" ColumnName="Target Date" />
+          <ScalarProperty Name="PreApproved" ColumnName="PreApproved" />
+          <ScalarProperty Name="Final_Approver_Remarks" ColumnName="Final Approver Remarks" />
+          <ScalarProperty Name="DateTime_Approved" ColumnName="DateTime Approved" />
+          <ScalarProperty Name="Final_Approver" ColumnName="Final Approver" />
+          <ScalarProperty Name="Endorser_Remarks" ColumnName="Endorser Remarks" />
+          <ScalarProperty Name="DateTime_Endorsed" ColumnName="DateTime Endorsed" />
+          <ScalarProperty Name="Endorsed_By" ColumnName="Endorsed By" />
+          <ScalarProperty Name="DateTime_Requested" ColumnName="DateTime Requested" />
+          <ScalarProperty Name="Requestor_Div_Dep" ColumnName="Requestor Div Dep" />
+          <ScalarProperty Name="Requestor_Workplace" ColumnName="Requestor Workplace" />
+          <ScalarProperty Name="Requestor_Name" ColumnName="Requestor Name" />
+          <ScalarProperty Name="Requestor_ID_No" ColumnName="Requestor ID No" />
+          <ScalarProperty Name="MAF_No" ColumnName="MAF No" />
+          <ScalarProperty Name="History_ID" ColumnName="History ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="MAF_Approvers">
+      <EntityTypeMapping TypeName="MISModel.MAF_Approver">
+        <MappingFragment StoreEntitySet="MAF Approver">
+          <ScalarProperty Name="Active" ColumnName="Active" />
+          <ScalarProperty Name="MIS" ColumnName="MIS" />
+          <ScalarProperty Name="Email_CC" ColumnName="Email CC" />
+          <ScalarProperty Name="Endorser_Only" ColumnName="Endorser Only" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="ID_No" ColumnName="ID No" />
+          <ScalarProperty Name="Approver_ID" ColumnName="Approver ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="MAF_Attachments">
+      <EntityTypeMapping TypeName="MISModel.MAF_Attachment">
+        <MappingFragment StoreEntitySet="MAF Attachments">
+          <ScalarProperty Name="Filename" ColumnName="Filename" />
+          <ScalarProperty Name="MAF_No" ColumnName="MAF No" />
+          <ScalarProperty Name="Record_ID" ColumnName="Record ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="MAF_Categories">
+      <EntityTypeMapping TypeName="MISModel.MAF_Category">
+        <MappingFragment StoreEntitySet="MAF Category">
+          <ScalarProperty Name="Active" ColumnName="Active" />
+          <ScalarProperty Name="Category" ColumnName="Category" />
+          <ScalarProperty Name="Category_ID" ColumnName="Category ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="MAF_Details">
+      <EntityTypeMapping TypeName="MISModel.MAF_Detail">
+        <MappingFragment StoreEntitySet="MAF Detail">
+          <ScalarProperty Name="Status_Updated_By" ColumnName="Status Updated By" />
+          <ScalarProperty Name="Status_Remarks" ColumnName="Status Remarks" />
+          <ScalarProperty Name="Status_DateTime" ColumnName="Status DateTime" />
+          <ScalarProperty Name="Status" ColumnName="Status" />
+          <ScalarProperty Name="Reason" ColumnName="Reason" />
+          <ScalarProperty Name="Reason_ID" ColumnName="Reason ID" />
+          <ScalarProperty Name="Request" ColumnName="Request" />
+          <ScalarProperty Name="Category" ColumnName="Category" />
+          <ScalarProperty Name="Category_ID" ColumnName="Category ID" />
+          <ScalarProperty Name="MAF_No" ColumnName="MAF No" />
+          <ScalarProperty Name="Record_ID" ColumnName="Record ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="MAF_Last_Series">
+      <EntityTypeMapping TypeName="MISModel.MAF_Last_Series">
+        <MappingFragment StoreEntitySet="MAF Last Series">
+          <ScalarProperty Name="Series" ColumnName="Series" />
+          <ScalarProperty Name="Year" ColumnName="Year" />
+          <ScalarProperty Name="Table_Name" ColumnName="Table Name" />
+          <ScalarProperty Name="Record_ID" ColumnName="Record ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="MAF_Mains">
+      <EntityTypeMapping TypeName="MISModel.MAF_Main">
+        <MappingFragment StoreEntitySet="MAF Main">
+          <ScalarProperty Name="DateTime_Encoded" ColumnName="DateTime Encoded" />
+          <ScalarProperty Name="Encoded_By" ColumnName="Encoded By" />
+          <ScalarProperty Name="Status_Remarks" ColumnName="Status Remarks" />
+          <ScalarProperty Name="Status_Updated_By" ColumnName="Status Updated By" />
+          <ScalarProperty Name="Status_DateTime" ColumnName="Status DateTime" />
+          <ScalarProperty Name="Status" ColumnName="Status" />
+          <ScalarProperty Name="Target_Date" ColumnName="Target Date" />
+          <ScalarProperty Name="PreApproved" ColumnName="PreApproved" />
+          <ScalarProperty Name="Final_Approver_Remarks" ColumnName="Final Approver Remarks" />
+          <ScalarProperty Name="DateTime_Approved" ColumnName="DateTime Approved" />
+          <ScalarProperty Name="Final_Approver" ColumnName="Final Approver" />
+          <ScalarProperty Name="Endorser_Remarks" ColumnName="Endorser Remarks" />
+          <ScalarProperty Name="DateTime_Endorsed" ColumnName="DateTime Endorsed" />
+          <ScalarProperty Name="Endorsed_By" ColumnName="Endorsed By" />
+          <ScalarProperty Name="DateTime_Requested" ColumnName="DateTime Requested" />
+          <ScalarProperty Name="Requestor_Div_Dep" ColumnName="Requestor Div Dep" />
+          <ScalarProperty Name="Requestor_Workplace" ColumnName="Requestor Workplace" />
+          <ScalarProperty Name="Requestor_Name" ColumnName="Requestor Name" />
+          <ScalarProperty Name="Requestor_ID_No" ColumnName="Requestor ID No" />
+          <ScalarProperty Name="MAF_No" ColumnName="MAF No" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="MAF_Reasons">
+      <EntityTypeMapping TypeName="MISModel.MAF_Reason">
+        <MappingFragment StoreEntitySet="MAF Reason">
+          <ScalarProperty Name="Active" ColumnName="Active" />
+          <ScalarProperty Name="Reason" ColumnName="Reason" />
+          <ScalarProperty Name="Reason_ID" ColumnName="Reason ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

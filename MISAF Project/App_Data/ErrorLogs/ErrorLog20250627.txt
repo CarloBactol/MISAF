@@ -1,0 +1,12 @@
+2025-06-27 08:57:58.596 [INF] Application started
+2025-06-27 10:49:22.108 [INF] Application started
+2025-06-27 10:52:54.410 [INF] Application started
+2025-06-27 10:57:57.081 [INF] Application started
+2025-06-27 11:09:23.123 [INF] Application started
+2025-06-27 11:12:15.240 [INF] Application started
+2025-06-27 11:17:01.866 [INF] Application started
+2025-06-27 13:11:18.816 [INF] Application started
+2025-06-27 13:41:05.409 [INF] Application started
+2025-06-27 13:50:57.032 [INF] Application started
+2025-06-27 14:00:58.157 [INF] Application started
+2025-06-27 15:46:51.492 [INF] Application started

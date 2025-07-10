@@ -1,0 +1,43 @@
+﻿@model MISAF_Project.ViewModels.UserRolesViewModel
+
+
+@if (Model.IsEndorser)
+{
+    <li class="side-nav-item" visible="true">
+        <a href="/endorser/index" class="side-nav-link">
+            <i class="ri-folder-user-line"></i>
+            <span>Endorser Management</span>
+        </a>
+    </li>
+}
+
+@if (Model.IsApprover)
+{
+    <li class="side-nav-item" visible="true">
+        <a href="/finalapprover/index" class="side-nav-link">
+            <i class="ri-folder-user-line"></i>
+            <span>Final Approver Managemet</span>
+        </a>
+    </li>
+}
+
+@if (Model.IsMIS)
+{
+    <li class="side-nav-item" visible="true">
+        <a href="/acknowledge/index" class="side-nav-link">
+            <i class="ri-folder-user-line"></i>
+            <span>MIS Management</span>
+        </a>
+    </li>
+
+    <li class="side-nav-title">Approver</li>
+    <li class="side-nav-item" visible="true">
+        <a href="/approver/index" class="side-nav-link">
+            <i class="ri-folder-user-line"></i>
+            <span>Create Approver</span>
+        </a>
+    </li>
+}
+
+
+

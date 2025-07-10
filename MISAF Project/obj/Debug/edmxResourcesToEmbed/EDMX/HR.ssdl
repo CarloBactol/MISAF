@@ -1,0 +1,149 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="HRModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="Employee">
+    <Key>
+      <PropertyRef Name="Record ID" />
+    </Key>
+    <Property Name="Record ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ID No" Type="char" MaxLength="6" Nullable="false" />
+    <Property Name="Last Name" Type="varchar" MaxLength="30" Nullable="false" />
+    <Property Name="First Name" Type="varchar" MaxLength="30" Nullable="false" />
+    <Property Name="Middle Name" Type="varchar" MaxLength="30" />
+    <Property Name="Name Suffix" Type="varchar" MaxLength="5" />
+    <Property Name="Name" Type="varchar" MaxLength="100" />
+    <Property Name="Origin" Type="char" MaxLength="3" Nullable="false" />
+    <Property Name="Workplace" Type="char" MaxLength="3" Nullable="false" />
+    <Property Name="Cost Location" Type="char" MaxLength="3" />
+    <Property Name="Region" Type="varchar" MaxLength="10" />
+    <Property Name="Payroll Workplace" Type="char" MaxLength="3" Nullable="false" />
+    <Property Name="Original Workplace" Type="char" MaxLength="3" />
+    <Property Name="Division Code" Type="char" MaxLength="3" Nullable="false" />
+    <Property Name="Department Code" Type="char" MaxLength="3" Nullable="false" />
+    <Property Name="Section Code" Type="char" MaxLength="3" />
+    <Property Name="Position Code" Type="char" MaxLength="3" Nullable="false" />
+    <Property Name="Trainee" Type="char" MaxLength="1" Nullable="false" />
+    <Property Name="Class" Type="char" MaxLength="1" Nullable="false" />
+    <Property Name="Date Hired" Type="date" Nullable="false" />
+    <Property Name="Date Terminated" Type="date" />
+    <Property Name="Status" Type="char" MaxLength="1" Nullable="false" />
+    <Property Name="Last Day of Employment" Type="date" />
+    <Property Name="Old ID No" Type="char" MaxLength="6" />
+    <Property Name="Applicant No" Type="char" MaxLength="9" />
+    <Property Name="Birthdate" Type="date" Nullable="false" />
+    <Property Name="TIN" Type="varchar" MaxLength="11" />
+    <Property Name="SSS No" Type="varchar" MaxLength="12" />
+    <Property Name="PagIbig No" Type="varchar" MaxLength="15" />
+    <Property Name="PhilHealth No" Type="varchar" MaxLength="15" />
+    <Property Name="Bank Account No" Type="varchar" MaxLength="16" />
+    <Property Name="Bank Code" Type="varchar" MaxLength="20" />
+    <Property Name="Bank Account Type" Type="varchar" MaxLength="8" />
+    <Property Name="Job Level" Type="char" MaxLength="2" Nullable="false" />
+    <Property Name="Position Level" Type="char" MaxLength="1" Nullable="false" />
+    <Property Name="Date Regularized" Type="date" />
+    <Property Name="First Evaluation Date" Type="date" />
+    <Property Name="Second Evaluation Date" Type="date" />
+    <Property Name="Final Evaluation Date" Type="date" />
+    <Property Name="Previous Evaluation Date" Type="date" />
+    <Property Name="Termination Reason" Type="char" MaxLength="3" />
+    <Property Name="Civil Status" Type="char" MaxLength="1" Nullable="false" />
+    <Property Name="W4 Status" Type="varchar" MaxLength="3" Nullable="false" />
+    <Property Name="Sex" Type="char" MaxLength="1" Nullable="false" />
+    <Property Name="Citizenship" Type="varchar" MaxLength="20" Nullable="false" />
+    <Property Name="On Payroll" Type="char" MaxLength="1" Nullable="false" />
+    <Property Name="Superior Name" Type="varchar" MaxLength="50" />
+    <Property Name="Nickname" Type="varchar" MaxLength="20" />
+    <Property Name="Address Region" Type="varchar" MaxLength="30" Nullable="false" />
+    <Property Name="Address City" Type="varchar" MaxLength="30" Nullable="false" />
+    <Property Name="Address Street" Type="varchar" MaxLength="30" Nullable="false" />
+    <Property Name="Address Barangay" Type="varchar" MaxLength="30" />
+    <Property Name="Address Number" Type="varchar" MaxLength="10" />
+    <Property Name="Address Zip Code" Type="varchar" MaxLength="10" />
+    <Property Name="Address" Type="varchar" MaxLength="50" />
+    <Property Name="Landline No" Type="varchar" MaxLength="30" />
+    <Property Name="Mobile No" Type="varchar" MaxLength="30" />
+    <Property Name="Email" Type="varchar" MaxLength="50" />
+    <Property Name="Emergency Contact Person" Type="varchar" MaxLength="50" />
+    <Property Name="Emergency Contact No" Type="varchar" MaxLength="50" />
+    <Property Name="Emergency Contact Address" Type="varchar" MaxLength="50" />
+    <Property Name="Educational Attainment" Type="varchar" MaxLength="80" Nullable="false" />
+    <Property Name="Parental ID" Type="date" />
+    <Property Name="Employee Type" Type="char" MaxLength="1" />
+    <Property Name="Project Name" Type="varchar" MaxLength="70" />
+    <Property Name="HR_PAT Assigned" Type="char" MaxLength="6" />
+    <Property Name="Previous Employer" Type="varchar" MaxLength="35" />
+    <Property Name="Previous Employer Tin" Type="varchar" MaxLength="11" />
+    <Property Name="Previous Employer From" Type="date" />
+    <Property Name="Previous Employer To" Type="date" />
+    <Property Name="Previous Employer Status" Type="char" MaxLength="2" />
+    <Property Name="Previous Employer Reason" Type="char" MaxLength="2" />
+    <Property Name="Reliever ID" Type="bigint" />
+    <Property Name="Insert" Type="char" MaxLength="1" />
+    <Property Name="Update" Type="char" MaxLength="1" />
+    <Property Name="Cleared" Type="char" MaxLength="1" />
+    <Property Name="Company Email" Type="varchar" MaxLength="50" />
+    <Property Name="Encoded By" Type="varchar" MaxLength="100" Nullable="false" />
+    <Property Name="Date and Time Encoded" Type="datetime" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Employee Class">
+    <Key>
+      <PropertyRef Name="Code" />
+    </Key>
+    <Property Name="Code" Type="char" MaxLength="1" Nullable="false" />
+    <Property Name="Class" Type="varchar" MaxLength="20" Nullable="false" />
+    <Property Name="Active" Type="char" MaxLength="1" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Employee ID">
+    <Key>
+      <PropertyRef Name="ID No" />
+    </Key>
+    <Property Name="ID No" Type="char" MaxLength="6" Nullable="false" />
+    <Property Name="Picture" Type="varchar" MaxLength="200" Nullable="false" />
+    <Property Name="Signature" Type="varchar" MaxLength="200" Nullable="false" />
+    <Property Name="Encoded By" Type="varchar" MaxLength="70" Nullable="false" />
+    <Property Name="Date and Time Encoded" Type="datetime" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Employee Superior">
+    <Key>
+      <PropertyRef Name="Record ID" />
+    </Key>
+    <Property Name="Record ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ID No" Type="char" MaxLength="6" Nullable="false" />
+    <Property Name="Superior ID No" Type="char" MaxLength="6" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Position">
+    <Key>
+      <PropertyRef Name="Code" />
+    </Key>
+    <Property Name="Code" Type="char" MaxLength="3" Nullable="false" />
+    <Property Name="Position" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="Job Level" Type="smallint" Nullable="false" />
+    <Property Name="Division Code" Type="char" MaxLength="3" Nullable="false" />
+    <Property Name="Dept Code" Type="char" MaxLength="3" Nullable="false" />
+    <Property Name="Section Code" Type="char" MaxLength="3" Nullable="false" />
+    <Property Name="Employee Class" Type="varchar" MaxLength="20" Nullable="false" />
+    <Property Name="Level" Type="char" MaxLength="1" Nullable="false" />
+    <Property Name="NCR Staff Rate" Type="decimal" Precision="12" Scale="2" />
+    <Property Name="NCR RF Rate" Type="decimal" Precision="12" Scale="2" />
+    <Property Name="CAB Staff Rate" Type="decimal" Precision="12" Scale="2" />
+    <Property Name="CAB RF Rate" Type="decimal" Precision="12" Scale="2" />
+    <Property Name="Active" Type="char" MaxLength="1" Nullable="false" />
+    <Property Name="Encoded By" Type="varchar" MaxLength="70" Nullable="false" />
+    <Property Name="Date and Time Encoded" Type="datetime" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Position Level">
+    <Key>
+      <PropertyRef Name="Code" />
+    </Key>
+    <Property Name="Code" Type="char" MaxLength="1" Nullable="false" />
+    <Property Name="Level" Type="varchar" MaxLength="20" Nullable="false" />
+    <Property Name="Active" Type="char" MaxLength="1" Nullable="false" />
+  </EntityType>
+  <EntityContainer Name="HRModelStoreContainer">
+    <EntitySet Name="Employee" EntityType="Self.Employee" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Employee Class" EntityType="Self.Employee Class" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Employee ID" EntityType="Self.Employee ID" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Employee Superior" EntityType="Self.Employee Superior" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Position" EntityType="Self.Position" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Position Level" EntityType="Self.Position Level" Schema="dbo" store:Type="Tables" />
+  </EntityContainer>
+</Schema>

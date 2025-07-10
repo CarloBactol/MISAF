@@ -1,0 +1,477 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="HRModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Employee">
+          <Key>
+            <PropertyRef Name="Record ID" />
+          </Key>
+          <Property Name="Record ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ID No" Type="char" MaxLength="6" Nullable="false" />
+          <Property Name="Last Name" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="First Name" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="Middle Name" Type="varchar" MaxLength="30" />
+          <Property Name="Name Suffix" Type="varchar" MaxLength="5" />
+          <Property Name="Name" Type="varchar" MaxLength="100" />
+          <Property Name="Origin" Type="char" MaxLength="3" Nullable="false" />
+          <Property Name="Workplace" Type="char" MaxLength="3" Nullable="false" />
+          <Property Name="Cost Location" Type="char" MaxLength="3" />
+          <Property Name="Region" Type="varchar" MaxLength="10" />
+          <Property Name="Payroll Workplace" Type="char" MaxLength="3" Nullable="false" />
+          <Property Name="Original Workplace" Type="char" MaxLength="3" />
+          <Property Name="Division Code" Type="char" MaxLength="3" Nullable="false" />
+          <Property Name="Department Code" Type="char" MaxLength="3" Nullable="false" />
+          <Property Name="Section Code" Type="char" MaxLength="3" />
+          <Property Name="Position Code" Type="char" MaxLength="3" Nullable="false" />
+          <Property Name="Trainee" Type="char" MaxLength="1" Nullable="false" />
+          <Property Name="Class" Type="char" MaxLength="1" Nullable="false" />
+          <Property Name="Date Hired" Type="date" Nullable="false" />
+          <Property Name="Date Terminated" Type="date" />
+          <Property Name="Status" Type="char" MaxLength="1" Nullable="false" />
+          <Property Name="Last Day of Employment" Type="date" />
+          <Property Name="Old ID No" Type="char" MaxLength="6" />
+          <Property Name="Applicant No" Type="char" MaxLength="9" />
+          <Property Name="Birthdate" Type="date" Nullable="false" />
+          <Property Name="TIN" Type="varchar" MaxLength="11" />
+          <Property Name="SSS No" Type="varchar" MaxLength="12" />
+          <Property Name="PagIbig No" Type="varchar" MaxLength="15" />
+          <Property Name="PhilHealth No" Type="varchar" MaxLength="15" />
+          <Property Name="Bank Account No" Type="varchar" MaxLength="16" />
+          <Property Name="Bank Code" Type="varchar" MaxLength="20" />
+          <Property Name="Bank Account Type" Type="varchar" MaxLength="8" />
+          <Property Name="Job Level" Type="char" MaxLength="2" Nullable="false" />
+          <Property Name="Position Level" Type="char" MaxLength="1" Nullable="false" />
+          <Property Name="Date Regularized" Type="date" />
+          <Property Name="First Evaluation Date" Type="date" />
+          <Property Name="Second Evaluation Date" Type="date" />
+          <Property Name="Final Evaluation Date" Type="date" />
+          <Property Name="Previous Evaluation Date" Type="date" />
+          <Property Name="Termination Reason" Type="char" MaxLength="3" />
+          <Property Name="Civil Status" Type="char" MaxLength="1" Nullable="false" />
+          <Property Name="W4 Status" Type="varchar" MaxLength="3" Nullable="false" />
+          <Property Name="Sex" Type="char" MaxLength="1" Nullable="false" />
+          <Property Name="Citizenship" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="On Payroll" Type="char" MaxLength="1" Nullable="false" />
+          <Property Name="Superior Name" Type="varchar" MaxLength="50" />
+          <Property Name="Nickname" Type="varchar" MaxLength="20" />
+          <Property Name="Address Region" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="Address City" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="Address Street" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="Address Barangay" Type="varchar" MaxLength="30" />
+          <Property Name="Address Number" Type="varchar" MaxLength="10" />
+          <Property Name="Address Zip Code" Type="varchar" MaxLength="10" />
+          <Property Name="Address" Type="varchar" MaxLength="50" />
+          <Property Name="Landline No" Type="varchar" MaxLength="30" />
+          <Property Name="Mobile No" Type="varchar" MaxLength="30" />
+          <Property Name="Email" Type="varchar" MaxLength="50" />
+          <Property Name="Emergency Contact Person" Type="varchar" MaxLength="50" />
+          <Property Name="Emergency Contact No" Type="varchar" MaxLength="50" />
+          <Property Name="Emergency Contact Address" Type="varchar" MaxLength="50" />
+          <Property Name="Educational Attainment" Type="varchar" MaxLength="80" Nullable="false" />
+          <Property Name="Parental ID" Type="date" />
+          <Property Name="Employee Type" Type="char" MaxLength="1" />
+          <Property Name="Project Name" Type="varchar" MaxLength="70" />
+          <Property Name="HR_PAT Assigned" Type="char" MaxLength="6" />
+          <Property Name="Previous Employer" Type="varchar" MaxLength="35" />
+          <Property Name="Previous Employer Tin" Type="varchar" MaxLength="11" />
+          <Property Name="Previous Employer From" Type="date" />
+          <Property Name="Previous Employer To" Type="date" />
+          <Property Name="Previous Employer Status" Type="char" MaxLength="2" />
+          <Property Name="Previous Employer Reason" Type="char" MaxLength="2" />
+          <Property Name="Reliever ID" Type="bigint" />
+          <Property Name="Insert" Type="char" MaxLength="1" />
+          <Property Name="Update" Type="char" MaxLength="1" />
+          <Property Name="Cleared" Type="char" MaxLength="1" />
+          <Property Name="Company Email" Type="varchar" MaxLength="50" />
+          <Property Name="Encoded By" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="Date and Time Encoded" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Employee Class">
+          <Key>
+            <PropertyRef Name="Code" />
+          </Key>
+          <Property Name="Code" Type="char" MaxLength="1" Nullable="false" />
+          <Property Name="Class" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="Active" Type="char" MaxLength="1" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Employee ID">
+          <Key>
+            <PropertyRef Name="ID No" />
+          </Key>
+          <Property Name="ID No" Type="char" MaxLength="6" Nullable="false" />
+          <Property Name="Picture" Type="varchar" MaxLength="200" Nullable="false" />
+          <Property Name="Signature" Type="varchar" MaxLength="200" Nullable="false" />
+          <Property Name="Encoded By" Type="varchar" MaxLength="70" Nullable="false" />
+          <Property Name="Date and Time Encoded" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Employee Superior">
+          <Key>
+            <PropertyRef Name="Record ID" />
+          </Key>
+          <Property Name="Record ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ID No" Type="char" MaxLength="6" Nullable="false" />
+          <Property Name="Superior ID No" Type="char" MaxLength="6" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Position">
+          <Key>
+            <PropertyRef Name="Code" />
+          </Key>
+          <Property Name="Code" Type="char" MaxLength="3" Nullable="false" />
+          <Property Name="Position" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Job Level" Type="smallint" Nullable="false" />
+          <Property Name="Division Code" Type="char" MaxLength="3" Nullable="false" />
+          <Property Name="Dept Code" Type="char" MaxLength="3" Nullable="false" />
+          <Property Name="Section Code" Type="char" MaxLength="3" Nullable="false" />
+          <Property Name="Employee Class" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="Level" Type="char" MaxLength="1" Nullable="false" />
+          <Property Name="NCR Staff Rate" Type="decimal" Precision="12" Scale="2" />
+          <Property Name="NCR RF Rate" Type="decimal" Precision="12" Scale="2" />
+          <Property Name="CAB Staff Rate" Type="decimal" Precision="12" Scale="2" />
+          <Property Name="CAB RF Rate" Type="decimal" Precision="12" Scale="2" />
+          <Property Name="Active" Type="char" MaxLength="1" Nullable="false" />
+          <Property Name="Encoded By" Type="varchar" MaxLength="70" Nullable="false" />
+          <Property Name="Date and Time Encoded" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Position Level">
+          <Key>
+            <PropertyRef Name="Code" />
+          </Key>
+          <Property Name="Code" Type="char" MaxLength="1" Nullable="false" />
+          <Property Name="Level" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="Active" Type="char" MaxLength="1" Nullable="false" />
+        </EntityType>
+        <EntityContainer Name="HRModelStoreContainer">
+          <EntitySet Name="Employee" EntityType="Self.Employee" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Employee Class" EntityType="Self.Employee Class" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Employee ID" EntityType="Self.Employee ID" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Employee Superior" EntityType="Self.Employee Superior" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Position" EntityType="Self.Position" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Position Level" EntityType="Self.Position Level" Schema="dbo" store:Type="Tables" />
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="HRModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Employee">
+          <Key>
+            <PropertyRef Name="Record_ID" />
+          </Key>
+          <Property Name="Record_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ID_No" Type="String" MaxLength="6" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="Last_Name" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="First_Name" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Middle_Name" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="Name_Suffix" Type="String" MaxLength="5" FixedLength="false" Unicode="false" />
+          <Property Name="Name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Origin" Type="String" MaxLength="3" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="Workplace" Type="String" MaxLength="3" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="Cost_Location" Type="String" MaxLength="3" FixedLength="true" Unicode="false" />
+          <Property Name="Region" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="Payroll_Workplace" Type="String" MaxLength="3" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="Original_Workplace" Type="String" MaxLength="3" FixedLength="true" Unicode="false" />
+          <Property Name="Division_Code" Type="String" MaxLength="3" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="Department_Code" Type="String" MaxLength="3" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="Section_Code" Type="String" MaxLength="3" FixedLength="true" Unicode="false" />
+          <Property Name="Position_Code" Type="String" MaxLength="3" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="Trainee" Type="String" MaxLength="1" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="Class" Type="String" MaxLength="1" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="Date_Hired" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="Date_Terminated" Type="DateTime" Precision="0" />
+          <Property Name="Status" Type="String" MaxLength="1" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="Last_Day_of_Employment" Type="DateTime" Precision="0" />
+          <Property Name="Old_ID_No" Type="String" MaxLength="6" FixedLength="true" Unicode="false" />
+          <Property Name="Applicant_No" Type="String" MaxLength="9" FixedLength="true" Unicode="false" />
+          <Property Name="Birthdate" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="TIN" Type="String" MaxLength="11" FixedLength="false" Unicode="false" />
+          <Property Name="SSS_No" Type="String" MaxLength="12" FixedLength="false" Unicode="false" />
+          <Property Name="PagIbig_No" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+          <Property Name="PhilHealth_No" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+          <Property Name="Bank_Account_No" Type="String" MaxLength="16" FixedLength="false" Unicode="false" />
+          <Property Name="Bank_Code" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="Bank_Account_Type" Type="String" MaxLength="8" FixedLength="false" Unicode="false" />
+          <Property Name="Job_Level" Type="String" MaxLength="2" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="Position_Level" Type="String" MaxLength="1" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="Date_Regularized" Type="DateTime" Precision="0" />
+          <Property Name="First_Evaluation_Date" Type="DateTime" Precision="0" />
+          <Property Name="Second_Evaluation_Date" Type="DateTime" Precision="0" />
+          <Property Name="Final_Evaluation_Date" Type="DateTime" Precision="0" />
+          <Property Name="Previous_Evaluation_Date" Type="DateTime" Precision="0" />
+          <Property Name="Termination_Reason" Type="String" MaxLength="3" FixedLength="true" Unicode="false" />
+          <Property Name="Civil_Status" Type="String" MaxLength="1" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="W4_Status" Type="String" MaxLength="3" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Sex" Type="String" MaxLength="1" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="Citizenship" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="On_Payroll" Type="String" MaxLength="1" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="Superior_Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Nickname" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="Address_Region" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Address_City" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Address_Street" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Address_Barangay" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="Address_Number" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="Address_Zip_Code" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="Address" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Landline_No" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="Mobile_No" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Emergency_Contact_Person" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Emergency_Contact_No" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Emergency_Contact_Address" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Educational_Attainment" Type="String" MaxLength="80" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Parental_ID" Type="DateTime" Precision="0" />
+          <Property Name="Employee_Type" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Name="Project_Name" Type="String" MaxLength="70" FixedLength="false" Unicode="false" />
+          <Property Name="HR_PAT_Assigned" Type="String" MaxLength="6" FixedLength="true" Unicode="false" />
+          <Property Name="Previous_Employer" Type="String" MaxLength="35" FixedLength="false" Unicode="false" />
+          <Property Name="Previous_Employer_Tin" Type="String" MaxLength="11" FixedLength="false" Unicode="false" />
+          <Property Name="Previous_Employer_From" Type="DateTime" Precision="0" />
+          <Property Name="Previous_Employer_To" Type="DateTime" Precision="0" />
+          <Property Name="Previous_Employer_Status" Type="String" MaxLength="2" FixedLength="true" Unicode="false" />
+          <Property Name="Previous_Employer_Reason" Type="String" MaxLength="2" FixedLength="true" Unicode="false" />
+          <Property Name="Reliever_ID" Type="Int64" />
+          <Property Name="Insert" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Name="Update" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Name="Encoded_By" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Date_and_Time_Encoded" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Cleared" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Name="Company_Email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="Employee_Class">
+          <Key>
+            <PropertyRef Name="Code" />
+          </Key>
+          <Property Name="Code" Type="String" MaxLength="1" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="Class" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Active" Type="String" MaxLength="1" FixedLength="true" Unicode="false" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Employee_ID">
+          <Key>
+            <PropertyRef Name="ID_No" />
+          </Key>
+          <Property Name="ID_No" Type="String" MaxLength="6" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="Picture" Type="String" MaxLength="200" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Signature" Type="String" MaxLength="200" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Encoded_By" Type="String" MaxLength="70" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Date_and_Time_Encoded" Type="DateTime" Nullable="false" Precision="3" />
+        </EntityType>
+        <EntityType Name="Employee_Superior">
+          <Key>
+            <PropertyRef Name="Record_ID" />
+          </Key>
+          <Property Name="Record_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ID_No" Type="String" MaxLength="6" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="Superior_ID_No" Type="String" MaxLength="6" FixedLength="true" Unicode="false" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Position">
+          <Key>
+            <PropertyRef Name="Code" />
+          </Key>
+          <Property Name="Code" Type="String" MaxLength="3" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="Position1" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Job_Level" Type="Int16" Nullable="false" />
+          <Property Name="Division_Code" Type="String" MaxLength="3" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="Dept_Code" Type="String" MaxLength="3" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="Section_Code" Type="String" MaxLength="3" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="Employee_Class" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Level" Type="String" MaxLength="1" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="NCR_Staff_Rate" Type="Decimal" Precision="12" Scale="2" />
+          <Property Name="NCR_RF_Rate" Type="Decimal" Precision="12" Scale="2" />
+          <Property Name="CAB_Staff_Rate" Type="Decimal" Precision="12" Scale="2" />
+          <Property Name="CAB_RF_Rate" Type="Decimal" Precision="12" Scale="2" />
+          <Property Name="Active" Type="String" MaxLength="1" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="Encoded_By" Type="String" MaxLength="70" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Date_and_Time_Encoded" Type="DateTime" Nullable="false" Precision="3" />
+        </EntityType>
+        <EntityType Name="Position_Level">
+          <Key>
+            <PropertyRef Name="Code" />
+          </Key>
+          <Property Name="Code" Type="String" MaxLength="1" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="Level" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Active" Type="String" MaxLength="1" FixedLength="true" Unicode="false" Nullable="false" />
+        </EntityType>
+        <EntityContainer Name="HREntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Employees" EntityType="Self.Employee" />
+          <EntitySet Name="Employee_Classes" EntityType="Self.Employee_Class" />
+          <EntitySet Name="Employee_IDs" EntityType="Self.Employee_ID" />
+          <EntitySet Name="Employee_Superiors" EntityType="Self.Employee_Superior" />
+          <EntitySet Name="Positions" EntityType="Self.Position" />
+          <EntitySet Name="Position_Levels" EntityType="Self.Position_Level" />
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="HRModelStoreContainer" CdmEntityContainer="HREntities">
+          <EntitySetMapping Name="Employees">
+            <EntityTypeMapping TypeName="HRModel.Employee">
+              <MappingFragment StoreEntitySet="Employee">
+                <ScalarProperty Name="Company_Email" ColumnName="Company Email" />
+                <ScalarProperty Name="Cleared" ColumnName="Cleared" />
+                <ScalarProperty Name="Record_ID" ColumnName="Record ID" />
+                <ScalarProperty Name="ID_No" ColumnName="ID No" />
+                <ScalarProperty Name="Last_Name" ColumnName="Last Name" />
+                <ScalarProperty Name="First_Name" ColumnName="First Name" />
+                <ScalarProperty Name="Middle_Name" ColumnName="Middle Name" />
+                <ScalarProperty Name="Name_Suffix" ColumnName="Name Suffix" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Origin" ColumnName="Origin" />
+                <ScalarProperty Name="Workplace" ColumnName="Workplace" />
+                <ScalarProperty Name="Cost_Location" ColumnName="Cost Location" />
+                <ScalarProperty Name="Region" ColumnName="Region" />
+                <ScalarProperty Name="Payroll_Workplace" ColumnName="Payroll Workplace" />
+                <ScalarProperty Name="Original_Workplace" ColumnName="Original Workplace" />
+                <ScalarProperty Name="Division_Code" ColumnName="Division Code" />
+                <ScalarProperty Name="Department_Code" ColumnName="Department Code" />
+                <ScalarProperty Name="Section_Code" ColumnName="Section Code" />
+                <ScalarProperty Name="Position_Code" ColumnName="Position Code" />
+                <ScalarProperty Name="Trainee" ColumnName="Trainee" />
+                <ScalarProperty Name="Class" ColumnName="Class" />
+                <ScalarProperty Name="Date_Hired" ColumnName="Date Hired" />
+                <ScalarProperty Name="Date_Terminated" ColumnName="Date Terminated" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="Last_Day_of_Employment" ColumnName="Last Day of Employment" />
+                <ScalarProperty Name="Old_ID_No" ColumnName="Old ID No" />
+                <ScalarProperty Name="Applicant_No" ColumnName="Applicant No" />
+                <ScalarProperty Name="Birthdate" ColumnName="Birthdate" />
+                <ScalarProperty Name="TIN" ColumnName="TIN" />
+                <ScalarProperty Name="SSS_No" ColumnName="SSS No" />
+                <ScalarProperty Name="PagIbig_No" ColumnName="PagIbig No" />
+                <ScalarProperty Name="PhilHealth_No" ColumnName="PhilHealth No" />
+                <ScalarProperty Name="Bank_Account_No" ColumnName="Bank Account No" />
+                <ScalarProperty Name="Bank_Code" ColumnName="Bank Code" />
+                <ScalarProperty Name="Bank_Account_Type" ColumnName="Bank Account Type" />
+                <ScalarProperty Name="Job_Level" ColumnName="Job Level" />
+                <ScalarProperty Name="Position_Level" ColumnName="Position Level" />
+                <ScalarProperty Name="Date_Regularized" ColumnName="Date Regularized" />
+                <ScalarProperty Name="First_Evaluation_Date" ColumnName="First Evaluation Date" />
+                <ScalarProperty Name="Second_Evaluation_Date" ColumnName="Second Evaluation Date" />
+                <ScalarProperty Name="Final_Evaluation_Date" ColumnName="Final Evaluation Date" />
+                <ScalarProperty Name="Previous_Evaluation_Date" ColumnName="Previous Evaluation Date" />
+                <ScalarProperty Name="Termination_Reason" ColumnName="Termination Reason" />
+                <ScalarProperty Name="Civil_Status" ColumnName="Civil Status" />
+                <ScalarProperty Name="W4_Status" ColumnName="W4 Status" />
+                <ScalarProperty Name="Sex" ColumnName="Sex" />
+                <ScalarProperty Name="Citizenship" ColumnName="Citizenship" />
+                <ScalarProperty Name="On_Payroll" ColumnName="On Payroll" />
+                <ScalarProperty Name="Superior_Name" ColumnName="Superior Name" />
+                <ScalarProperty Name="Nickname" ColumnName="Nickname" />
+                <ScalarProperty Name="Address_Region" ColumnName="Address Region" />
+                <ScalarProperty Name="Address_City" ColumnName="Address City" />
+                <ScalarProperty Name="Address_Street" ColumnName="Address Street" />
+                <ScalarProperty Name="Address_Barangay" ColumnName="Address Barangay" />
+                <ScalarProperty Name="Address_Number" ColumnName="Address Number" />
+                <ScalarProperty Name="Address_Zip_Code" ColumnName="Address Zip Code" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="Landline_No" ColumnName="Landline No" />
+                <ScalarProperty Name="Mobile_No" ColumnName="Mobile No" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Emergency_Contact_Person" ColumnName="Emergency Contact Person" />
+                <ScalarProperty Name="Emergency_Contact_No" ColumnName="Emergency Contact No" />
+                <ScalarProperty Name="Emergency_Contact_Address" ColumnName="Emergency Contact Address" />
+                <ScalarProperty Name="Educational_Attainment" ColumnName="Educational Attainment" />
+                <ScalarProperty Name="Parental_ID" ColumnName="Parental ID" />
+                <ScalarProperty Name="Employee_Type" ColumnName="Employee Type" />
+                <ScalarProperty Name="Project_Name" ColumnName="Project Name" />
+                <ScalarProperty Name="HR_PAT_Assigned" ColumnName="HR_PAT Assigned" />
+                <ScalarProperty Name="Previous_Employer" ColumnName="Previous Employer" />
+                <ScalarProperty Name="Previous_Employer_Tin" ColumnName="Previous Employer Tin" />
+                <ScalarProperty Name="Previous_Employer_From" ColumnName="Previous Employer From" />
+                <ScalarProperty Name="Previous_Employer_To" ColumnName="Previous Employer To" />
+                <ScalarProperty Name="Previous_Employer_Status" ColumnName="Previous Employer Status" />
+                <ScalarProperty Name="Previous_Employer_Reason" ColumnName="Previous Employer Reason" />
+                <ScalarProperty Name="Reliever_ID" ColumnName="Reliever ID" />
+                <ScalarProperty Name="Insert" ColumnName="Insert" />
+                <ScalarProperty Name="Update" ColumnName="Update" />
+                <ScalarProperty Name="Encoded_By" ColumnName="Encoded By" />
+                <ScalarProperty Name="Date_and_Time_Encoded" ColumnName="Date and Time Encoded" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Employee_Classes">
+            <EntityTypeMapping TypeName="HRModel.Employee_Class">
+              <MappingFragment StoreEntitySet="Employee Class">
+                <ScalarProperty Name="Code" ColumnName="Code" />
+                <ScalarProperty Name="Class" ColumnName="Class" />
+                <ScalarProperty Name="Active" ColumnName="Active" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Employee_IDs">
+            <EntityTypeMapping TypeName="HRModel.Employee_ID">
+              <MappingFragment StoreEntitySet="Employee ID">
+                <ScalarProperty Name="ID_No" ColumnName="ID No" />
+                <ScalarProperty Name="Picture" ColumnName="Picture" />
+                <ScalarProperty Name="Signature" ColumnName="Signature" />
+                <ScalarProperty Name="Encoded_By" ColumnName="Encoded By" />
+                <ScalarProperty Name="Date_and_Time_Encoded" ColumnName="Date and Time Encoded" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Employee_Superiors">
+            <EntityTypeMapping TypeName="HRModel.Employee_Superior">
+              <MappingFragment StoreEntitySet="Employee Superior">
+                <ScalarProperty Name="Record_ID" ColumnName="Record ID" />
+                <ScalarProperty Name="ID_No" ColumnName="ID No" />
+                <ScalarProperty Name="Superior_ID_No" ColumnName="Superior ID No" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Positions">
+            <EntityTypeMapping TypeName="HRModel.Position">
+              <MappingFragment StoreEntitySet="Position">
+                <ScalarProperty Name="Code" ColumnName="Code" />
+                <ScalarProperty Name="Position1" ColumnName="Position" />
+                <ScalarProperty Name="Job_Level" ColumnName="Job Level" />
+                <ScalarProperty Name="Division_Code" ColumnName="Division Code" />
+                <ScalarProperty Name="Dept_Code" ColumnName="Dept Code" />
+                <ScalarProperty Name="Section_Code" ColumnName="Section Code" />
+                <ScalarProperty Name="Employee_Class" ColumnName="Employee Class" />
+                <ScalarProperty Name="Level" ColumnName="Level" />
+                <ScalarProperty Name="NCR_Staff_Rate" ColumnName="NCR Staff Rate" />
+                <ScalarProperty Name="NCR_RF_Rate" ColumnName="NCR RF Rate" />
+                <ScalarProperty Name="CAB_Staff_Rate" ColumnName="CAB Staff Rate" />
+                <ScalarProperty Name="CAB_RF_Rate" ColumnName="CAB RF Rate" />
+                <ScalarProperty Name="Active" ColumnName="Active" />
+                <ScalarProperty Name="Encoded_By" ColumnName="Encoded By" />
+                <ScalarProperty Name="Date_and_Time_Encoded" ColumnName="Date and Time Encoded" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Position_Levels">
+            <EntityTypeMapping TypeName="HRModel.Position_Level">
+              <MappingFragment StoreEntitySet="Position Level">
+                <ScalarProperty Name="Code" ColumnName="Code" />
+                <ScalarProperty Name="Level" ColumnName="Level" />
+                <ScalarProperty Name="Active" ColumnName="Active" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
