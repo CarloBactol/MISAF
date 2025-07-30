@@ -19,7 +19,7 @@ const routes = {
 // ================================ Initialize DOM =================================
 $(document).ready(function () {
     initToastrRequestor();
-    loadInitialRequestMainTable();
+    //loadInitialRequestMainTable();
     initSelect2();
     initEventsRequestor();
     document.getElementById("remarksModal")?.removeAttribute("aria-hidden");
@@ -141,7 +141,8 @@ $(document).ready(function () {
             FinalApprover: $('#selectFinalApprover option:selected').text(),
             PreApproved: $('#preApproved').is(":checked"),
             Status: $('#Status').val(),
-            EndorsedNotedBy: $('#selectEndorser option:selected').text()
+            EndorsedNotedBy: $('#selectEndorser option:selected').text(),
+            TargetDate: $('#MAF_Target_Date').val(),
         });
     });
 
@@ -160,7 +161,8 @@ $(document).ready(function () {
             FinalApprover: $('#selectFinalApprover option:selected').text(),
             PreApproved: $('#preApproved').is(":checked"),
             Status: $('#Status').val(),
-            EndorsedNotedBy: $('#selectEndorser option:selected').text()
+            EndorsedNotedBy: $('#selectEndorser option:selected').text(),
+            TargetDate: $('#MAF_Target_Date').val(),
         });
     });
 
@@ -271,7 +273,6 @@ function initToastrRequestor() {
         'debug': false,
         'newestOnTop': false,
         'progressBar': false,
-        'positionClass': 'toast-top-right',
         'preventDuplicates': false,
         'showDuration': '1000',
         'hideDuration': '1000',
@@ -457,13 +458,16 @@ function loadSelectedMisaf(data, users, approvers, isNew) {
         $('#mafNoAcknowledge').val(data.MAF_No);
         $('#Requested_By').val(users.UserLogin);
         $('#Date_Requested').val(formattedDate);
-        $('#preApproved').prop('checked', true).prop('disabled', false);
+        //$('#preApproved').prop('checked', true).prop('disabled', false);
+        $('#preApproved').prop('disabled', false);
         $('#Requested_For').prop('disabled', false);
         $('#addRequest').prop('disabled', false);
         $('#addAttachment').prop('disabled', false);
         $('#selectEndorser').prop('disabled', false);
         $('#selectFinalApprover').prop('disabled', false);
         $('#selectRequestedFor').prop('disabled', false);
+        $('#MAF_Target_Date').prop('disabled', false);
+
         HiddenFields(false);
     } else {
         $('#editMafNo').show();
@@ -479,6 +483,7 @@ function loadSelectedMisaf(data, users, approvers, isNew) {
         $('#Final_Approver_Remarks').val(data.Final_Approver_Remarks || null);
         $('#Status').val(data.Status || null);
         $('#Status_DateTime').val(dateStatus || null);
+        $('#MAF_Target_Date').val(data.Target_Date);
 
         if (data.PreApproved === 'Y') {
             $('#preApproved').prop('checked', true).prop('disabled', false);
@@ -862,6 +867,7 @@ function SaveMISAF(data) {
         PreApproved: data.PreApproved,
         Status: data.Status,
         EndorsedNotedBy: data.EndorsedNotedBy,
+        TargetDate: data.TargetDate
     };
 
     var token = $('input[name="__RequestVerificationToken"]').val();
@@ -959,6 +965,7 @@ function SaveMISAF(data) {
         },
         complete: function () {
             $("#loading").hide();
+            drawTable(); // TODO: HACKY WAY TO UPDATE, SUBJECT TO CHANGE
         }
     });
 }
@@ -975,6 +982,7 @@ function UpdateMISAF(data) {
         PreApproved: data.PreApproved,
         Status: data.Status,
         EndorsedNotedBy: data.EndorsedNotedBy,
+        TargetDate: data.TargetDate,
     };
 
     var token = $('input[name="__RequestVerificationToken"]').val();
@@ -1065,6 +1073,7 @@ function UpdateMISAF(data) {
         },
         complete: function () {
             $("#loading").hide();
+            drawTable(); // TODO: HACKY WAY TO UPDATE, SUBJECT TO CHANGE
         }
     });
 }
@@ -1103,7 +1112,7 @@ function validateAddRequestForm() {
     const reqProbRecom = $('#requestProblemRecommendation').val().trim();
 
     if (!category) messages.push("✔ Please select a category.");
-    //if (!reasons || reasons.length === 0) messages.push("✔ Please select at least one reason.");
+    if (!reasons || reasons.length === 0) messages.push("✔ Please select at least one reason.");
     if (!reqProbRecom) messages.push("✔ Please enter a request/problem recommendation.");
 
     if (messages.length > 0) {

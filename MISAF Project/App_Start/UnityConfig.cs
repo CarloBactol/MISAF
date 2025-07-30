@@ -1,4 +1,7 @@
 using FluentValidation;
+using MISAF_Project.Core.Interfaces;
+using MISAF_Project.Core.Repositories;
+using MISAF_Project.Core.Services;
 using MISAF_Project.EDMX;
 using MISAF_Project.FluentValidations;
 using MISAF_Project.Queue;
@@ -53,7 +56,7 @@ namespace MISAF_Project
             container.RegisterType<IApproverService, ApproverService>();
             container.RegisterType<IReasonService, ReasonService>();
             container.RegisterType<ILastSeriesService, LastSeriesService>();
-            container.RegisterType<IMainService, MainService>();
+            container.RegisterType<Services.IMainService, Services.MainService>();
             container.RegisterType<IDetailsService, DetailsService>();
             container.RegisterType<IAttachmentsService, AttachmentsService>();
             container.RegisterType<IEmailSenderService, EmailSenderService>();
@@ -62,11 +65,18 @@ namespace MISAF_Project
             container.RegisterType<IHistoryDetailsService, HistoryDetailsService>();
             container.RegisterType<IHistoryAttachmentService, HistoryAttachmentService>();
 
+            container.RegisterType<IAuthService, AuthService>();
+            container.RegisterType<Core.Interfaces.IMainService, Core.Services.MainService>();
+
+            //container.RegisterType<IMainService, CoreService::MainService>();
+
+            container.RegisterType<MISEntities>();
+            container.RegisterType<HRRepository>();
+            container.RegisterType<MasterFileRepository>();
             // === END-ADDED ================
 
             // Set the dependency resolver for MVC
             DependencyResolver.SetResolver(new UnityDependencyResolver(container));
-
 
             // Initialize the queue with the LastSeriesService
             var lastSeriesService = container.Resolve<ILastSeriesService>();

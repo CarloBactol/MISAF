@@ -30,6 +30,7 @@ namespace MISAF_Project.ViewModels
         public bool SendEmail { get; set; }
         public string Status { get; set; }
         public DateTime StatusDate { get; set; }
+        public string TargetDate { get; set; }
     }
 
     public class RequestItem
@@ -47,6 +48,8 @@ namespace MISAF_Project.ViewModels
         public string Remarks { get; set; }
         public string DoneBy { get; set; }
         public string MAF_No { get; set; }
+
+        public string UpdateAllRemarks { get; set; }
     }
 
     public class Attachment

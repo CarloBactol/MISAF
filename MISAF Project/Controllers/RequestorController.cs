@@ -26,6 +26,7 @@ namespace MISAF_Project.Controllers
 
         private readonly IUserContextService _userContextService;
         private readonly IMainService _mainService;
+        private readonly Core.Interfaces.IMainService _mainCoreService;
         private readonly IDetailsService _detailsService;
         private readonly IUserService _userService;
         private readonly IEmployeeService _employeeService;
@@ -50,7 +51,8 @@ namespace MISAF_Project.Controllers
             IAttachmentsService attachmentsService,
             IHistoryMainService historyMain,
             IHistoryDetailsService historyDetailsService,
-            IHistoryAttachmentService historyAttachmentService)
+            IHistoryAttachmentService historyAttachmentService,
+            Core.Interfaces.IMainService mainCoreService)
         {
             _userContextService = userContextService;
             _mainService = mainService;
@@ -65,6 +67,7 @@ namespace MISAF_Project.Controllers
             _historyMain = historyMain;
             _historyDetailsService = historyDetailsService;
             _historyAttachmentService = historyAttachmentService;
+            _mainCoreService = mainCoreService;
         }
 
 
@@ -83,6 +86,7 @@ namespace MISAF_Project.Controllers
 
         public ActionResult Index()
         {
+            ViewBag.Type = "request";
             return View();
         }
 
@@ -202,10 +206,7 @@ namespace MISAF_Project.Controllers
                     UserIDLogin = _userContextService.GetUserIDLogin(),
                 };
 
-                //var query = _mainService.QueryMain().AsNoTracking();
-                //var main = query.Where(m => m.Requestor_Name == users.UserLogin).OrderBy(m => m.MAF_No).ToList();
-
-                // Fetch employee data into memory to avoid EF translation issues
+                //// Fetch employee data into memory to avoid EF translation issues
                 var employees = _employeeService.QueryEmployee().AsNoTracking()
                     .Where(e => !e.Date_Terminated.HasValue)
                     .Select(e => new { e.ID_No, e.Name })
@@ -231,6 +232,8 @@ namespace MISAF_Project.Controllers
                     })
                     .ToList();
 
+                //var user = GetAuthUser();
+                //var main = _mainCoreService.GetAllByUser(user);
 
                 return Json(new { success = true, main }, JsonRequestBehavior.AllowGet);
 
@@ -398,7 +401,7 @@ namespace MISAF_Project.Controllers
                         Requestor_Workplace = requestor.Workplace,
                         PreApproved = data.PreApproved ? "Y" : "N",
                         DateTime_Requested = DateTime.Now,
-                        Target_Date = null,
+                        Target_Date = data.TargetDate,
                         Status = data.Status,
                         Status_DateTime = DateTime.Now,
                         Status_Updated_By = " ",
@@ -801,6 +804,7 @@ namespace MISAF_Project.Controllers
                         m.Requestor_Name,
                         m.Requestor_ID_No,
                         m.PreApproved,
+                        m.Target_Date,
                         Requested_By = m.Encoded_By != null && m.Encoded_By.Contains("|")
                                 ? employees.TryGetValue(m.Encoded_By.Split('|')[0].Trim(), out var name) ? name : null
                                 : null,
@@ -986,12 +990,20 @@ namespace MISAF_Project.Controllers
                     existMain.Final_Approver_Remarks = null;
                     existMain.Encoded_By = MISAFHelper.DeviceInfo() + isRequestedFor;
                     existMain.DateTime_Encoded = DateTime.Now;
+                    existMain.Target_Date = data.TargetDate;
+
+                    await _mainService.DeleteAsync(existMain); // Remove the MAF with the old keys ex: 25-000004-00
+
+                    var old_MAF_no = existMain.MAF_No;
+
+                    existMain.MAF_No = MISAFHelper.GetNextRevision(existMain.MAF_No);
 
                     // Log the MAF_No value before saving
                     Log.Information("Saving MAF_Main with MAF_No: {MAF_No}", existMain.MAF_No);
 
-                    await _mainService.UpdateAsync(existMain);
-                    var existDetails = _detailsService.QueryDetail().AsNoTracking().Where(d => d.MAF_No == existMain.MAF_No).ToList();
+                    await _mainService.AddAsync(existMain);  // Add the Previous MAF with the new keys ex: 25-000004-01 (revision no was incremented)
+
+                    var existDetails = _detailsService.QueryDetail().AsNoTracking().Where(d => d.MAF_No == old_MAF_no).ToList();
 
                     foreach (var item in existDetails)
                     {

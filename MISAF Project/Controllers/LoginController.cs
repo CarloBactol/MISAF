@@ -1,23 +1,17 @@
-﻿using MISAF_Project.Services;
-using MISAF_Project.ViewModels;
-using System;
-using System.Collections.Generic;
-using System.Data.Entity;
-using System.Linq;
-using System.Web;
+﻿using MISAF_Project.Core.Interfaces;
+using MISAF_Project.Core.ViewModels;
+using MISAF_Project.Core.Filters;
 using System.Web.Mvc;
 
 namespace MISAF_Project.Controllers
 {
-    public class LoginController : Controller
+    public class LoginController : BaseController
     {
-        private readonly IEmployeeService _employeeService;
-        private readonly IApproverService _approverService;
+        private readonly IAuthService _authService;
 
-        public LoginController(IEmployeeService employeeService, IApproverService approverService)
+        public LoginController(IAuthService authService)
         {
-            _employeeService = employeeService;
-            _approverService = approverService;
+            _authService = authService;
         }
 
         public ActionResult Index(string returnUrl)
@@ -27,72 +21,36 @@ namespace MISAF_Project.Controllers
         }
 
         [HttpPost]
-        public ActionResult SignIn(LoginViewModel log)
+        [ValidateViewModelState]
+        public ActionResult SignIn(LoginViewModel data)
         {
-            if (ModelState.IsValid)
+            var user = _authService.Attempt(data.ID_No, data.Birth_Date);
+
+            if (user == null)
             {
-                var employee = _employeeService
-                    .QueryEmployee()
-                    .AsNoTracking()
-                    .FirstOrDefault(e => e.ID_No == log.ID_No && e.Birthdate == log.Birth_Date);
-
-                var endorser = _approverService
-                    .QueryApprover()
-                    .AsNoTracking()
-                    .FirstOrDefault(a => a.ID_No == log.ID_No && a.Endorser_Only == "Y");
-
-                var approver = _approverService
-                    .QueryApprover()
-                    .AsNoTracking()
-                    .FirstOrDefault(a => a.ID_No == log.ID_No && a.Endorser_Only == "N");
-
-                var mis = _approverService
-                   .QueryApprover()
-                   .AsNoTracking()
-                   .FirstOrDefault(a => a.ID_No == log.ID_No && a.MIS == "Y");
-
-                if (employee == null)
-                {
-                    // Add an error to the ModelState
-                    ModelState.AddModelError(string.Empty, "Invalid ID number or birthdate.");
-                    return View("Index", log);
-                }
-
-                // Store in session (simple authentication for demo purposes)
-                Session["EmployeeID"] = log.ID_No;
-                Session["EmployeeName"] = employee.Name;
-                Session["Birthdate"] = log.Birth_Date;
-
-                if(endorser != null)
-                {
-                    Session["Endorser"] = endorser.Name;
-                }
-                if (approver != null)
-                {
-                    Session["Approver"] = approver.Name;
-                }
-                if (mis != null)
-                {
-                    Session["MIS"] = mis.Name;
-                }
-
-                if(approver == null && endorser == null && mis == null)
-                {
-                    Session["Requestor"] = employee.Name;
-                }
-
-                return RedirectToAction("Index", "Home");
+                ModelState.AddModelError(string.Empty, "Invalid ID number or birthdate.");
+                return View("Index", data);
             }
 
-            return View("Index", log);
-        }
+            SetAuthUser(user);
 
+            // [DECPRICATED]
+            // FOR COMPATIBILITY PURPOSES
+            Session["EmployeeID"] = user.IdNo;
+            Session["EmployeeName"] = user.FullName;
+            Session["Birthdate"] = user.Birthdate;
+            Session["Endorser"] = user.IsEndorser ? user.FullName : null;
+            Session["Approver"] = user.IsApprover ? user.FullName : null;
+            Session["MIS"] = user.IsMIS ? user.FullName : null;
+            Session["Requestor"] = user.IsRequestor ? user.FullName : null;
+
+            return RedirectToAction("Index", "Home");
+        }
 
         public ActionResult Logout()
         {
             Session.Clear();
             return RedirectToAction("Index", "Login");
         }
-
     }
 }

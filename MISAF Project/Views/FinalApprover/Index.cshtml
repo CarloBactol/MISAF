@@ -24,31 +24,34 @@
         </div>
     </div>
     <!-- end page title -->
-
     <!-- Start Content-->
     <div class="row">
         <div class="col-12">
             <div class="card">
                 <div class="card-body">
-                    <div class="table-responsive-sm mt-2">
-                        <table id="misafTable" class="table table-bordered table-centered  mb-0">
-                            <thead>
-                                <tr>
-                                    <th>MAF No</th>
-                                    <th>Requested By</th>
-                                    <th>Requested For</th>
-                                    <th>Status</th>
-                                    <th>Status Date</th>
-                                    <th>Status Upadated By</th>
-                                    <th>Status Remarks</th>
-                                    <th>&nbsp;</th>
+                    <!--<div class="table-responsive-sm mt-2">
+                    <table id="misafTable" class="table table-bordered table-centered  mb-0">
+                        <thead>
+                            <tr>
+                                <th>MAF No</th>
+                                <th>Requested By</th>
+                                <th>Requested For</th>
+                                <th>Status</th>
+                                <th>Status Date</th>
+                                <th>Status Upadated By</th>
+                                <th>Status Remarks</th>
+                                <th>&nbsp;</th>
 
-                                </tr>
-                            </thead>
-                            <tbody id="misafTableBody">
-                                <!-- Filled via AJAX -->
-                            </tbody>
+                            </tr>
+                        </thead>
+                        <tbody id="misafTableBody">-->
+                    <!-- Filled via AJAX -->
+                    <!--</tbody>
                         </table>
+                    </div>-->
+
+                    <div class="table-responsive-sm mt-2">
+                        @Html.Partial("_MainTable_Partial", (string)ViewBag.Type)
                     </div>
 
                 </div> <!-- end card-body-->
@@ -56,7 +59,6 @@
         </div>
     </div>
     <!-- end row -->
-
     <!-- End Content-->
 
 </div>
@@ -137,6 +139,15 @@
                         </div>
                     </div>
 
+                    <div class="card shadow-lg col-sm-12 col-xl-6">
+                        <div class="card-body">
+                            <h4><i class="mdi mdi-calendar-range"></i> Target Date</h4>
+                            <hr />
+                            <label for="MAF_Target_Date">Target Date <span class="text-info">(Optional)</span></label>
+                            <input type="date" id="MAF_Target_Date" class="form-control" disabled />
+                        </div>
+                    </div>
+
                     <!-- Request Details -->
                     <div class="card shadow-lg">
                         <div class="card-body">
@@ -177,7 +188,7 @@
                     <!-- Endorser & Requestor -->
                     <div class="row mb-2">
 
-                        <div class="col-md-6">
+                        <div class="col-sm-12 col-xl-6">
                             <div class="card shadow-lg">
                                 <div class="card-body">
                                     <h4 class="card-title"><i class="mdi mdi-account"></i> Endorser</h4>
@@ -198,7 +209,7 @@
                             </div>
                         </div>
 
-                        <div class="col-md-6">
+                        <div class="col-sm-12 col-xl-6">
                             <div class="card shadow-lg">
                                 <div class="card-body">
                                     <h4 class="card-title"><i class="mdi mdi-account"></i> Approver</h4>
@@ -339,6 +350,13 @@
         .modal-content {
             background: #fff;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        .custom-toastr {
+            position: fixed !important;
+            top: 50% !important;
+            left: 50% !important;
+            transform: translate(-50%, -50%) !important;
         }
     </style>
     <link href="~/Content/pre-loader.css" rel="stylesheet" />

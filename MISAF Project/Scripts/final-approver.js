@@ -10,7 +10,7 @@ const routes = {
 // ================================ Initialize DOM =================================
 $(document).ready(function () {
     initToastrFinalApprover();
-    loadInitialFinalApproverTable();
+    //loadInitialFinalApproverTable();
     document.getElementById("remarksModal")?.removeAttribute("aria-hidden");
     document.getElementById("remarksModal")?.focus();
     document.getElementById("approverModal")?.removeAttribute("aria-hidden");
@@ -92,7 +92,6 @@ function initToastrFinalApprover() {
         'debug': false,
         'newestOnTop': false,
         'progressBar': false,
-        'positionClass': 'toast-top-right',
         'preventDuplicates': false,
         'showDuration': '1000',
         'hideDuration': '1000',
@@ -252,7 +251,7 @@ function loadSelectedRequestMainMisaf(data) {
     $('#fRejectAll').attr('data-maf-no', data.MAF_No);
     $("#fApproveAll").prop('disabled', false);
     $("#fRejectAll").prop('disabled', false);
-
+    $('#MAF_Target_Date').val(data.Target_Date)
 }
 
 function loadAttachmentFinalApproverTable(data) {
@@ -410,6 +409,8 @@ function SaveFinalApprover(originalData) {
                     }
                 }
 
+                loadSelectedRequestMainMisaf(res.main)
+
                 // Set Endorser_Remarks field with joined statuses
                 $('#Final_Approver_Remarks').val(remarks.join(','));
                 $('#remarksModal').modal('hide');
@@ -431,7 +432,8 @@ function SaveFinalApprover(originalData) {
                 $("#fApproveAll").prop('disabled', false);
                 $("#fRejectAll").prop('disabled', false);
             }
-            loadInitialFinalApproverTable();
+            //loadInitialFinalApproverTable();
+            drawTable(); // TODO: HACKY WAY TO UPDATE, SUBJECT TO CHANGE
         }
     });
 }
@@ -474,6 +476,8 @@ function SaveAll(data) {
                     }
                 }
 
+                loadSelectedRequestMainMisaf(res.main)
+
                 // Set Endorser_Remarks field with joined statuses
                 $('#Final_Approver_Remarks').val(remarks.join(','));
                 $('#remarksModalAll').modal('hide');
@@ -489,7 +493,8 @@ function SaveAll(data) {
             $("#fApproveAll").prop('disabled', true);
             $("#fRejectAll").prop('disabled', true);
             //loadRequestMainTable(res.main, res.users)
-            loadInitialFinalApproverTable();
+            //loadInitialFinalApproverTable();
+            drawTable(); // TODO: HACKY WAY TO UPDATE, SUBJECT TO CHANGE
         }
     });
 }

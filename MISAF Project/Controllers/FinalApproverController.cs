@@ -56,6 +56,7 @@ namespace MISAF_Project.Controllers
         // GET: ApproverManagement
         public ActionResult Index()
         {
+            ViewBag.Type = "approve";
             return View();
         }
 
@@ -93,6 +94,7 @@ namespace MISAF_Project.Controllers
                         m.Status,
                         m.Requestor_Name,
                         m.Final_Approver,
+                        m.Target_Date,
                         Requested_By = m.Encoded_By != null && m.Encoded_By.Contains("|")
                             ? employees.GetOrDefault(m.Encoded_By.Split('|')[0].Trim())
                             : null
@@ -351,6 +353,7 @@ namespace MISAF_Project.Controllers
                         m.Requestor_Name,
                         m.Requestor_ID_No,
                         m.PreApproved,
+                        m.Target_Date,
                         Requested_By = m.Encoded_By != null && m.Encoded_By.Contains("|")
                                     ? employees.GetOrDefault(m.Encoded_By.Split('|')[0].Trim())
                                     : null,
@@ -430,7 +433,7 @@ namespace MISAF_Project.Controllers
                    
                 }
 
-                return Json(new { success = true, message = "Request updated successfully.", details, users = usersLogin, done });
+                return Json(new { success = true, message = "Request updated successfully.", details, users = usersLogin, done, main = _main });
             }
             catch (Exception ex)
             {
@@ -454,10 +457,13 @@ namespace MISAF_Project.Controllers
                               .Where(d => d.MAF_No == request.MAF_No)
                               .FirstOrDefault();
 
+                // if empty endorser
+
+                // check final approver then filter by For Approval 
 
                 var existDetails = _detailsService
                               .QueryDetail()
-                              .Where(d => d.Status == "Approved" && d.MAF_No == request.MAF_No)
+                              .Where(d => (d.Status == "For Approval" | d.Status == "Approved") && d.MAF_No == request.MAF_No)
                               .ToList();
 
                 var users = new { UserLogin = _userContextService.GetUserLogin() };
@@ -588,6 +594,7 @@ namespace MISAF_Project.Controllers
                         m.Status,
                         m.Requestor_Name,
                         m.PreApproved,
+                        m.Target_Date,
                         Requested_By = m.Encoded_By != null && m.Encoded_By.Contains("|")
                             ? employees.GetOrDefault(m.Encoded_By.Split('|')[0].Trim())
                             : null
@@ -668,7 +675,7 @@ namespace MISAF_Project.Controllers
                     }
                 }
 
-                return Json(new { success = true, message = "Request updated successfully.", details = getDetails, users });
+                return Json(new { success = true, message = "Request updated successfully.", details = getDetails, users, main = _main });
             }
             catch(Exception ex)
             {

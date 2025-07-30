@@ -11,5 +11,6 @@ namespace MISAF_Project.Services
     public interface IUserService
     {
         IQueryable<User> QueryUser();
+        void NotifyUserRequestStatus(MAFMainDto mainDto, string attachmentFilePath, string updaterType);
     }
 }

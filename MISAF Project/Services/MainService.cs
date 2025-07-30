@@ -38,6 +38,12 @@ namespace MISAF_Project.Services
            await _mainRepository.SaveChangesAsync();
         }
 
+        public async Task DeleteAsync(MAF_Main main)
+        {
+            _mainRepository.Delete(main.MAF_No);
+            await _mainRepository.SaveChangesAsync();
+        }
+
         private void ValidateEntity(MAF_Main main)
         {
             if (main == null)

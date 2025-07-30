@@ -69,18 +69,28 @@ namespace MISAF_Project.Services
                     mailMessage.From = new MailAddress(_fromEmail, "MISAF Application");
                     mailMessage.To.Add(emailApprover);
                     mailMessage.Subject = subject;
-                    if(main.Status == "For Acknowledgement MIS" || main.Status == "Rejected" || main.Status == "Approved" || main.Status == "Done" || main.Status == "On Hold")
+                    //if(main.Status == "For Acknowledgement MIS" || main.Status == "Rejected" || main.Status == "Approved" || main.Status == "Done" || main.Status == "On Hold" || main.Status == "On Going")
+                    //{
+                    //    if (IsAll)
+                    //    {
+                    //        mailMessage.Body = NotifyUsersAllRequest(main, details, options);
+                    //    }
+                    //    else
+                    //    {
+                    //        mailMessage.Body = NotifyUsersPerDetails(main, details, options);
+                    //    }
+
+                    //}
+
+                    if (IsAll)
                     {
-                        if (IsAll)
-                        {
-                            mailMessage.Body = NotifyUsersAllRequest(main, details, options);
-                        }
-                        else
-                        {
-                            mailMessage.Body = NotifyUsersPerDetails(main, details, options);
-                        }
-                       
+                        mailMessage.Body = NotifyUsersAllRequest(main, details, options);
                     }
+                    else
+                    {
+                        mailMessage.Body = NotifyUsersPerDetails(main, details, options);
+                    }
+
                     mailMessage.IsBodyHtml = true;
 
                     // Add attachments
@@ -90,8 +100,10 @@ namespace MISAF_Project.Services
                         var filePath = $"{MapPath}/{attachment.MAF_No}-{attachment.Record_ID}-{attachment.Filename}";
                         if (!string.IsNullOrEmpty(filePath) && File.Exists(filePath))
                         {
-                            var mailAttachment = new System.Net.Mail.Attachment(filePath);
-                            mailAttachment.Name = attachment.Filename; // Ensure the file name is set
+                            var mailAttachment = new System.Net.Mail.Attachment(filePath)
+                            {
+                                Name = attachment.Filename // Ensure the file name is set
+                            };
                             mailMessage.Attachments.Add(mailAttachment);
                         }
                         // Option 2: If attachments are stored as binary data (byte[])
@@ -358,8 +370,17 @@ namespace MISAF_Project.Services
                 emailContent.AppendLine($"<p><strong>Approver:</strong> <span style='text-decoration: underline;'>{main.Final_Approver}</span></p>");
                 emailContent.AppendLine($"<p><strong>Status:</strong> <span style='text-decoration: underline;'>{approverStatus}</span></p>");
                 emailContent.AppendLine($"<p><strong>Date and Time:</strong> <span style='text-decoration: underline;'>{main.DateTime_Approved}</span></p>");
-                emailContent.AppendLine($"<p><strong>Approver:</strong> <span style='text-decoration: underline;'>{main.Final_Approver}</span></p>");
+                //emailContent.AppendLine($"<p><strong>Approver:</strong> <span style='text-decoration: underline;'>{main.Final_Approver}</span></p>"); 'Duplicate of line 358
                 emailContent.AppendLine($"<p><strong>Remarks:</strong> <span style='text-decoration: underline;'>{main.Final_Approver_Remarks}</span></p>");
+                emailContent.AppendLine("<hr>");
+            }
+
+            if (options == "Acknowledge")
+            {
+                emailContent.AppendLine($"<p><strong>MIS Personel:</strong> <span style='text-decoration: underline;'>{main.Status_Updated_By}</span></p>");
+                emailContent.AppendLine($"<p><strong>Status:</strong> <span style='text-decoration: underline;'>{main.Status}</span></p>");
+                emailContent.AppendLine($"<p><strong>Date and Time:</strong> <span style='text-decoration: underline;'>{main.Status_DateTime}</span></p>");
+                emailContent.AppendLine($"<p><strong>Remarks:</strong> <span style='text-decoration: underline;'>{main.Status_Remarks}</span></p>");
                 emailContent.AppendLine("<hr>");
             }
 

@@ -12,5 +12,6 @@ namespace MISAF_Project.Services
         IQueryable<MAF_Main> QueryMain();
         Task AddAsync(MAF_Main main); // Change to async
         Task UpdateAsync(MAF_Main main); // Change to async
+        Task DeleteAsync(MAF_Main main);
     }
 }

@@ -13,7 +13,7 @@ const routes = {
 // ================================ Initialize DOM =================================
 $(document).ready(function () {
     initToastrAcknowledge();
-    loadInitialAcknowledgeTable();
+    //loadInitialAcknowledgeTable();
     document.getElementById("remarksModal")?.removeAttribute("aria-hidden");
     document.getElementById("remarksModal")?.focus();
     document.getElementById("approverModal")?.removeAttribute("aria-hidden");
@@ -53,25 +53,27 @@ $(document).ready(function () {
         });
     });
 
+    $("#btnUpdateAllRemarksModal").click(function () {
+        const type = $("#updateAllType").val()
+        UpdateAll(type)
+    })
+
     $('#btnApproveAll').click(function () {
-        SaveApproveAll({
-            MAF_No: $('#mafNoAcknowledge').val(),
-            Status: 'Done'
-        });
+        $("#updateAllType").val("approved")
+        $("#btnUpdateAllRemarksModal").text("Done All").attr("class", "btn btn-success")
+        $("#updateAllRemarksModal").modal("show")
     });
 
     $('#btnOnholdAll').click(function () {
-        SaveOnHoldAll({
-            MAF_No: $('#mafNoAcknowledge').val(),
-            Status: 'On Hold'
-        });
+        $("#updateAllType").val("onhold")
+        $("#btnUpdateAllRemarksModal").text("Onhold All").attr("class", "btn btn-info")
+        $("#updateAllRemarksModal").modal("show")
     });
 
     $('#btnRejectAll').click(function () {
-        SaveRejctAll({
-            MAF_No: $('#mafNoAcknowledge').val(),
-            Status: 'Reject'
-        });
+        $("#updateAllType").val("rejected")
+        $("#btnUpdateAllRemarksModal").text("Reject All").attr("class", "btn btn-danger")
+        $("#updateAllRemarksModal").modal("show")
     });
 });
 
@@ -90,7 +92,6 @@ function initToastrAcknowledge() {
         'debug': false,
         'newestOnTop': false,
         'progressBar': false,
-        'positionClass': 'toast-top-right',
         'preventDuplicates': false,
         'showDuration': '1000',
         'hideDuration': '1000',
@@ -133,7 +134,7 @@ function loadRequestMainTableAcknowledge(data, user) {
             let rowClass = '';
             if (item.Status === "Approved" || item.Status === "Done") {
                 rowClass = 'table-success';
-            } else if (item.Status === "Disapproved" || item.Status === "Reject") {
+            } else if (item.Status === "Disapproved" || item.Status === "Rejected") {
                 rowClass = 'table-danger';
             } else if (item.Status === "On Going" || item.Status === "For Acknowledgement MIS") {
                 rowClass = 'table-warning';
@@ -261,6 +262,7 @@ function loadSelectedRequestMainMisaf(data, details) {
     $('#Status').val(data.Status);
     $('#Status_DateTime').val(statusDateMain);
     $('#mafNoAcknowledge').val(data.MAF_No);
+    $('#MAF_Target_Date').val(data.Target_Date);
 
     $('#preApproved').prop('checked', data.PreApproved === 'Y');
     if (data.Status == "On Going") {
@@ -293,6 +295,10 @@ function loadSelectedRequestMainMisaf(data, details) {
         $('#btnOnholdAll').prop('disabled', true);
     } else {
         $('#btnOnholdAll').prop('disabled', false);
+    }
+
+    if (data.Status == "On Going") {
+        EnabledFields(false)
     }
 
 }
@@ -449,9 +455,7 @@ function SaveAcknowledge(originalData) {
 
             setTimeout(() => {
                 $('#Status').val(res.main.Status || '');
-                if (res.main.Status == "Done" || res.main.Status == "Reject") {
-                    EnabledFields(true);
-                }
+                EnabledFields(res.doneApproved);
                 loadRequestDetailTable(res.details);
                 $('#Status').val(res.main.Status || '');
                 var cnt = 0;
@@ -465,6 +469,9 @@ function SaveAcknowledge(originalData) {
                     $('#btnOnholdAll').prop('disabled', true);
                 }
 
+                loadSelectedRequestMainMisaf(res.main, res.details)
+
+
                 $('#remarksModal').modal('hide');
                 toastr.success(res.message, 'Success', { timeOut: 5000 });
             }, 400);
@@ -476,7 +483,8 @@ function SaveAcknowledge(originalData) {
         complete: function (res) {
             $("#loading").hide();
             $("#remarksModal").modal('hide');
-            loadInitialAcknowledgeTable();
+            //loadInitialAcknowledgeTable();
+            drawTable(); // TODO: HACKY WAY TO UPDATE, SUBJECT TO CHANGE
         }
     });
 }
@@ -498,12 +506,11 @@ function SaveAcknowledgeAll(originalData) {
         url: routes.postSaveAcknowledgeAll,
         type: 'POST',
         data: { request, __RequestVerificationToken: token },
-        timeout: 10000,
+        timeout: 30000,
         success: function (res) {
             if (!res || !res.success) {
                 toastr.error(res?.message || 'An unexpected error occurred.', 'Error');
                 console.error('SaveAcknowledge failed:', res);
-
                 return;
             }
 
@@ -524,6 +531,8 @@ function SaveAcknowledgeAll(originalData) {
                     $('#btnRejectAll').show();
                 }
 
+                loadSelectedRequestMainMisaf(res.main, res.details)
+
                 $('#remarksModal').modal('hide');
                 toastr.success(res.message, 'Success', { timeOut: 5000 });
             }, 400);
@@ -534,7 +543,8 @@ function SaveAcknowledgeAll(originalData) {
         },
         complete: function (res) {
             $("#loading").hide();
-            loadInitialAcknowledgeTable();
+            //loadInitialAcknowledgeTable();
+            drawTable(); // TODO: HACKY WAY TO UPDATE, SUBJECT TO CHANGE
         }
     });
 }
@@ -548,6 +558,7 @@ function SaveApproveAll(originalData) {
     const request = {
         MAF_No: originalData.MAF_No,
         Status: originalData.Status,
+        UpdateAllRemarks: originalData.UpdateAllRemarks
     };
 
     $("#loading").show();
@@ -571,6 +582,9 @@ function SaveApproveAll(originalData) {
                 }
                 loadRequestDetailTable(res.details);
                 $('#remarksModal').modal('hide');
+                $('#updateAllRemarksModal').modal('hide')
+                $('#updateALlRemarks').val("")
+                loadSelectedRequestMainMisaf(res.main, res.details)
                 toastr.success(res.message, 'Success', { timeOut: 5000 });
             }, 400);
         },
@@ -580,7 +594,8 @@ function SaveApproveAll(originalData) {
         },
         complete: function (res) {
             $("#loading").hide();
-            loadInitialAcknowledgeTable();
+            //loadInitialAcknowledgeTable();
+            drawTable(); // TODO: HACKY WAY TO UPDATE, SUBJECT TO CHANGE
         }
     });
 }
@@ -601,6 +616,7 @@ function SaveOnHoldAll(originalData) {
     const request = {
         MAF_No: originalData.MAF_No,
         Status: originalData.Status,
+        UpdateAllRemarks: originalData.UpdateAllRemarks
     };
 
     $("#loading").show();
@@ -625,6 +641,9 @@ function SaveOnHoldAll(originalData) {
                 loadRequestDetailTable(res.details);
                 $("#btnOnholdAll").prop('disabled', true);
                 $('#remarksModal').modal('hide');
+                $('#updateAllRemarksModal').modal('hide')
+                $('#updateALlRemarks').val("")
+                loadSelectedRequestMainMisaf(res.main, res.details)
                 toastr.success(res.message, 'Success', { timeOut: 5000 });
             }, 400);
         },
@@ -634,13 +653,14 @@ function SaveOnHoldAll(originalData) {
         },
         complete: function (res) {
             $("#loading").hide();
-            loadInitialAcknowledgeTable();
+            //loadInitialAcknowledgeTable();
+            drawTable(); // TODO: HACKY WAY TO UPDATE, SUBJECT TO CHANGE
         }
     });
 }
 
 function SaveRejctAll(originalData) {
-    if (originalData.Status === "Reject") {
+    if (originalData.Status === "Rejected") {
         if (!confirm(`Are you sure you want to reject all the request?`)) return;
     }
 
@@ -648,6 +668,7 @@ function SaveRejctAll(originalData) {
     const request = {
         MAF_No: originalData.MAF_No,
         Status: originalData.Status,
+        UpdateAllRemarks: originalData.UpdateAllRemarks
     };
 
     $("#loading").show();
@@ -670,6 +691,9 @@ function SaveRejctAll(originalData) {
                 }
                 loadRequestDetailTable(res.details);
                 $('#remarksModal').modal('hide');
+                $('#updateAllRemarksModal').modal('hide')
+                $('#updateALlRemarks').val("")
+                loadSelectedRequestMainMisaf(res.main, res.details)
                 toastr.success(res.message, 'Success', { timeOut: 5000 });
             }, 400);
         },
@@ -679,9 +703,43 @@ function SaveRejctAll(originalData) {
         },
         complete: function (res) {
             $("#loading").hide();
-            loadInitialAcknowledgeTable();
+            //loadInitialAcknowledgeTable();
+            drawTable(); // TODO: HACKY WAY TO UPDATE, SUBJECT TO CHANGE
         }
     });
+}
+
+function UpdateAll(type) {
+    if (type === "approved") {
+        SaveApproveAll({
+            MAF_No: $('#mafNoAcknowledge').val(),
+            Status: 'Done',
+            UpdateAllRemarks: $("#updateALlRemarks").val()
+        });
+        return
+    }
+
+    if (type === "onhold") {
+        SaveOnHoldAll({
+            MAF_No: $('#mafNoAcknowledge').val(),
+            Status: 'On Hold',
+            UpdateAllRemarks: $("#updateALlRemarks").val()
+        });
+        return
+    }
+
+    if (type === "rejected") {
+        SaveRejctAll({
+            MAF_No: $('#mafNoAcknowledge').val(),
+            Status: 'Rejected',
+            UpdateAllRemarks: $("#updateALlRemarks").val()
+        });
+        return
+    }
+
+    // This error should not occur or new type is added
+    toastr.error(`Request failed: unsupported update all type of '${type}'`, 'Error');
+    console.error(`UpdateAll AJAX error: invalid update all type of '${type}'`);
 }
 
 // ================================ Modals =================================

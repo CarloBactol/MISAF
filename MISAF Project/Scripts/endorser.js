@@ -11,7 +11,7 @@ const routes = {
 // ================================ Initialize DOM =================================
 $(document).ready(function () {
     initToastrEndorser();
-    loadInitialEndorserTable();
+    //loadInitialEndorserTable();
     document.getElementById("remarksModal")?.removeAttribute("aria-hidden");
     document.getElementById("remarksModal")?.focus();
     document.getElementById("remarksModalAll")?.removeAttribute("aria-hidden");
@@ -93,7 +93,6 @@ function initToastrEndorser() {
         'debug': false,
         'newestOnTop': false,
         'progressBar': false,
-        'positionClass': 'toast-top-right',
         'preventDuplicates': false,
         'showDuration': '1000',
         'hideDuration': '1000',
@@ -104,6 +103,7 @@ function initToastrEndorser() {
         'showMethod': 'fadeIn',
         'hideMethod': 'fadeOut',
         'toastClass': 'custom-toastr',
+
         'zIndex': 10000 // Ensure Toastr is above pre-loader
     };
 }
@@ -248,6 +248,7 @@ function loadSelectedEndorserMisaf(data, detail) {
     $('#Final_Approver_Remarks').val(data.Final_Approver_Remarks);
     $('#Status').val(data.Status);
     $('#mafNoAcknowledge').val(data.MAF_No);
+    $('#MAF_Target_Date').val(data.Target_Date)
 
     $('#fApproveAll').attr('data-maf-no', data.MAF_No);
     $('#fRejectAll').attr('data-maf-no', data.MAF_No);
@@ -425,7 +426,8 @@ function SaveEndorse(originalData) {
         complete: function(res) {
             $("#loading").hide();
             //loadMisafEndorserTable(res.main, res.users)
-            loadInitialEndorserTable();
+            //loadInitialEndorserTable();
+            drawTable(); // TODO: HACKY WAY TO UPDATE, SUBJECT TO CHANGE
         }
     });
 }
@@ -483,7 +485,8 @@ function SaveAllEndorse(data) {
             $("#fApproveAll").prop('disabled', true);
             $("#fRejectAll").prop('disabled', true);
             //loadRequestMainTable(res.main, res.users)
-            loadInitialEndorserTable();
+            //loadInitialEndorserTable();
+            drawTable(); // TODO: HACKY WAY TO UPDATE, SUBJECT TO CHANGE
         }
     });
 }

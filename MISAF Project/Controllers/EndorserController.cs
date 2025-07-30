@@ -54,6 +54,7 @@ namespace MISAF_Project.Controllers
         // GET: Endorser
         public ActionResult Index()
         {
+            ViewBag.Type = "endorse";
             return View();
         }
 
@@ -89,6 +90,7 @@ namespace MISAF_Project.Controllers
                         m.Status_Updated_By,
                         m.Status,
                         m.Requestor_Name,
+                        m.Target_Date,
                         Requested_By = m.Encoded_By != null && m.Encoded_By.Contains("|")
                             ? employees.GetOrDefault(m.Encoded_By.Split('|')[0].Trim())
                             : null
@@ -164,6 +166,7 @@ namespace MISAF_Project.Controllers
                         m.Status_Updated_By,
                         m.Status,
                         m.Requestor_Name,
+                        m.Target_Date,
                         Requested_By = m.Encoded_By != null && m.Encoded_By.Contains("|")
                             ? employees.GetOrDefault(m.Encoded_By.Split('|')[0].Trim())
                             : null
@@ -287,7 +290,7 @@ namespace MISAF_Project.Controllers
                             var _remarks = details.Select(s => s.Status_Remarks).ToList();
                             var isApprove = details.Any(s => s.Status == "Approved");
                             // Update main 
-                            existMain.Status = isApprove ? "Approved" : "Disapproved";
+                            existMain.Status = isApprove ? "For Approval" : "Disapproved";
                             existMain.Status_DateTime = DateTime.Now;
                             existMain.Status_Updated_By = userLogin;
                             existMain.Status_Remarks = string.Join(",", _remarks);
@@ -496,7 +499,8 @@ namespace MISAF_Project.Controllers
                             var _remarks = details.Select(s => s.Status_Remarks).ToList();
 
                             // Update main 
-                            existMain.Status = forApproval ? "Approved" : "Rejected";
+                            //existMain.Status = forApproval ? "Approved" : "Rejected";
+                            existMain.Status = "For Approval";
                             existMain.Status_DateTime = DateTime.Now;
                             existMain.Status_Updated_By = employee.Name;
                             existMain.Status_Remarks = string.Join(",", _remarks);

@@ -30,25 +30,29 @@
         <div class="col-12">
             <div class="card">
                 <div class="card-body">
-                    <div class="table-responsive-sm mt-2">
-                        <table id="misafTable" class="table table-bordered table-centered  mb-0">
-                            <thead>
-                                <tr>
-                                    <th>MAF No</th>
-                                    <th>Requested By</th>
-                                    <th>Requested For</th>
-                                    <th>Status</th>
-                                    <th>Status Date</th>
-                                    <th>Status Upadated By</th>
-                                    <th>Status Remarks</th>
-                                    <th>&nbsp;</th>
+                    <!--<div class="table-responsive-sm mt-2">
+                    <table id="misafTable" class="table table-bordered table-centered  mb-0">
+                        <thead>
+                            <tr>
+                                <th>MAF No</th>
+                                <th>Requested By</th>
+                                <th>Requested For</th>
+                                <th>Status</th>
+                                <th>Status Date</th>
+                                <th>Status Upadated By</th>
+                                <th>Status Remarks</th>
+                                <th>&nbsp;</th>
 
-                                </tr>
-                            </thead>
-                            <tbody id="misafTableBody">
-                                <!-- Filled via AJAX -->
-                            </tbody>
+                            </tr>
+                        </thead>
+                        <tbody id="misafTableBody">-->
+                    <!-- Filled via AJAX -->
+                    <!--</tbody>
                         </table>
+                    </div>-->
+
+                    <div class="table-responsive-sm mt-2">
+                        @Html.Partial("_MainTable_Partial", (string)ViewBag.Type)
                     </div>
 
                 </div> <!-- end card-body-->
@@ -76,6 +80,24 @@
                 <button id="btnSaveRemarksAcknowledge" type="button" class="btn btn-success">Save</button>
                 <button id="btnSaveRemarksOnhold" type="button" class="btn btn-success">Save</button>
                 <button id="btnSaveRemarksReject" type="button" class="btn btn-success">Save</button>
+                <button id="btnClose" type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Update All Remarks Modal -->
+<div class="modal fade" id="updateAllRemarksModal" tabindex="-1" role="dialog" aria-labelledby="updateAllRemarksModal" style="z-index: 1050;">
+    <div class="modal-dialog modal-md modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-body">
+                @Html.AntiForgeryToken()
+                <input type="hidden" value="" id="updateAllType" />
+                <label for="updateALlRemarks" class="form-label">Remarks<span class="text-danger">*</span></label>
+                <textarea id="updateALlRemarks" class="form-control" cols="10" required></textarea>
+            </div>
+            <div class="modal-footer">
+                <button id="btnUpdateAllRemarksModal" type="button" class="btn btn-success">Save</button>
                 <button id="btnClose" type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
             </div>
         </div>
@@ -117,6 +139,15 @@
                         </div>
                     </div>
 
+                    <div class="card shadow-lg col-sm-12 col-xl-6">
+                        <div class="card-body">
+                            <h4><i class="mdi mdi-calendar-range"></i> Target Date</h4>
+                            <hr />
+                            <label for="MAF_Target_Date">Target Date <span class="text-info">(Optional)</span></label>
+                            <input type="date" id="MAF_Target_Date" class="form-control" disabled />
+                        </div>
+                    </div>
+
                     <div class="card shadow-lg">
                         <div class="card-body">
                             <div class="d-flex justify-content-between align-items-center">
@@ -124,7 +155,7 @@
                                 <div>
                                     <input type="hidden" id="mafNoAcknowledge" />
                                     <button id="btnAcknowledgeAll" type="button" class="btn btn-success">Acknowlege</button>
-                                    <button id="btnApproveAll" type="button" class="btn btn-success">Approve All</button>
+                                    <button id="btnApproveAll" type="button" class="btn btn-success">Done All</button>
                                     <button id="btnOnholdAll" type="button" class="btn btn-info">Onhold All</button>
                                     <button id="btnRejectAll" type="button" class="btn btn-danger">Reject All</button>
                                 </div>
@@ -154,7 +185,7 @@
                     <div class="row mb-2">
 
                         <!-- Endorser -->
-                        <div class="col-6">
+                        <div class="col-sm-12 col-xl-6">
                             <div class="card shadow-lg">
                                 <div class="card-body">
                                     <h4 class="card-title"> <i class="mdi mdi-account"></i> Endorser</h4>
@@ -176,7 +207,7 @@
                         </div>
 
                         <!-- Approver -->
-                        <div class="col-6">
+                        <div class="col-sm-12 col-xl-6">
                             <div class="card shadow-lg">
                                 <div class="card-body">
                                     <h4 class="card-title"> <i class="mdi mdi-account"></i> Approver</h4>
@@ -251,12 +282,12 @@
                             </div>
                         </div>
                     </div>
-                    
+
                 </div>
                 <input type="hidden" id="editIndex" value="-1" />
             </div>
             <div class="modal-footer">
-                
+
                 <button id="btnClose" type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
             </div>
         </div>
@@ -324,6 +355,13 @@
 
         .disapproved-row {
             background-color: #f8d7da !important; /* Light red */
+        }
+
+        .custom-toastr {
+            position: fixed !important;
+            top: 50% !important;
+            left: 50% !important;
+            transform: translate(-50%, -50%) !important;
         }
     </style>
     <link href="~/Content/pre-loader.css" rel="stylesheet" />

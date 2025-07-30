@@ -1,0 +1,1 @@
+2025-07-12 13:00:51.015 [INF] Application started

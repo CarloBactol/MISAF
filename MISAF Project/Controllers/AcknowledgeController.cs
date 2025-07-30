@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using AutoMapper.Internal;
+using Microsoft.Ajax.Utilities;
 using MISAF_Project.DTO;
 using MISAF_Project.EDMX;
 using MISAF_Project.Filters;
@@ -31,7 +32,7 @@ namespace MISAF_Project.Controllers
         private readonly IApproverService _approverService;
         private readonly IAttachmentsService _attachmentsService;
 
-        public AcknowledgeController(IUserContextService userContextService, 
+        public AcknowledgeController(IUserContextService userContextService,
             IMainService mainService,
             IDetailsService detailsService,
             IUserService userService,
@@ -52,6 +53,7 @@ namespace MISAF_Project.Controllers
 
         public ActionResult Index()
         {
+            ViewBag.Type = "acknowledge";
             return View();
         }
 
@@ -94,11 +96,11 @@ namespace MISAF_Project.Controllers
                             : null
                     })
                     .ToList();
-               
+
 
                 if (users.MIS != null)
                 {
-                    main = main.Where(x => (x.Status == "For Acknowledgement MIS" || x.Status == "On Going") && x.Requested_By !=  users.UserLogin).ToList();
+                    main = main.Where(x => (x.Status == "For Acknowledgement MIS" || x.Status == "On Going") && x.Requested_By != users.UserLogin).ToList();
                 }
 
                 if (users.MIS != null)
@@ -120,7 +122,7 @@ namespace MISAF_Project.Controllers
 
         [HttpGet]
         public JsonResult GetRequestDetails(string mafNo)
-        {  
+        {
             try
             {
                 if (string.IsNullOrEmpty(mafNo))
@@ -252,6 +254,7 @@ namespace MISAF_Project.Controllers
                                              .Where(e => e.Name == existMain.Requestor_Name)
                                              .FirstOrDefault();
                 List<MAF_Detail> _mapperDetails = null;
+                var doneApproved = false;
                 using (var scope = new TransactionScope(TransactionScopeOption.Required, TransactionScopeAsyncFlowOption.Enabled))
                 {
                     existDetails.Status = request.Status;
@@ -267,15 +270,16 @@ namespace MISAF_Project.Controllers
                                    .ToList();
 
                     Mapper.CreateMap<MAF_Detail, MAF_Detail>();
-                   _mapperDetails =  Mapper.Map<List<MAF_Detail>>(details);
+                    _mapperDetails = Mapper.Map<List<MAF_Detail>>(details);
 
                     var acknowledge = details.Any(d => d.Status == "For Acknowledgement MIS" || d.Status == "On Hold" || d.Status == "On Going");
                     if (!acknowledge)
                     {
+                        doneApproved = true;
                         if (employee != null)
                         {
                             var _remarks = details.Select(s => s.Status_Remarks).ToList();
-                            var isApprove = details.Any(s => s.Status == "For Acknowledgement MIS" || s.Status == "On Hold");
+                            var isApprove = details.Any(s => s.Status == "For Acknowledgement MIS" || s.Status == "On Hold" || s.Status == "On Going");
                             existMain.Status = isApprove ? "On Going" : "Done";
                             existMain.Status_DateTime = DateTime.Now;
                             existMain.Status_Updated_By = usersLogin.userLogin;
@@ -316,6 +320,7 @@ namespace MISAF_Project.Controllers
                         m.Status,
                         m.Requestor_Name,
                         m.Requestor_ID_No,
+                        m.Target_Date,
                         Requested_By = m.Encoded_By != null && m.Encoded_By.Contains("|")
                             ? employees.GetOrDefault(m.Encoded_By.Split('|')[0].Trim())
                             : null,
@@ -369,7 +374,7 @@ namespace MISAF_Project.Controllers
                                     .AsNoTracking()
                                     .Where(a => a.MAF_No == request.MAF_No)
                                     .ToList();
-             
+
                 var mapPath = Server.MapPath("~/App_Data/Attachments");
                 if (misUsers.Count > 0)
                 {
@@ -394,9 +399,9 @@ namespace MISAF_Project.Controllers
                     }
                 }
 
-                return Json(new { success = true, message = "Request updated sucessfully.", details = _mapperDetails, main, users });
+                return Json(new { success = true, message = "Request updated sucessfully.", details = _mapperDetails, main = _main, doneApproved });
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 return Json(new { success = false, message = ex.Message.ToString() });
             }
@@ -410,7 +415,7 @@ namespace MISAF_Project.Controllers
             {
                 if (!ModelState.IsValid)
                 {
-                    return Json(new { success = false, message = "Invalid data." });
+                    return Json(new { success = false, message = "Invalid data. SaveAcknowledgeAllAsync" });
                 }
 
                 var userLogin = _userContextService.GetUserLogin();
@@ -467,7 +472,7 @@ namespace MISAF_Project.Controllers
             }
             catch (Exception ex)
             {
-                return Json(new {success = false, message = ex.Message.ToString() });
+                return Json(new { success = false, message = ex.Message.ToString() });
             }
         }
 
@@ -477,6 +482,11 @@ namespace MISAF_Project.Controllers
         {
             try
             {
+                if (request.UpdateAllRemarks.IsNullOrWhiteSpace())
+                {
+                    return Json(new { success = false, message = "Remarks Required." });
+                }
+
                 if (!ModelState.IsValid)
                 {
                     return Json(new { success = false, message = "Invalid data." });
@@ -489,133 +499,77 @@ namespace MISAF_Project.Controllers
                               .Where(d => d.MAF_No == request.MAF_No)
                               .FirstOrDefault();
 
+                var allMainDetails = _detailsService
+                    .QueryDetail()
+                    .Where(d => d.MAF_No == request.MAF_No)
+                    .ToList();
 
-                var existDetails = _detailsService
-                              .QueryDetail()
+                var existDetails = allMainDetails
                               .Where(d => d.MAF_No == request.MAF_No && (d.Status == "For Acknowledgement MIS" || d.Status == "On Going" || d.Status == "On Hold"))
                               .ToList();
 
-                if (existDetails == null && existMain == null)
+                if (existMain == null | !existDetails.Any())
                 {
                     return Json(new { success = false, message = "No record found." });
                 }
 
-                existMain.Status = request.Status;
-                existMain.Status_DateTime = DateTime.Now;
-                existMain.Status_Updated_By = userLogin;
-                await _mainService.UpdateAsync(existMain);
-
-                // Save to History database
-
-                foreach (var item in existDetails)
+                using (var scope = new TransactionScope(TransactionScopeOption.Required, TransactionScopeAsyncFlowOption.Enabled))
                 {
-                    item.Status = request.Status;
-                    item.Status_DateTime = DateTime.Now;
-                    item.Status_Updated_By = userLogin;
-                    await _detailsService.UpdateAsync(item);
-                }
+                    existMain.Status = "Done";
+                    existMain.Status_DateTime = DateTime.Now;
+                    existMain.Status_Updated_By = userLogin;
 
-                var details = _detailsService
+                    // Save to History database
+                    foreach (var item in existDetails)
+                    {
+                        item.Status = "Done";
+                        item.Status_DateTime = DateTime.Now;
+                        item.Status_Updated_By = userLogin;
+                        item.Status_Remarks = request.UpdateAllRemarks;
+                    }
+
+                    await _detailsService.UpdateRangeAsync(existDetails);
+
+                    existMain.Status_Remarks = string.Join(",", _detailsService
                                .QueryDetail()
                                .AsNoTracking()
                                .Where(d => d.MAF_No == request.MAF_No)
-                               .ToList();
+                               .Select(d => d.Status_Remarks)
+                               .ToList());
 
-                //var updateMain = _mainService
-                //         .QueryMain()
-                //         .Where(d => d.MAF_No == request.MAF_No)
-                //         .FirstOrDefault();
-
-                var query = _mainService
-                              .QueryMain()
-                              .Where(d => d.MAF_No == request.MAF_No)
-                              .ToList();
-
-                var employees = _employeeService.QueryEmployee().AsNoTracking()
-                   .Where(e => !e.Date_Terminated.HasValue)
-                   .Select(e => new { e.ID_No, e.Name })
-                   .ToDictionary(e => e.ID_No, e => e.Name);
-
-                // Main query
-                var _main = query.ToList() // Materialize to memory to allow Split
-                    .Select(m => new
-                    {
-                        m.MAF_No,
-                        m.Endorsed_By,
-                        m.Endorser_Remarks,
-                        m.DateTime_Endorsed,
-                        m.Final_Approver,
-                        m.Final_Approver_Remarks,
-                        m.DateTime_Approved,
-                        m.Status_Remarks,
-                        m.Status_DateTime,
-                        m.Status_Updated_By,
-                        m.Status,
-                        m.Requestor_Name,
-                        Requested_By = m.Encoded_By != null && m.Encoded_By.Contains("|")
-                            ? employees.GetOrDefault(m.Encoded_By.Split('|')[0].Trim())
-                            : null
-                    })
-                    .FirstOrDefault();
-
-
-
-                MAFMainDto main = new MAFMainDto();
-                if (_main != null)
-                {
-                    main.MAF_No = _main.MAF_No;
-                    main.Endorsed_By = _main.Endorsed_By;
-                    main.DateTime_Endorsed = _main.DateTime_Endorsed;
-                    main.Endorser_Remarks = _main.Endorser_Remarks;
-                    main.Requestor_Name = _main.Requestor_Name;
-                    main.Requested_By = _main.Requested_By;
-                    main.Status = _main.Status;
-                    main.Status_DateTime = _main.Status_DateTime;
-                    main.Final_Approver_Remarks = _main.Final_Approver_Remarks;
-                    main.Status_Updated_By = _main.Status_Updated_By;
+                    await _mainService.UpdateAsync(existMain);
+                    scope.Complete();
                 }
 
+                var main = _mainService
+                              .QueryMain()
+                              .Where(d => d.MAF_No == request.MAF_No)
+                              .FirstOrDefault();
 
-                // send email to the Requestor if there is no left "For Acknowledge MIS or OnHold" request.
-                var acknowledge = details.Any(d => d.Status == "For Acknowledgement MIS" || d.Status == "On Hold" || d.Status == "On Going");
-                if (!acknowledge)
+                List<MAF_Detail> details = new List<MAF_Detail>();
+
+                if (main != null)
                 {
-                    var employee = _employeeService
-                                            .QueryEmployee()
-                                            .AsNoTracking()
-                                            .Where(e => e.Name == existMain.Requestor_Name)
-                                            .FirstOrDefault();
+                    details = _detailsService
+                                       .QueryDetail()
+                                       .AsNoTracking()
+                                       .Where(d => d.MAF_No == main.MAF_No)
+                                       .ToList();
 
-                    if (employee != null)
-                    {
-                        var user = _userService
-                                    .QueryUser()
-                                    .AsNoTracking()
-                                    .Where(e => e.ID_No == employee.ID_No)
-                                    .FirstOrDefault();
+                    MAFMainDto mainDto = MAFMainDto.CreateFrom(main, details: details.Where(d => d.Status == "Done").ToList());
 
+                    mainDto.Status = "Done";
+                    mainDto.Status_Remarks = request.UpdateAllRemarks;
 
-                        if (user != null)
-                        {
-
-                            var _remarks = details.Select(s => s.Status_Remarks).ToList();
-                            var attachments = _attachmentsService
-                                                .QueryAttachment()
-                                                .AsNoTracking()
-                                                .Where(a => a.MAF_No == request.MAF_No)
-                                                .ToList();
-
-                            var mapPath = Server.MapPath("~/App_Data/Attachments");
-                            _emailSenderService.SendEmail(user.Email, "Request Done", main, details, attachments, mapPath, false, "Acknowledge");
-                        }
-                    }
+                    _userService.NotifyUserRequestStatus(mainDto, attachmentFilePath: AttachmentsFilePath, updaterType: "Acknowledge");
                 }
 
                 return Json(new { success = true, message = "Request update sucessfully.", details, main });
             }
-            catch(Exception ex)
+
+            catch (Exception ex)
             {
-                return Json(new {success = false, Message = ex.Message.ToString() });
+                return Json(new { success = false, Message = ex.Message.ToString() });
             }
         }
 
@@ -625,6 +579,11 @@ namespace MISAF_Project.Controllers
         {
             try
             {
+                if (request.UpdateAllRemarks.IsNullOrWhiteSpace())
+                {
+                    return Json(new { success = false, message = "Remarks Required." });
+                }
+
                 if (!ModelState.IsValid)
                 {
                     return Json(new { success = false, message = "Invalid data." });
@@ -636,47 +595,80 @@ namespace MISAF_Project.Controllers
                               .Where(d => d.MAF_No == request.MAF_No)
                               .FirstOrDefault();
 
-                var existDetails = _detailsService
-                              .QueryDetail()
-                              .Where(d => d.MAF_No == request.MAF_No && (d.Status == "For Acknowledgement MIS" || d.Status == "On Going"))
+                var allMainDetails = _detailsService
+                    .QueryDetail()
+                    .Where(d => d.MAF_No == request.MAF_No)
+                    .ToList();
+
+                var existDetails = allMainDetails
+                              .Where(d => (d.Status == "For Acknowledgement MIS" || d.Status == "On Going"))
                               .ToList();
 
-                if (existDetails == null && existMain == null)
+                if (existMain == null | !existDetails.Any())
                 {
                     return Json(new { success = false, message = "No record found." });
                 }
 
-                existMain.Status = "On Going";
-                existMain.Status_DateTime = DateTime.Now;
-                existMain.Status_Updated_By = userLogin;
-                await _mainService.UpdateAsync(existMain);
-
-                // Save to History database
-
-                foreach (var item in existDetails)
+                using (var scope = new TransactionScope(TransactionScopeOption.Required, TransactionScopeAsyncFlowOption.Enabled))
                 {
-                    item.Status = request.Status;
-                    item.Status_DateTime = DateTime.Now;
-                    item.Status_Updated_By = userLogin;
-                    await _detailsService.UpdateAsync(item);
-                }
+                    // task: kapag may isang approved, dapat hindi onhold yung status dapat ongoing
+                    // todo-here: 
+                    existMain.Status = allMainDetails.Any(d => d.Status == "Approved") ? "On Going" : "On Hold";
 
-                var details = _detailsService
+                    existMain.Status_DateTime = DateTime.Now;
+                    existMain.Status_Updated_By = userLogin;
+
+                    // Save to History database
+                    foreach (var item in existDetails)
+                    {
+                        item.Status = request.Status;
+                        item.Status_DateTime = DateTime.Now;
+                        item.Status_Updated_By = userLogin;
+                        item.Status_Remarks = request.UpdateAllRemarks;
+                    }
+
+                    await _detailsService.UpdateRangeAsync(existDetails);
+
+                    existMain.Status_Remarks = string.Join(",", _detailsService
                                .QueryDetail()
                                .AsNoTracking()
                                .Where(d => d.MAF_No == request.MAF_No)
-                               .ToList();
+                               .Select(d => d.Status_Remarks)
+                               .ToList());
 
-                var updateMain = _mainService
-                        .QueryMain()
-                        .Where(d => d.MAF_No == request.MAF_No)
-                        .FirstOrDefault();
+                    await _mainService.UpdateAsync(existMain);
+                    scope.Complete();
+                }
 
-                return Json(new { success = true, message = "Request update sucessfully.", details, main = updateMain });
+                var main = _mainService
+                              .QueryMain()
+                              .Where(d => d.MAF_No == request.MAF_No)
+                              .FirstOrDefault();
+
+                List<MAF_Detail> details = new List<MAF_Detail>();
+
+                if (main != null)
+                {
+                    details = _detailsService
+                                       .QueryDetail()
+                                       .AsNoTracking()
+                                       .Where(d => d.MAF_No == main.MAF_No)
+                                       .ToList();
+
+                    MAFMainDto mainDto = MAFMainDto.CreateFrom(main, details: details.Where(d => d.Status == "On Hold").ToList());
+
+                    mainDto.Status = "On Hold";
+                    mainDto.Status_Remarks = request.UpdateAllRemarks;
+
+                    _userService.NotifyUserRequestStatus(mainDto, attachmentFilePath: AttachmentsFilePath, updaterType: "Acknowledge");
+                }
+
+                return Json(new { success = true, message = "Request update sucessfully.", details, main });
             }
+
             catch (Exception ex)
             {
-                return Json(new {success = false,  message = ex.Message.ToString()});
+                return Json(new { success = false, message = ex.Message.ToString() });
             }
         }
 
@@ -686,6 +678,11 @@ namespace MISAF_Project.Controllers
         {
             try
             {
+                if (request.UpdateAllRemarks.IsNullOrWhiteSpace())
+                {
+                    return Json(new { success = false, message = "Remarks Required." });
+                }
+
                 if (!ModelState.IsValid)
                 {
                     return Json(new { success = false, message = "Invalid data." });
@@ -697,44 +694,79 @@ namespace MISAF_Project.Controllers
                               .Where(d => d.MAF_No == request.MAF_No)
                               .FirstOrDefault();
 
-                var existDetails = _detailsService
-                              .QueryDetail()
-                              .Where(d => d.MAF_No == request.MAF_No && (d.Status == "For Acknowledgement MIS" || d.Status == "On Going" || d.Status == "On Hold"))
+                var allMainDetails = _detailsService
+                    .QueryDetail()
+                    .Where(d => d.MAF_No == request.MAF_No)
+                    .ToList();
+
+                var existDetails = allMainDetails
+                              .Where(d => (d.Status == "For Acknowledgement MIS" || d.Status == "On Going" || d.Status == "On Hold"))
                               .ToList();
 
-                if (existDetails.Count == 0 && existMain == null)
+                if (existMain == null | !existDetails.Any())
                 {
                     return Json(new { success = false, message = "No record found." });
                 }
 
-                existMain.Status = request.Status;
-                existMain.Status_DateTime = DateTime.Now;
-                existMain.Status_Updated_By = userLogin;
-                await _mainService.UpdateAsync(existMain);
-
-                // Save to History database
-
-                foreach (var item in existDetails)
+                using (var scope = new TransactionScope(TransactionScopeOption.Required, TransactionScopeAsyncFlowOption.Enabled))
                 {
-                    item.Status = request.Status;
-                    item.Status_DateTime = DateTime.Now;
-                    item.Status_Updated_By = userLogin;
-                    await _detailsService.UpdateAsync(item);
-                }
 
-                var details = _detailsService
+                    // task: kapag may isang approved, dapat hindi reject yung status dapat done
+                    // todo-here: 
+                    existMain.Status = allMainDetails.Any(d => d.Status == "Approved") ? "Done" : "Rejected";
+
+                    existMain.Status_DateTime = DateTime.Now;
+                    existMain.Status_Updated_By = userLogin;
+
+                    // Save to History database
+
+                    foreach (var item in existDetails)
+                    {
+                        item.Status = request.Status;
+                        item.Status_DateTime = DateTime.Now;
+                        item.Status_Updated_By = userLogin;
+                        item.Status_Remarks = request.UpdateAllRemarks;
+                    }
+
+                    await _detailsService.UpdateRangeAsync(existDetails);
+
+                    existMain.Status_Remarks = string.Join(",", _detailsService
                                .QueryDetail()
                                .AsNoTracking()
                                .Where(d => d.MAF_No == request.MAF_No)
-                               .ToList();
+                               .Select(d => d.Status_Remarks)
+                               .ToList());
 
-                var updateMain = _mainService
-                            .QueryMain()
-                            .Where(d => d.MAF_No == request.MAF_No)
-                            .FirstOrDefault();
+                    await _mainService.UpdateAsync(existMain);
+                    scope.Complete();
+                }
 
-                return Json(new { success = true, message = "Request update sucessfully.", details, main = updateMain });
+                var main = _mainService
+                              .QueryMain()
+                              .Where(d => d.MAF_No == request.MAF_No)
+                              .FirstOrDefault();
+
+                List<MAF_Detail> details = new List<MAF_Detail>();
+
+                if (main != null)
+                {
+                    details = _detailsService
+                                       .QueryDetail()
+                                       .AsNoTracking()
+                                       .Where(d => d.MAF_No == main.MAF_No)
+                                       .ToList();
+
+                    MAFMainDto mainDto = MAFMainDto.CreateFrom(main, details: details.Where(d => d.Status == "Rejected").ToList());
+
+                    mainDto.Status = "Rejected";
+                    mainDto.Status_Remarks = request.UpdateAllRemarks;
+
+                    _userService.NotifyUserRequestStatus(mainDto, attachmentFilePath: AttachmentsFilePath, updaterType: "Acknowledge");
+                }
+
+                return Json(new { success = true, message = "Request update sucessfully.", details, main });
             }
+
             catch (Exception ex)
             {
                 return Json(new { success = true, message = ex.Message.ToString() });

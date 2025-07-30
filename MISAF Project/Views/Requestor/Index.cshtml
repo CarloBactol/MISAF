@@ -30,29 +30,34 @@
         <div class="col-12">
             <div class="card">
                 <div class="card-body">
-                    <div class="d-flex justify-content-end mb-3">
+                    <div class="d-flex justify-content-end">
                         <button type="button" class="btn btn-primary" id="addMisaf">
                             <i class="mdi mdi-plus me-1"></i> Add MISAF
                         </button>
                     </div>
+
+                    <div class="table-responsive-sm">
+                        <!--<table id="misafTable" class="table table-bordered table-centered mb-0">
+                        <thead>
+                            <tr>
+                                <th>MAF No</th>
+                                <th>Requested By</th>
+                                <th>Requested For</th>
+                                <th>Status</th>
+                                <th>Status Date</th>
+                                <th>Status Upadated By</th>
+                                <th>Status Remarks</th>
+                                <th> </th>
+                            </tr>
+                        </thead>
+                        <tbody id="misafTableBody">-->
+                        <!-- Filled via AJAX -->
+                        <!--</tbody>
+                        </table>-->
+                    </div>
+
                     <div class="table-responsive-sm mt-2">
-                        <table id="misafTable" class="table table-bordered table-centered mb-0">
-                            <thead>
-                                <tr>
-                                    <th>MAF No</th>
-                                    <th>Requested By</th>
-                                    <th>Requested For</th>
-                                    <th>Status</th>
-                                    <th>Status Date</th>
-                                    <th>Status Upadated By</th>
-                                    <th>Status Remarks</th>
-                                    <th> </th>
-                                </tr>
-                            </thead>
-                            <tbody id="misafTableBody">
-                                <!-- Filled via AJAX -->
-                            </tbody>
-                        </table>
+                        @Html.Partial("_MainTable_Partial", (string) ViewBag.Type)
                     </div>
                 </div> <!-- end card-body-->
             </div> <!-- end card-->
@@ -82,7 +87,7 @@
                     <textarea class="form-control" placeholder="Request / Problem Recommendation (Required)" id="requestProblemRecommendation"></textarea>
                 </div>
                 <div class="form-group mb-2">
-                    <label for="reason">Reason <span class="text-info">(Optional)</span></label>
+                    <label for="reason">Reason <span class="text-danger">(Required)</span></label>
                     <select class="form-control select2" id="reason"></select>
                 </div>
             </div>
@@ -156,6 +161,15 @@
                         </div>
                     </div>
 
+                    <div class="card shadow-lg col-sm-12 col-xl-6">
+                        <div class="card-body">
+                            <h4><i class="mdi mdi-calendar-range"></i> Target Date</h4>
+                            <hr />
+                            <label for="MAF_Target_Date">Target Date <span class="text-info">(Optional)</span></label>
+                            <input type="date" id="MAF_Target_Date" class="form-control" />
+                        </div>
+                    </div>
+
                     <!--  Request Details  -->
                     <div class="card shadow-lg">
                         <div class="card-body">
@@ -191,7 +205,7 @@
 
                     <!--  Endorser & Approver  -->
                     <div class="row mb-2">
-                        <div class="col-6">
+                        <div class="col-sm-12 col-xl-6">
                             <div class="card shadow-lg">
                                 <div class="card-body">
                                     <h4 class="card-title"><i class="mdi mdi-account"></i> Endorser</h4>
@@ -219,7 +233,7 @@
                             </div>
                         </div>
 
-                        <div class="col-6">
+                        <div class="col-sm-12 col-xl-6">
 
                             <div class="card shadow-lg">
                                 <div class="card-body">
@@ -415,6 +429,13 @@
         .modal-content {
             background: #fff;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        .custom-toastr {
+            position: fixed !important;
+            top: 50% !important;
+            left: 50% !important;
+            transform: translate(-50%, -50%) !important;
         }
     </style>
     <link href="~/Content/pre-loader.css" rel="stylesheet" />

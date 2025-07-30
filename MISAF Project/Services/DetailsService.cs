@@ -46,6 +46,22 @@ namespace MISAF_Project.Services
            await _detailRepository.SaveChangesAsync();
         }
 
+        public async Task UpdateRangeAsync(List<MAF_Detail> details)
+        {
+            if (details == null)
+            {
+                throw new ArgumentNullException(nameof(details), "List of MAF_Detail entity cannot be null.");
+            }
+
+            foreach (var detail in details)
+            {
+                ValidateEntity(detail);
+                _detailRepository.Update(detail);
+            }
+
+            await _detailRepository.SaveChangesAsync();
+        }
+
         private void ValidateEntity(MAF_Detail detail)
         {
             if (detail == null)

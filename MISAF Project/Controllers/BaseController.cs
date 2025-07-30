@@ -1,16 +1,12 @@
-﻿using MISAF_Project.Services;
+﻿using MISAF_Project.Core.Data;
 using MISAF_Project.ViewModels;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 using System.Web.Mvc;
 
 namespace MISAF_Project.Controllers
 {
     public class BaseController : Controller
     {
-  
+        protected string AttachmentsFilePath { get { return Server.MapPath("~/App_Data/Attachments"); } }
 
         protected override void OnActionExecuting(ActionExecutingContext filterContext)
         {
@@ -24,6 +20,30 @@ namespace MISAF_Project.Controllers
 
             ViewBag.Users = users;
             base.OnActionExecuting(filterContext);
+        }
+
+        protected UserData GetAuthUser()
+        {
+            return Session["AuthUser"] as UserData;
+        }
+
+        protected void SetAuthUser(UserData user)
+        {
+            Session["AuthUser"] = user;
+        }
+
+        protected JsonResult JsonWrap(object data) {
+            return Json(data, JsonRequestBehavior.AllowGet);
+        }
+
+        protected JsonResult JsonSuccess(object data)
+        {
+            return JsonWrap(new { success = true, data = data });
+        }
+
+        protected JsonResult JsonError(object data)
+        {
+            return JsonWrap(new { success = false, errors = data });
         }
     }
 }

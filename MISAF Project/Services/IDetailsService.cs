@@ -13,5 +13,7 @@ namespace MISAF_Project.Services
         Task AddAsync(MAF_Detail detail); 
         Task UpdateAsync (MAF_Detail detail);
         Task DeleteAsync (MAF_Detail detail);
+
+        Task UpdateRangeAsync(List<MAF_Detail> details);
     }
 }

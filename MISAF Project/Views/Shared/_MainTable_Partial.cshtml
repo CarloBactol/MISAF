@@ -1,0 +1,192 @@
+﻿@model string
+
+<div>
+    <div class="mb-2 w-25">
+        <label for="statusFilter" class="form-label">Filter by Status:</label>
+        <select id="statusFilter" class="form-select" aria-label="Select status">
+            <option value="">All</option>
+            @if (Model == "request" | Model == "endorse" | Model == "approve")
+            {
+                <option value="For Approval">For Approval</option>
+            }
+
+            @if (Model == "request" | Model == "acknowledge")
+            {
+                <option value="For Acknowledgement MIS">For Acknowledgement MIS</option>
+                <option value="On Going">On Going</option>
+                <option value="On Hold">On Hold</option>
+            }
+
+            @if (Model == "request")
+            {
+                <option value="Done">Done</option>
+                <option value="Rejected">Rejected</option>
+            }
+        </select>
+    </div>
+
+    <table id="misaf-main-table" class="table table-bordered mb-0">
+        <thead>
+            <tr>
+                <th>MAF No</th>
+                <th>Requested By</th>
+                <th>Requested For</th>
+                <th>Status</th>
+                <th>Status Date</th>
+                <th>Status Upadated By</th>
+                <th>Status Remarks</th>
+                <th></th>
+            </tr>
+        </thead>
+    </table>
+</div>
+
+<script>
+    function fillTable(data) {
+        $("#misaf-main-table").DataTable({
+            data: data,
+            columns: [
+                { data: "MAF_No" },
+                { data: "Requested_By" },
+                { data: "Requested_For" },
+                { data: "Status" },
+                {
+                    data: "Status_Date",
+                    render: function (data, type) {
+                        return formatDate(data)
+                    }
+                },
+                { data: "Status_Updated_By" },
+                { data: "Status_Remarks" },
+                {
+                    data: "",
+                    render: function (data, type, row, meta) {
+                        const edit_btn = `
+                        <button type="button"
+                                onclick="partialEditMisaf('${row.MAF_No}')"
+                                class="btn btn-info btn-sm me-1"
+                                data-bs-toggle="tooltip"
+                                data-bs-title="Edit">
+                            <i class="mdi mdi-pencil"></i>
+                    </button>`
+
+                        const view_btn = `
+                        <button type="button"
+                                onclick="partialViewMisaf('${row.MAF_No}')"
+                                class="btn btn-info btn-sm me-1"
+                                data-bs-toggle="tooltip"
+                                data-bs-title="View">
+                            <i class="mdi mdi-eye"></i>
+                        </button>`
+
+                        const endorse_btn = `
+                        <button type="button"
+                                onclick="partialEndorseMisaf('${row.MAF_No}')"
+                                class="btn btn-info btn-sm me-1"
+                                data-bs-toggle="tooltip"
+                                data-bs-title="Endorse">
+                            <i class="mdi mdi-account-check"></i>
+                        </button>`
+
+                        const approve_btn = `
+                        <button type="button"
+                                onclick="partialApproveMisaf('${row.MAF_No}')"
+                                class="btn btn-info btn-sm me-1"
+                                data-bs-toggle="tooltip"
+                                data-bs-title="Approve">
+                            <i class="mdi mdi-account-check"></i>
+                        </button>`
+
+                        const acknowledge_btn = `
+                        <button type="button"
+                                onclick="partialAcknowledgeMisaf('${row.MAF_No}','${row.Status}')"
+                                class="btn btn-info btn-sm me-1
+                                data-bs-toggle="tooltip" data-bs-title="Endorse">
+                            <i class="mdi mdi-account-check"></i>
+                        </button>`
+
+                        if (!row.Is_Owner && row.Can_Acknowledge) {
+                            return acknowledge_btn
+                        }
+
+                        if (!row.Is_Owner && row.Can_Endorse) {
+                            return endorse_btn
+                        }
+
+                        if (!row.Is_Owner && row.Can_Approve) {
+                            return approve_btn
+                        }
+
+                        if (row.Can_Edit) {
+                            return `${edit_btn} ${view_btn}`
+                        }
+
+                        return view_btn
+                    }
+                }
+            ],
+            createdRow: function (row, data, dataIndex) {
+                let rowClass = ''
+
+                if (data.Status === "Approved" || data.Status === "Done") {
+                    rowClass = 'table-success'
+                } else if (data.Status === "Disapproved" || data.Status === "Reject") {
+                    rowClass = 'table-danger'
+                } else if (data.Status === "On Going" || data.Status === "For Acknowledgement MIS") {
+                    rowClass = 'table-warning'
+                } else if (data.Status === "On Hold") {
+                    rowClass = 'table-info'
+                }
+
+                if (rowClass !== '') {
+                    row.classList.add(rowClass)
+                }
+            }
+        })
+    }
+
+    function drawTable() {
+        if ($("#misaf-main-table").DataTable.isDataTable) {
+            $("#misaf-main-table").DataTable().destroy();
+        }
+
+        $.get("/Main/All?type=@Model", function (res) {
+            if (res.success) {
+                fillTable(res.data)
+            } else {
+                toastr.error(res.message || 'Failed to load requestor table.', 'Error');
+            }
+        }).fail(function (xhr, status, error) {
+            toastr.error(`Request failed: ${error || 'Unable to connect to the server.'}`, 'Error');
+        });
+    }
+
+    $(document).ready(function () {
+        drawTable()
+
+        $('#statusFilter').on('change', function () {
+            var filterValue = this.value;
+            $("#misaf-main-table").DataTable().column(3).search(filterValue ? '^' + filterValue + '$' : '', true, false).draw();
+        });
+    })
+
+    function partialEditMisaf(id) {
+        editMisaf(id, false);
+    }
+
+    function partialViewMisaf(id) {
+        editMisaf(id, true);
+    }
+
+    function partialEndorseMisaf(id) {
+        endorseMisaf(id);
+    }
+
+    function partialApproveMisaf(id) {
+        finalApprover(id);
+    }
+
+    function partialAcknowledgeMisaf(id, status) {
+        acknowledge(id, status);
+    }
+</script>

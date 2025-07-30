@@ -169,8 +169,22 @@
     <Compile Include="Controllers\EndorserController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
+    <Compile Include="Controllers\MainController.cs" />
     <Compile Include="Controllers\MISAFController.cs" />
     <Compile Include="Controllers\RequestorController.cs" />
+    <Compile Include="Core\Data\MainData.cs" />
+    <Compile Include="Core\Filters\ValidateViewModelState.cs" />
+    <Compile Include="Core\Interfaces\IAuthService.cs" />
+    <Compile Include="Core\Interfaces\IMainService.cs" />
+    <Compile Include="Core\Interfaces\IRepository.cs" />
+    <Compile Include="Core\Repositories\EntityRepository.cs" />
+    <Compile Include="Core\Repositories\HRRepository.cs" />
+    <Compile Include="Core\Repositories\MasterFileRepository.cs" />
+    <Compile Include="Core\Repositories\MISRepository.cs" />
+    <Compile Include="Core\Services\MainService.cs" />
+    <Compile Include="Core\ViewModels\LoginViewModel.cs" />
+    <Compile Include="Core\Data\UserData.cs" />
+    <Compile Include="Core\Services\AuthService.cs" />
     <Compile Include="DTO\ApproverDto.cs" />
     <Compile Include="DTO\EmployeeDto.cs" />
     <Compile Include="DTO\MAFMainDto.cs" />
@@ -2819,6 +2833,7 @@
     <Content Include="Views\FinalApprover\Index.cshtml" />
     <Content Include="Views\Shared\_UserRoles.cshtml" />
     <Content Include="Views\Requestor\Index.cshtml" />
+    <Content Include="Views\Shared\_MainTable_Partial.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\Attachments\" />

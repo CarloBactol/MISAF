@@ -8,6 +8,7 @@ using System.Data.Entity;
 using System.Linq;
 using System.Runtime.Caching;
 using System.Text.RegularExpressions;
+using System.Transactions;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.Services.Description;
@@ -26,7 +27,7 @@ namespace MISAF_Project.Controllers
             _employeeService = employeeService;
             _approverService = approverService;
         }
-        
+
 
         // GET: Approver
         public ActionResult Index()
@@ -98,20 +99,20 @@ namespace MISAF_Project.Controllers
             }
 
             var employee = (from emp in employees
-                           join user in users on emp.ID_No equals user.ID_No
-                           select new
-                           {
-                               emp.ID_No,
-                               emp.Name,
-                               Email_CC = user.Email,
-                           }).FirstOrDefault();
-            
+                            join user in users on emp.ID_No equals user.ID_No
+                            select new
+                            {
+                                emp.ID_No,
+                                emp.Name,
+                                Email_CC = user.Email,
+                            }).FirstOrDefault();
+
 
             if (employee == null)
             {
                 return Json(new { success = false, message = "Employee not found." }, JsonRequestBehavior.AllowGet);
             }
-            
+
             return Json(new { success = true, data = employee }, JsonRequestBehavior.AllowGet);
         }
 
@@ -122,7 +123,7 @@ namespace MISAF_Project.Controllers
             name = name?.Trim().ToLower();
             if (string.IsNullOrEmpty(name))
                 return Json(new { success = false }, JsonRequestBehavior.AllowGet);
-          
+
             var matched = _employeeService.GetByName(name);
 
             if (!matched.Any())
@@ -222,7 +223,7 @@ namespace MISAF_Project.Controllers
             if (!matched.Any())
                 return Json(new { success = false, message = "No employee record found." }, JsonRequestBehavior.AllowGet);
 
-            var users =  _userService
+            var users = _userService
                         .QueryUser()
                         .AsNoTracking()
                         .Where(u => u.Active == "Y")
@@ -303,12 +304,19 @@ namespace MISAF_Project.Controllers
             {
                 if (ModelState.IsValid)
                 {
-                    _approverService.Add(approverDto);
-                    var approvers = _approverService.QueryApprover()
-                        .Where(a => a.Active == "Y")
-                        .OrderBy(a => a.Name)
-                        .ToList();
-                    return Json(new { success = true, data = approvers });
+                    using (var scope = new TransactionScope(TransactionScopeOption.Required, TransactionScopeAsyncFlowOption.Enabled))
+                    {
+                        _approverService.Add(approverDto);
+
+                        var approvers = _approverService.QueryApprover()
+                            .Where(a => a.Active == "Y")
+                            .OrderBy(a => a.Name)
+                            .ToList();
+
+                        scope.Complete();
+
+                        return Json(new { success = true, data = approvers });
+                    }
                 }
 
                 return Json(new { success = false, message = "Invalid data." });
@@ -317,7 +325,7 @@ namespace MISAF_Project.Controllers
             {
                 return Json(new { success = false, message = ex.Message }, JsonRequestBehavior.AllowGet);
             }
-            
+
         }
 
         [HttpGet]
@@ -347,17 +355,21 @@ namespace MISAF_Project.Controllers
                 var approver = _approverService.GetApproverById(approverDto.Approver_ID);
                 if (approver != null)
                 {
-                    _approverService.Update(approverDto);
+                    using (var scope = new TransactionScope(TransactionScopeOption.Required, TransactionScopeAsyncFlowOption.Enabled))
+                    {
+                        _approverService.Update(approverDto);
 
-                    var approvers = _approverService
-                           .QueryApprover()
-                           .Where(a => a.Active == "Y")
-                           .OrderByDescending(a => a.Approver_ID)
-                           .ToList();
+                        var approvers = _approverService
+                               .QueryApprover()
+                               .Where(a => a.Active == "Y")
+                               .OrderByDescending(a => a.Approver_ID)
+                               .ToList();
 
-                    return Json(new { success = true, data = approvers });
+                        scope.Complete();
+
+                        return Json(new { success = true, data = approvers });
+                    }
                 }
-
             }
 
             return Json(new { success = false, message = "Invalid data." });
@@ -370,13 +382,20 @@ namespace MISAF_Project.Controllers
         {
             try
             {
-                _approverService.Delete(id);
-                var approvers = _approverService
+                using (var scope = new TransactionScope(TransactionScopeOption.Required, TransactionScopeAsyncFlowOption.Enabled))
+                {
+                    _approverService.Delete(id);
+
+                    var approvers = _approverService
                            .QueryApprover()
                            .Where(a => a.Active == "Y")
                            .OrderByDescending(a => a.Approver_ID)
                            .ToList();
-                return Json(new { success = true, message = "Approver deleted successfully.", data = approvers });
+
+                    scope.Complete();
+
+                    return Json(new { success = true, message = "Approver deleted successfully.", data = approvers });
+                }
             }
             catch (KeyNotFoundException ex)
             {
